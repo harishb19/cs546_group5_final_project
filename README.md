@@ -1,5 +1,6 @@
 # CMA - Catch Movies in Action
-
+## Description
+This project follows an MVC architecture
 
 ## Installation
 
@@ -9,7 +10,7 @@ Module available through the [npm registry](https://www.npmjs.com/). It can be i
 # NPM (Recomend)
 npm install --save
 ```
-## Installation
+## Running
 ```sh
 # NPM (Recomend)
 npm start
