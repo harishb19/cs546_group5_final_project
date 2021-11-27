@@ -1,5 +1,5 @@
 {
-  "name": "cs546_group5_final_project",
+  "name": "CMA - Catch Movies in Action",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
@@ -32,9 +32,10 @@
     "morgan": "^1.10.0",
     "passport": "^0.5.0",
     "passport-google-oauth2": "^0.2.0",
-    "serve-favicon": "^2.5.0"
+    "serve-favicon": "^2.5.0",
+    "express-session": "^1.17.2"
+
   },
   "devDependencies": {
-    "express-session": "^1.17.2"
   }
 }
