@@ -1,7 +1,7 @@
-const mongoose = require("mongoose");
 const {ObjectId, Timestamp, Binary} = require("mongodb");
+const {Schema} = require("mongoose");
 
-const theatreSchema = new mongoose.Schema({
+const theatreSchema = new Schema({
     theatreId: {
         type: mongoose.Schema.Types.ObjectId,
         unique: true,
@@ -43,15 +43,14 @@ const theatreSchema = new mongoose.Schema({
                     required: true
                 },
                 noOfSeats: [{
-                    type: Binary
+                    type: Map,
+                    of: String
                 }],
                 price: {
                     type: Number,
                     required: true
                 },
-            }
-
-            ]
+            }]
         }]
     }],
     releaseDate: {
