@@ -1,5 +1,6 @@
 const {ObjectId, Timestamp, Binary} = require("mongodb");
 const {Schema} = require("mongoose");
+const mongoose = require('mongoose');
 
 const theatreSchema = new Schema({
     theatreId: {
@@ -21,16 +22,18 @@ const theatreSchema = new Schema({
             type: String,
             required: true,
         },
-        layout: [{
-            type: Binary
-        }],
+        layout: [[{
+            type: Number,
+            min: 0,
+            max: 1
+        }]],
         totalNoOfSeats: {
             type: Number,
             required: true,
         },
         showTime: [{
             showTimeId: {
-                type: Timestamp,
+                type: Date,
                 required: true,
             },
             date: {
@@ -42,10 +45,10 @@ const theatreSchema = new Schema({
                     type: String,
                     required: true
                 },
-                noOfSeats: [{
+                noOfSeats: {
                     type: Map,
                     of: String
-                }],
+                },
                 price: {
                     type: Number,
                     required: true
@@ -53,21 +56,6 @@ const theatreSchema = new Schema({
             }]
         }]
     }],
-    releaseDate: {
-        type: Date,
-        required: true
-    },
-
-    runtimeInSecs: {
-        type: Number,
-        required: true
-    },
-    IMDBRating: {
-        type: String,
-        required: true
-    }
-
-
 }, {
     timestamps: true
 })
