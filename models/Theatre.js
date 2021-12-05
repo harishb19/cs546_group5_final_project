@@ -18,10 +18,13 @@ const theatreSchema = new Schema({
     },
 
     screens: [{
-        movieFormat: {
-            type: String,
-            required: true,
+
+        screenId: {
+            type: mongoose.Schema.Types.ObjectId,
+            unique: true,
+            default: ObjectId()
         },
+
         layout: [[{
             type: Number,
             min: 0,
@@ -31,30 +34,6 @@ const theatreSchema = new Schema({
             type: Number,
             required: true,
         },
-        showTime: [{
-            showTimeId: {
-                type: Date,
-                required: true,
-            },
-            date: {
-                type: Date,
-                required: true
-            },
-            availability: [{
-                time: {
-                    type: String,
-                    required: true
-                },
-                noOfSeats: {
-                    type: Map,
-                    of: String
-                },
-                price: {
-                    type: Number,
-                    required: true
-                },
-            }]
-        }]
     }],
 }, {
     timestamps: true
