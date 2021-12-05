@@ -16,14 +16,24 @@ const movieSchema = new mongoose.Schema({
         required: true
     }],
     cast: [{
-        type: String,
-        required: true
+        name:{
+            type: String,
+            required: true
+        },
+        asCharacter:{
+            type: String,
+            required: true
+        },
+        img:{
+            type: String,
+            required: true
+        }
     }],
     description: {
         type: String,
         required: true,
     },
-    images: [{
+    images: {
         mainImg: {
             type: String,
             required: true,
@@ -31,7 +41,7 @@ const movieSchema = new mongoose.Schema({
         others: [{
             type: String
         }]
-    }],
+    },
     releaseDate: {
         type: Date,
         required: true
