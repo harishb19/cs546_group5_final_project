@@ -21,6 +21,17 @@ const initMiddleware = (app) => {
 
                 return new Handlebars.SafeString(JSON.stringify(obj));
             },
+            split: (string, separator) => {
+                return string.split(separator)
+            },
+            splice: (string, start, end) => {
+
+                return string.slice(start, end)
+            },
+            accessElement:(array,index)=>{
+                return array[index]
+            },
+
             section(name, options) {
                 if (!this._sections) {
                     this._sections = {};
@@ -28,8 +39,13 @@ const initMiddleware = (app) => {
                 this._sections[name] = options.fn(this);
                 return null;
             },
+
+
         }
     });
+    // handlebarsInstance.registerHelper('ifEquals', function(arg1, arg2, options) {
+    //     return (arg1 == arg2) ? options.fn(this) : options.inverse(this);
+    // });
     handlebarsInstance.getPartials().then(r => console.log(r))
 
     app.use;
@@ -58,7 +74,7 @@ const initMiddleware = (app) => {
         res.locals.session = req.session;
         res.locals.toastMessage = req.flash('toastMessage');
         res.locals.toastStatus = req.flash('toastStatus');
-        if (res.locals.toastMessage != "" && res.locals.toastStatus != "") {
+        if (res.locals.toastMessage !== "" && res.locals.toastStatus !== "") {
             console.log('Flash Message: ' + res.locals.toastMessage + ' ' + res.locals.toastStatus);
         }
         next();

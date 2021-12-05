@@ -33,6 +33,10 @@ const userSchema = new mongoose.Schema({
         type: Number,
         required: true
     },
+    password: {
+        type: String,
+        required: true
+    },
     dateOfBirth: {
         type: Date,
         required: true
