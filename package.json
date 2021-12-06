@@ -1,5 +1,5 @@
 {
-  "name": "CMA - Catch Movies in Action",
+  "name": "CMA",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
@@ -34,8 +34,6 @@
     "passport-google-oauth2": "^0.2.0",
     "serve-favicon": "^2.5.0",
     "express-session": "^1.17.2"
-
   },
-  "devDependencies": {
-  }
+  "devDependencies": {}
 }

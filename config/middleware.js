@@ -4,15 +4,14 @@ const logger = require('morgan');
 const session = require('express-session');
 const flash = require('connect-flash');
 const passport = require('passport');
-const MongoDBStore = require('connect-mongodb-session')(session);
 let cors = require('cors');
 const exphbs = require("express-handlebars");
+const path = require("path");
 require('./passport')(passport);
 
 const initMiddleware = (app) => {
 
-    const static = express.static(__dirname + '/public');
-
+    // const static = express.static('public');
     const handlebarsInstance = exphbs.create({
         defaultLayout: 'main/index',
         helpers: {
@@ -31,17 +30,19 @@ const initMiddleware = (app) => {
             },
         }
     });
+    handlebarsInstance.getPartials().then(r => console.log(r))
 
     app.use;
     app.use(logger('dev'));
     app.use(cors());
     app.use(flash());
     app.use(express.json());
-    app.use('/public', static);
     app.use(express.json());
     app.use(express.urlencoded({extended: true}));
     app.engine('handlebars', handlebarsInstance.engine);
     app.set('view engine', 'handlebars');
+
+    app.use('/public', express.static(path.join(__dirname, '../public')));
     app.use(session({
         secret: '1cd9589eeee9a628ff35a9e4ba3607ed',
         resave: true,
@@ -50,6 +51,7 @@ const initMiddleware = (app) => {
     }));
     app.use(passport.initialize());
     app.use(passport.session());
+
     // Usage variables
     app.use(function (req, res, next) {
         res.locals.req = req;
@@ -61,12 +63,7 @@ const initMiddleware = (app) => {
         }
         next();
     });
-    // //DB
-    const store = new MongoDBStore({
-        uri: process.env.DB_URI,
-        collection: 'sessions'
-    });
-    // app.use(store)
+
 
 }
 
