@@ -47,6 +47,7 @@ const initMiddleware = (app) => {
 
         }
     });
+    handlebarsInstance.getPartials().then(r => console.log(r))
 
     handlebarsInstance.getPartials().then(r => console.log(r))
 
