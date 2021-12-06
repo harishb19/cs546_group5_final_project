@@ -185,4 +185,3 @@ module.exports.logout = function (req, res, next) {
     req.flash('toastStatus', 'success');
     res.redirect('/');
 };
-

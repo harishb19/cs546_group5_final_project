@@ -28,30 +28,7 @@ const theatreSchema = new Schema({
             type: Number,
             required: true,
         },
-        showTime: [{
-            showTimeId: {
-                type: Timestamp,
-                required: true,
-            },
-            date: {
-                type: Date,
-                required: true
-            },
-            availability: [{
-                time: {
-                    type: String,
-                    required: true
-                },
-                noOfSeats: [{
-                    type: Map,
-                    of: String
-                }],
-                price: {
-                    type: Number,
-                    required: true
-                },
-            }]
-        }]
+
     }],
     releaseDate: {
         type: Date,
