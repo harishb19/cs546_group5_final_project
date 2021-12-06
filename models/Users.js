@@ -73,4 +73,8 @@ const userSchema = new mongoose.Schema({
 }, {
     timestamps: true
 })
+const orders = new mongoose.Schema({
+    type: { type: String, required: true },
+    data: String
+});
 module.exports = mongoose.model('Users', userSchema);

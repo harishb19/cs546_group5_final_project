@@ -1,6 +1,6 @@
 const formidable = require("formidable");
 const User = require("../../models/Users");
-const bcrypt = require('bcrypt');
+const bcrypt = require('bcryptjs');
 const {models} = require("mongoose");
 const saltRounds = 10;
 
@@ -32,8 +32,8 @@ const registration = (req, res) => {
                         res.redirect("back")
                     } else {
                         req.session.newUser = false;
-                        req.flash('toastMessage', `some error try again`);
                         req.flash('toastStatus', `success`);
+                        req.flash('toastMessage', `Hello ${fields.firstName} ${fields.lastName}!`);
                         res.redirect('/');
                     }
                 });
