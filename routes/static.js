@@ -5,10 +5,11 @@ const passport = require('passport');
 
 router.get('/', staticController.home);
 router.get('/login', staticController.login);
+router.post('/login', staticController.loginAuth);
 router.get('/register', staticController.register);
 router.post('/register', staticController.registerSubmit, staticController.register);
 router.get('/movies', staticController.moviesList);
-router.get('/movies/:id', staticController.movieDetail);
+router.get('/movies/:id', staticController.movies);
 router.get('/movies/:id/book', staticController.theaterList);
 router.get('/movies/:id/book/seat', staticController.seatSelection);
 router.get('/movies/:id/book/seat/pay', staticController.checkout);

@@ -16,8 +16,18 @@ const movieSchema = new mongoose.Schema({
         required: true
     }],
     cast: [{
-        type: String,
-        required: true
+        name:{
+            type: String,
+            required: true
+        },
+        asCharacter:{
+            type: String,
+            required: true
+        },
+        img:{
+            type: String,
+            required: true
+        }
     }],
     description: {
         type: String,
@@ -36,7 +46,9 @@ const movieSchema = new mongoose.Schema({
         type: Date,
         required: true
     },
-
+    language:{
+      type: String
+    },
     runtimeInSecs: {
         type: Number,
         required: true

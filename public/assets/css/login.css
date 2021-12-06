@@ -45,19 +45,19 @@
     font-size: 18px;
     border-radius: 0;
     border: none;
-    border-bottom: 1px solid rgba(0,0,0, 0.12);
+    border-bottom: 1px solid rgba(0, 0, 0, 0.12);
 }
 
 /* Remove focus */
 .select-text:focus {
     outline: none;
-    border-bottom: 1px solid rgba(0,0,0, 0);
+    border-bottom: 1px solid rgba(0, 0, 0, 0);
 }
 
 /* Use custom arrow */
 .select .select-text {
     appearance: none;
-    -webkit-appearance:none
+    -webkit-appearance: none
 }
 
 .select:after {
@@ -78,7 +78,7 @@
 
 /* LABEL ======================================= */
 .select-label {
-    color: rgba(0,0,0, 0.26);
+    color: rgba(0, 0, 0, 0.26);
     font-size: 18px;
     font-weight: normal;
     position: absolute;
@@ -136,6 +136,12 @@
     pointer-events: none;
     opacity: 0.5;
 }
+
+.error {
+    border: 1px red solid !important;
+    color: red !important
+}
+
 @media (max-width: 450px) {
     .h-custom {
         height: 100%;
