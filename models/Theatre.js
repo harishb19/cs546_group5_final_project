@@ -17,32 +17,23 @@ const theatreSchema = new Schema({
     },
 
     screens: [{
-        movieFormat: {
-            type: String,
-            required: true,
+        screenId: {
+            type: mongoose.Schema.Types.ObjectId,
+            unique: true,
+            default: ObjectId()
         },
-        layout: [{
-            type: Binary
-        }],
+
+        layout: [[{
+            type: Number,
+            min: 0,
+            max: 1
+        }]],
         totalNoOfSeats: {
             type: Number,
             required: true,
         },
 
-    }],
-    releaseDate: {
-        type: Date,
-        required: true
-    },
-
-    runtimeInSecs: {
-        type: Number,
-        required: true
-    },
-    IMDBRating: {
-        type: String,
-        required: true
-    }
+    }]
 
 
 }, {

@@ -2,7 +2,7 @@ const {ObjectId, Timestamp, Binary} = require("mongodb");
 const {Schema} = require("mongoose");
 const mongoose = require("mongoose");
 
-const moveScreensSchema = new Schema({
+const movieScreensSchema = new Schema({
     movieId: {
         type: mongoose.Schema.Types.ObjectId,
         unique: true,
@@ -22,23 +22,21 @@ const moveScreensSchema = new Schema({
                 type: Date,
                 required: true
             },
+            time: {
+                type: String,
+                required: true
+            },
+            price: {
+                type: Number,
+                required: true
+            },
             availability: [{
-                time: {
-                    type: String,
-                    required: true
-                },
-                noOfSeats: [{
                     type: Map,
                     of: String
                 }],
-                price: {
-                    type: Number,
-                    required: true
-                },
-            }]
         }]
     }],
 }, {
     timestamps: true
 })
-module.exports = mongoose.model('MoveScreens', moveScreensSchema);
+module.exports = mongoose.model('MovieScreens', movieScreensSchema);
