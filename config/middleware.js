@@ -47,9 +47,7 @@ const initMiddleware = (app) => {
 
         }
     });
-
     handlebarsInstance.getPartials().then(r => console.log(r))
-
     app.use;
     app.use(logger('dev'));
     app.use(cors());

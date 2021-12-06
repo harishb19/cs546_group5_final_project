@@ -36,5 +36,6 @@
     "passport-google-oauth2": "^0.2.0",
     "serve-favicon": "^2.5.0",
     "toastify-js": "^1.11.2"
-  }
+  },
+  "devDependencies": {}
 }
