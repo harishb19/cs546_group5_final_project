@@ -1,1 +1,162 @@
-<h2>Listing of movie</h2>
+{{#section "styles"}}
+    <link rel="stylesheet" href="/public/assets/css/landingpage.css">
+{{/section}}
+<br/>
+<div class="container">
+  <div class="row">
+    <div class="col-2" style="margin-top: 15px;">
+      <span class="filter-title">Filters</span>
+        <div class="sec1">
+            <div>
+                <button class="btn" type="button" data-toggle="collapse" data-target="#collapseExample1" aria-expanded="false" aria-controls="collapseExample">
+                    Languages
+                </button>
+                <div class="collapse" id="collapseExample1">
+                    <div>
+                    <div class="checkbox">
+                        <label><input class="checkboxinput" type="checkbox" value="" class="cb">English</label>
+                        </div>
+                        <div class="checkbox">
+                        <label><input type="checkbox" value="" class="cb">Hindi</label>
+                        </div>
+                        <div class="checkbox">
+                        <label><input type="checkbox" value="" class="cb">Spanish</label>
+                        </div>
+                    </div>
+                </div>
+                <button class="btn" type="button" data-toggle="collapse" data-target="#collapseExample2" aria-expanded="false" aria-controls="collapseExample">
+                    Genres
+                </button>
+                <div class="collapse" id="collapseExample2">
+                    <div>
+                    <div class="checkbox">
+                        <label><input type="checkbox" value="" class="cb">Action</label>
+                        </div>
+                        <div class="checkbox">
+                        <label><input type="checkbox" value="" class="cb">Animation</label>
+                        </div>
+                        <div class="checkbox">
+                        <label><input type="checkbox" value="" class="cb">Comedy</label>
+                        </div>
+                        <div class="checkbox">
+                        <label><input type="checkbox" value="" class="cb">Crime</label>
+                        </div>
+                        <div class="checkbox">
+                        <label><input type="checkbox" value="" class="cb">Drama</label>
+                        </div>
+                        <div class="checkbox">
+                        <label><input type="checkbox" value="" class="cb">Horror</label>
+                        </div>
+                        <div class="checkbox">
+                        <label><input type="checkbox" value="" class="cb">Romance</label>
+                        </div>
+                        <div class="checkbox">
+                        <label><input type="checkbox" value="" class="cb">Sci-fi</label>
+                        </div>
+                        <div class="checkbox">
+                        <label><input type="checkbox" value="" class="cb">Thriller</label>
+                        </div>
+                    </div>
+                </div>
+                <button class="btn" type="button" data-toggle="collapse" data-target="#collapseExample3" aria-expanded="false" aria-controls="collapseExample">
+                    Format
+                </button>
+                <div class="collapse" id="collapseExample3">
+                    <div>
+                    <div class="checkbox">
+                        <label><input type="checkbox" value="" class="cb">2D</label>
+                        </div>
+                        <div class="checkbox">
+                        <label><input type="checkbox" value="" class="cb">3D</label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-10">
+        <div class="sec2" id="products">
+        <div class="container">
+            <div class="row mt-3">
+                <div class="col-lg-3 col-sm-4 col-11 offset-sm-0 offset-1">
+                    <div class="card"> <img class="card-img-top" src="https://images.pexels.com/photos/963486/pexels-photo-963486.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500" alt="Card image cap">
+                        <div class="card-body">
+                            <p class="card-text">Movie Name</p>
+                            <p>Lang</p> <span class="fa fa-circle" id="red"></span> <span class="fa fa-circle" id="teal"></span> <span class="fa fa-circle" id="blue"></span>
+                            <p class="card-text"><small class="text-muted">IMDB rating:</small></p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-3 offset-lg-0 col-sm-4 offset-sm-2 col-11 offset-1">
+                    <div class="card"> <img class="card-img-top" src="https://images.pexels.com/photos/1125137/pexels-photo-1125137.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500" alt="Card image cap">
+                        <div class="card-body">
+                            <p class="card-text">Movie Name</p>
+                            <p>Lang</p> <span class="fa fa-circle" id="red"></span> <span class="fa fa-circle" id="teal"></span> <span class="fa fa-circle" id="blue"></span>
+                            <p class="card-text"><small class="text-muted">IMDB rating:</small></p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-sm-4 col-11 offset-sm-0 offset-1">
+                    <div class="card"> <img class="card-img-top" src="https://images.pexels.com/photos/3757055/pexels-photo-3757055.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500" alt="Card image cap">
+                        <div class="card-body">
+                            <p class="card-text">Movie Name</p>
+                            <p>Lang</p> <span class="fa fa-circle" id="red"></span> <span class="fa fa-circle" id="teal"></span> <span class="fa fa-circle" id="blue"></span>
+                            <p class="card-text"><small class="text-muted">IMDB rating:</small></p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-sm-4 offset-lg-0 offset-sm-2 col-11 offset-1">
+                    <div class="card"> <img class="card-img-top" src="https://images.unsplash.com/photo-1537182534312-f945134cce34?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=500&q=60" alt="Card image cap">
+                        <div class="card-body">
+                            <p class="card-text">Movie Name</p>
+                            <p>Lang</p> <span class="fa fa-circle" id="red"></span> <span class="fa fa-circle" id="teal"></span> <span class="fa fa-circle" id="blue"></span>
+                            <p class="card-text"><small class="text-muted">IMDB rating:</small></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row mt-3">
+                <div class="col-lg-3 col-sm-4 col-11 offset-sm-0 offset-1">
+                    <div class="card"> <img class="card-img-top" src="https://images.pexels.com/photos/3230274/pexels-photo-3230274.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500" alt="Card image cap">
+                        <div class="card-body">
+                            <p class="card-text">Movie Name</p>
+                            <p>Lang</p> <span class="fa fa-circle" id="red"></span> <span class="fa fa-circle" id="teal"></span> <span class="fa fa-circle" id="blue"></span>
+                            <p class="card-text"><small class="text-muted">IMDB rating:</small></p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-sm-4 offset-lg-0 offset-sm-2 col-11 offset-1">
+                    <div class="card"> <img class="card-img-top" src="https://images.pexels.com/photos/3773571/pexels-photo-3773571.png?auto=compress&cs=tinysrgb&dpr=1&w=500" alt="Card image cap">
+                        <div class="card-body">
+                            <p class="card-text">Movie Name</p>
+                            <p>Lang</p> <span class="fa fa-circle" id="red"></span> <span class="fa fa-circle" id="teal"></span> <span class="fa fa-circle" id="blue"></span>
+                            <p class="card-text"><small class="text-muted">IMDB rating:</small></p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-sm-4 col-11 offset-sm-0 offset-1">
+                    <div class="card"> <img class="card-img-top" src="https://images.pexels.com/photos/534172/pexels-photo-534172.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500" alt="Card image cap">
+                        <div class="card-body">
+                            <p class="card-text">Movie Name</p>
+                            <p>Lang</p> <span class="fa fa-circle" id="red"></span> <span class="fa fa-circle" id="teal"></span> <span class="fa fa-circle" id="blue"></span>
+                            <p class="card-text"><small class="text-muted">IMDB rating:</small></p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-sm-4 offset-lg-0 offset-sm-2 col-11 offset-1">
+                    <div class="card"> <img class="card-img-top" src="https://images.pexels.com/photos/37347/office-sitting-room-executive-sitting.jpg?auto=compress&cs=tinysrgb&dpr=1&w=500" alt="Card image cap">
+                        <div class="card-body">
+                            <p class="card-text">Movie Name</p>
+                            <p>Lang</p> <span class="fa fa-circle" id="red"></span> <span class="fa fa-circle" id="teal"></span> <span class="fa fa-circle" id="blue"></span>
+                            <p class="card-text"><small class="text-muted">IMDB rating:</small></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        </div>
+    </div>
+  </div>
+</div>
+<br/>
+
