@@ -33,6 +33,7 @@ const theatreSchema = new Schema({
             required: true,
         },
 
+
     }]
 
 
