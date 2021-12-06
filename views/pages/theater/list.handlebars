@@ -1,1 +1,25 @@
-<h2>Theater selection</h2>
+<section>
+    <div class="theatre">
+        <div style="display: none;"><p id="_id">{{{_id}}}</p></div>
+        <section class="theatre-calendar-wrapper">
+            <div class="theatre-calendar">
+                <div style="display: none;"><p id="selected">0</p></div>
+                <div style="display: none;"><p id="selected_day">0</p></div>
+                <div style="display: none;"><p id="selected_month">0</p></div>
+                <div style="display: none;"><p id="selected_year">0</p></div>
+                <ul id="calendar" class="theatre-calendar-list">
+                    
+                </ul>
+            </div>
+        </section>
+        <section id="theatre-detail" class="theatre-detail">
+        </section>
+    </div>
+</section>
+
+
+{{#section "styles"}}
+    <link rel="stylesheet" href="/public/assets/css/theatre/theatre.css">
+    <script src="https://code.jquery.com/jquery-3.5.1.js" integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc=" crossorigin="anonymous"></script>
+    <script src="/public/assets/js/theatre/theatre.js"></script>
+{{/section}}
