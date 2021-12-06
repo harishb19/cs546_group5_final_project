@@ -1,4 +1,4 @@
-.carousel-inner{
-    object-fit:contain;
+.carousel-inner {
+    object-fit: contain;
     aspect-ratio: 16/9;
 }

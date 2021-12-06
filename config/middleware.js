@@ -25,7 +25,7 @@ const initMiddleware = (app) => {
                 return string.split(separator)
             },
             isEqual: (string1, string2) => {
-                console.log(string1, string2,"vheck")
+                console.log(string1, string2, "vheck")
                 return string1 === string2
             },
             splice: (string, start, end) => {

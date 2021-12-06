@@ -31,9 +31,9 @@ const movieScreensSchema = new Schema({
                 required: true
             },
             availability: [{
-                    type: Map,
-                    of: String
-                }],
+                type: Map,
+                of: String
+            }],
         }]
     }],
 }, {
