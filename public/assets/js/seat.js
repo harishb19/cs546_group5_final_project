@@ -1,8 +1,9 @@
 const screenJSON = JSON.parse(seatInfo)
 // const movieJSON = JSON.parse(movieInfo);
 
+console.log(screenJSON)
 const layout = screenJSON.layout;
-const seats = screenJSON.seats;
+const seats = screenJSON.availability;
 console.log(screenJSON);
 let seatList = [];
 const continueButton = document.getElementById('continueButton');
@@ -38,12 +39,12 @@ function addSeats () {
             else seatDiv.classList.add("hidden")
             rowDiv.appendChild(seatDiv);
         }
-        document.getElementById('container').appendChild(rowDiv);
+        document.getElementById('theatreContainer').appendChild(rowDiv);
     }
 }
 addSeats();
 
-container.addEventListener('click', (e) => {
+theatreContainer.addEventListener('click', (e) => {
 
     if ((e.target.classList.contains(('seat')) || e.target.classList.contains('seat-no')) && !e.target.classList.contains('occupied') && !e.target.classList.contains('hidden')) {
         e.target.classList.toggle('selected');
@@ -51,7 +52,6 @@ container.addEventListener('click', (e) => {
     updateSelectedCount();
     updateButton();
 });
-
 
 function updateSelectedCount() {
     const selectedSeats = document.querySelectorAll('.row .seat.selected');
@@ -63,24 +63,24 @@ function updateSelectedCount() {
     seatList = selectedSeatsList;
 }
 
-
-
 function updateButton() {
     if (!seatList.length) continueButton.disabled = true;
     else continueButton.disabled = false;
 }
 
-
-
 continueButton.addEventListener('click', e => {
 
     const summaryObj = {
-        // movieName: movieJSON.movie,
-        // date: movieJSON.date,
-        // time: movieJSON.time,
+        movieId: movieId,
+        movieName: movieName,
+        theatreId: theatreId,
+        theatreName: theatreName,
+        dateTime: movieDate,
         noOfSeats: seatList.length,
-        seats: seatList
+        seats: seatList,
+        showTimeId: showTimeId
     }
+    console.log(summaryObj)
 
     const form = document.createElement("form");
     const purchaseSummary = document.createElement("input");

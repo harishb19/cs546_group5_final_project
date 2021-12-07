@@ -1,19 +1,32 @@
 <title>Seat</title>
-<link rel="stylesheet" href="../../../public/assets/css/seat.css"/>
+
+{{#section "styles"}}
+    <link rel="stylesheet" href="../../../public/assets/css/seat.css"/>
+{{/section}}
+
 <h2>Seat selection</h2>
-
-<div class="container" id="container">
+<div class="movie-info">
+    <h3>{{movieInfo.movieName}}</h3>
+    <p>{{theatreInfo.theatreName}} | {{movieInfo.movieDate}} | {{movieInfo.movieTime}} | {{movieInfo.movieLanguage}} </p>
+</div>
+<div class="theatreContainer" id="theatreContainer">
     <div class="screen"></div>
-
-
 </div>
 
-<button class="btn" id="continueButton">Continue</button>
-
-
+<button class="continueButton" id="continueButton">Continue</button>
 
 <script>
+        const movieId = '{{movieInfo.movieId}}';
+        const movieName = '{{movieInfo.movieName}}';
+        const movieDate = '{{movieInfo.movieDate}}';
+        const movieTime = '{{movieInfo.movieTime}}';
+        const theatreId = '{{theatreInfo.theatreId}}';
+        const theatreName = '{{theatreInfo.theatreName}}';
+        const showTimeId = '{{{movieInfo.showTimeId}}}';
         const seatInfo = '{{{seatInfo}}}';
 </script>
 
-<script src="../../../public/assets/js/seat.js"></script>
+{{#section "script"}}
+    <script src="../../../public/assets/js/seat.js"></script>
+{{/section}}
+
