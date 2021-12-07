@@ -1,1 +1,13 @@
 <h2>Order summary</h2>
+
+<h5>Movie Name: {{purchaseSummary.movieName}}</h5>
+<h5>Theatre Name: {{purchaseSummary.theatreName}}</h5>
+<h5>Show Date & Time: {{purchaseSummary.dateTime}}</h5>
+<h5>Seats: {{purchaseSummary.seats}} ({{purchaseSummary.noOfSeats}})</h5>
+<h5>Price per ticket: ${{purchaseSummary.price}}</h5>
+<h5>Total Amount: ${{purchaseSummary.totalAmount}}</h5>
+
+<form method="post" action="/ticket">
+    <input name="purchaseSummary" id="purchaseSummary" value="{{pSumString}}" hidden>
+    <input type="submit" value="Continue">
+</form>
