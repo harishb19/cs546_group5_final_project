@@ -1,86 +1,98 @@
-const express = require('express');
-require('dotenv').config();
-const logger = require('morgan');
-const session = require('express-session');
-const flash = require('connect-flash');
-const passport = require('passport');
-let cors = require('cors');
+const express = require("express");
+require("dotenv").config();
+const logger = require("morgan");
+const session = require("express-session");
+const flash = require("connect-flash");
+const passport = require("passport");
+let cors = require("cors");
 const exphbs = require("express-handlebars");
 const path = require("path");
-require('./passport')(passport);
+require("./passport")(passport);
 
 const initMiddleware = (app) => {
+  // const static = express.static('public');
+  const handlebarsInstance = exphbs.create({
+    defaultLayout: "main/index",
+    helpers: {
+      asJSON: (obj, spacing) => {
+        if (typeof spacing === "number")
+          return new Handlebars.SafeString(JSON.stringify(obj, null, spacing));
 
-    // const static = express.static('public');
-    const handlebarsInstance = exphbs.create({
-        defaultLayout: 'main/index',
-        helpers: {
-            asJSON: (obj, spacing) => {
-                if (typeof spacing === 'number')
-                    return new Handlebars.SafeString(JSON.stringify(obj, null, spacing));
-
-                return new Handlebars.SafeString(JSON.stringify(obj));
-            },
-            split: (string, separator) => {
-                return string.split(separator)
-            },
-            isEqual: (string1, string2) => {
-                console.log(string1, string2,"vheck")
-                return string1 === string2
-            },
-            splice: (string, start, end) => {
-
-                return string.slice(start, end)
-            },
-            accessElement: (array, index) => {
-                return array[index]
-            },
-
-            section(name, options) {
-                if (!this._sections) {
-                    this._sections = {};
-                }
-                this._sections[name] = options.fn(this);
-                return null;
-            },
-
-
+        return new Handlebars.SafeString(JSON.stringify(obj));
+      },
+      split: (string, separator) => {
+        return string.split(separator);
+      },
+      isEqual: (string1, string2) => {
+        console.log(string1, string2, "vheck");
+        return string1 === string2;
+      },
+      splice: (string, start, end) => {
+        return string.slice(start, end);
+      },
+      accessElement: (array, index) => {
+        return array[index];
+      },
+      getObject: (object, key) => {
+        let newObject = JSON.parse(JSON.stringify(object));
+        return newObject[key];
+      },
+      getObjectFromArray: (array, index, key) => {
+        let obj = array[index];
+        return obj[key];
+      },
+      parseJson: (object) => {
+        let newObject = JSON.parse(JSON.stringify(object));
+        return newObject;
+      },
+      section(name, options) {
+        if (!this._sections) {
+          this._sections = {};
         }
-    });
-    handlebarsInstance.getPartials().then(r => console.log(r))
-    app.use;
-    app.use(logger('dev'));
-    app.use(cors());
-    app.use(flash());
-    app.use(express.json());
-    app.use(express.json());
-    app.use(express.urlencoded({extended: true}));
-    app.engine('handlebars', handlebarsInstance.engine);
-    app.set('view engine', 'handlebars');
+        this._sections[name] = options.fn(this);
+        return null;
+      },
+    },
+  });
+  handlebarsInstance.getPartials().then((r) => console.log(r));
+  app.use;
+  app.use(logger("dev"));
+  app.use(cors());
+  app.use(flash());
+  app.use(express.json());
+  app.use(express.json());
+  app.use(express.urlencoded({ extended: true }));
+  app.engine("handlebars", handlebarsInstance.engine);
+  app.set("view engine", "handlebars");
 
-    app.use('/public', express.static(path.join(__dirname, '../public')));
-    app.use(session({
-        secret: '1cd9589eeee9a628ff35a9e4ba3607ed',
-        resave: true,
-        saveUninitialized: true,
-        cookie: {maxAge: 2628000000}
-    }));
-    app.use(passport.initialize());
-    app.use(passport.session());
+  app.use("/public", express.static(path.join(__dirname, "../public")));
+  app.use(
+    session({
+      secret: "1cd9589eeee9a628ff35a9e4ba3607ed",
+      resave: true,
+      saveUninitialized: true,
+      cookie: { maxAge: 2628000000 },
+    })
+  );
+  app.use(passport.initialize());
+  app.use(passport.session());
 
-    // Usage variables
-    app.use(function (req, res, next) {
-        res.locals.req = req;
-        res.locals.session = req.session;
-        res.locals.toastMessage = req.flash('toastMessage');
-        res.locals.toastStatus = req.flash('toastStatus');
-        if (res.locals.toastMessage !== "" && res.locals.toastStatus !== "") {
-            console.log('Flash Message: ' + res.locals.toastMessage + ' ' + res.locals.toastStatus);
-        }
-        next();
-    });
+  // Usage variables
+  app.use(function (req, res, next) {
+    res.locals.req = req;
+    res.locals.session = req.session;
+    res.locals.toastMessage = req.flash("toastMessage");
+    res.locals.toastStatus = req.flash("toastStatus");
+    if (res.locals.toastMessage !== "" && res.locals.toastStatus !== "") {
+      console.log(
+        "Flash Message: " +
+          res.locals.toastMessage +
+          " " +
+          res.locals.toastStatus
+      );
+    }
+    next();
+  });
+};
 
-
-}
-
-module.exports = initMiddleware
+module.exports = initMiddleware;
