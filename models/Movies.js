@@ -33,7 +33,7 @@ const movieSchema = new mongoose.Schema({
         type: String,
         required: true,
     },
-    images: {
+    images: [{
         mainImg: {
             type: String,
             required: true,
@@ -41,12 +41,15 @@ const movieSchema = new mongoose.Schema({
         others: [{
             type: String
         }]
-    },
+    }],
     releaseDate: {
         type: Date,
         required: true
     },
-
+    language:{
+        type: String,
+        required: true
+    },
     runtimeInSecs: {
         type: Number,
         required: true
@@ -55,6 +58,8 @@ const movieSchema = new mongoose.Schema({
         type: String,
         required: true
     }
+
+
 }, {
     timestamps: true
 })
