@@ -5,13 +5,12 @@ let reviewinfo;
 let review_showCount = 2;
 let review_count = 0;
 const defaultUrl = '/public/assets/images/details/noimguser.png'
-console.log("run detail_casts");
 $.ajax({
     type: 'post',
     url: '/details/reviews',
     contentType: 'application/json',
     data: JSON.stringify({
-        id: id
+        id: getMovieIdFromUrl()
     })
 }).then (function (responMessage) {
     review_left.css('visibility','hidden');
@@ -41,6 +40,7 @@ $.ajax({
     }
     review.append(review_link);
 });
+
 review_right.click(function () {
     ++review_count;
     review_left.css('visibility','visible');

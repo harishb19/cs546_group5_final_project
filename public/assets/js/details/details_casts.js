@@ -11,23 +11,23 @@ $.ajax({
     url: '/details/casts',
     contentType: 'application/json',
     data: JSON.stringify({
-        id: id
+        id: getMovieIdFromUrl()
     })
 }).then (function (responMessage) {
     cast_left.css('visibility','hidden');
     cast_right.css('visibility','hidden');
-    castinfo = responMessage.castinfo;
+    castinfo = responMessage.castInfo;
     cast_count = 0;
     let link = "";
     if (castinfo.length <= cast_showCount) {
         for (let i = 0; i < castinfo.length; ++i) {
             link += "<li class=\"cast\">" + "<div class=\"cast_img\">" + 
-                "<img src=\"" + castinfo[i].imgSrc + "\"></div><h3>" + castinfo[i].castName + "</h3><h4>" + castinfo[i].characterName + "</h4></li>";
+                "<img src=\"" + castinfo[i].img + "\"></div><h3>" + castinfo[i].name + "</h3><h4>" + castinfo[i].asCharacter + "</h4></li>";
         }
     } else {
         for (let i = 0; i < cast_showCount; ++i) {
             link += "<li class=\"cast\">" + "<div class=\"cast_img\">" + 
-                "<img src=\"" + castinfo[i].imgSrc + "\"></div><h3>" + castinfo[i].castName + "</h3><h4>" + castinfo[i].characterName + "</h4></li>";
+                "<img src=\"" + castinfo[i].img + "\"></div><h3>" + castinfo[i].name + "</h3><h4>" + castinfo[i].asCharacter + "</h4></li>";
         }
         cast_right.css('visibility','visible');
     }
@@ -40,16 +40,18 @@ cast_right.click(function () {
     $('#movie-detail-cast  li').remove();
     const remainLength = castinfo.length - cast_count * cast_showCount;
     const beginIndex = cast_count * cast_showCount;
-    if (remainLength < cast_showCount) {
+    console.log('beginIndex: ' + beginIndex);
+    console.log('remainLength: ' + remainLength);
+    if (remainLength <= cast_showCount) {
         cast_right.css('visibility','hidden');
         for (let i = beginIndex; i < castinfo.length; ++i) {
             link += "<li class=\"cast\">" + "<div class=\"cast_img\">" + 
-                "<img src=\"" + castinfo[i].imgSrc + "\"></div><h3>" + castinfo[i].castName + "</h3><h4>" + castinfo[i].characterName + "</h4></li>";
+                "<img src=\"" + castinfo[i].img + "\"></div><h3>" + castinfo[i].name + "</h3><h4>" + castinfo[i].asCharacter + "</h4></li>";
         }
     } else {
-        for (let i = beginIndex; i < cast_showCount; ++i) {
+        for (let i = beginIndex; i < beginIndex + cast_showCount; ++i) {
             link += "<li class=\"cast\">" + "<div class=\"cast_img\">" + 
-                "<img src=\"" + castinfo[i].imgSrc + "\"></div><h3>" + castinfo[i].castName + "</h3><h4>" + castinfo[i].characterName + "</h4></li>";
+                "<img src=\"" + castinfo[i].img + "\"></div><h3>" + castinfo[i].name + "</h3><h4>" + castinfo[i].asCharacter + "</h4></li>";
         }
     }
     cast.append(link);
@@ -63,9 +65,9 @@ cast_left.click(function () {
     if (cast_count == 0) {
         cast_left.css('visibility','hidden');
     }
-    for (let i = beginIndex; i < cast_showCount; ++i) {
+    for (let i = beginIndex; i < beginIndex + cast_showCount; ++i) {
         link += "<li class=\"cast\">" + "<div class=\"cast_img\">" + 
-            "<img src=\"" + castinfo[i].imgSrc + "\"></div><h3>" + castinfo[i].castName + "</h3><h4>" + castinfo[i].characterName + "</h4></li>";
+            "<img src=\"" + castinfo[i].img + "\"></div><h3>" + castinfo[i].name + "</h3><h4>" + castinfo[i].asCharacter + "</h4></li>";
     }
     cast.append(link);
 });

@@ -1,4 +1,6 @@
 const {registration, checkUserByEmailPassword} = require("../data/auth/auth");
+const movies = require("../models/Movies");
+let mongoose = require('mongoose');
 
 
 module.exports.login = function (req, res, next) {
@@ -41,69 +43,27 @@ module.exports.home = function (req, res, next) {
 module.exports.moviesList = function (req, res, next) {
     res.render('pages/movie/list');
 }
+module.exports.movies = async function (req,res, next) {
+    res.render('pages/movie/details');
+}
+
 module.exports.movieDetail_Info = async (req, res) => {
     const id = req.body.id;
-    // Temporary Data Only for test
-    const movieDetail = {
-        movieId: '123',
-        movieName: 'No Time to Die',
-        genre: ['Action/Adventure', 'Suspense/Thriller'],
-        country: 'US',
-        description: 'In No Time To Die, Bond has left active service and is enjoying a tranquil life in Jamaica. His peace is short-lived when his old friend Felix Leiter from the CIA turns up asking for help. The mission to rescue a kidnapped scientist turns out to be far more treacherous than expected, leading Bond onto the trail of a mysterious villain armed with dangerous new technology.',
-        images: {
-            mainImg: '/public/assets/images/details/no_time_to_die_post.jpeg',
-            backgroundImg: '/public/assets/images/details/no_time_to_die_background.jpeg',
-            others: []
-        },
-        releaseDate: new Date('September 30, 2021 00:00:00'),
-        runtimeInSecs: 9780,
-        IMDBRating: '88%',
-    };
-    return res.json({success: true, movieDetail});
+    const movie_Id = mongoose.Types.ObjectId(id);
+    movies.findOne({movieId: movie_Id}, (err, doc) => {
+        if(err) return 'error!';
+        return res.json({success: true, doc});
+    });
 }
 
 module.exports.movieDetail_Cast = async (req, res) => {
     const id = req.body.id;
-    // Temporary Data Only for test
-    //const movieDetail;
-    const castinfo = [
-        {
-            imgSrc: "/public/assets/images/details/daniel_craig.jpeg",
-            castName: 'Daniel Craig01',
-            characterName: 'James Bond'
-        },
-        {
-            imgSrc: '/public/assets/images/details/daniel_craig.jpeg',
-            castName: 'Daniel Craig02',
-            characterName: 'James Bond'
-        },
-        {
-            imgSrc: '/public/assets/images/details/daniel_craig.jpeg',
-            castName: 'Daniel Craig03',
-            characterName: 'James Bond'
-        },
-        {
-            imgSrc: '/public/assets/images/details/daniel_craig.jpeg',
-            castName: 'Daniel Craig04',
-            characterName: 'James Bond'
-        },
-        {
-            imgSrc: '/public/assets/images/details/daniel_craig.jpeg',
-            castName: 'Daniel Craig05',
-            characterName: 'James Bond'
-        },
-        {
-            imgSrc: '/public/assets/images/details/daniel_craig.jpeg',
-            castName: 'Daniel Craig06',
-            characterName: 'James Bond'
-        },
-        {
-            imgSrc: '/public/assets/images/details/daniel_craig.jpeg',
-            castName: 'Daniel Craig07',
-            characterName: 'James Bond'
-        }
-    ];
-    return res.json({success: true, castinfo});
+    const movie_Id = mongoose.Types.ObjectId(id);
+    movies.findOne({movieId: movie_Id}, (err, doc) => {
+        if(err) return 'error!';
+        const castInfo = doc.cast;
+        return res.json({success: true, castInfo});
+    });
 }
 
 module.exports.movieDetail_Reviews = async (req, res) => {

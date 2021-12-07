@@ -5,11 +5,9 @@ const rating = $('#rating');
 const format = $('#format');
 const time = $('#time');
 const genre = $('#genre');
-const country = $('#country');
+const language = $('#language');
 const releaseDate = $('#releaseDate');
 const info = $('#info');
-const _id = $('#_id');
-const id = _id.text();
 const month = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
 
 // Convert seconds into hours, minutes and second
@@ -48,24 +46,32 @@ function formatReleaseDate(releaseDate) {
     return releaseDay.toString() + " " + month[releaseMonth] + "," + releaseYear;
 }
 
-console.log("run detail_Info");
+function getMovieIdFromUrl() {
+    const url = window.location.href;
+    let index = url.lastIndexOf('\/');
+    let str = url.substring(index + 1, url.length);
+    return str;
+}
+
+let movieDetail;
+
 $.ajax({
     type: 'post',
     url: '/details/movieInfo',
     contentType: 'application/json',
     data: JSON.stringify({
-        id: id
+        id: getMovieIdFromUrl()
     })
 }).then (function (responMessage) {
-    const movieDetail = responMessage.movieDetail;
-    postImgUrl = movieDetail.images.mainImg;
+    movieDetail = responMessage.doc;
+    postImgUrl = movieDetail.images[0].mainImg;
     movieName = movieDetail.movieName;
     IMDBRating = movieDetail.IMDBRating;
     runtimeInSecs = movieDetail.runtimeInSecs;
     movieGenre = movieDetail.genre;
-    movieCountry = movieDetail.country;
+    movieLanguage = movieDetail.language;
     movieReleaseDate = movieDetail.releaseDate;
-    backgroundImgUrl = movieDetail.images.backgroundImg;
+    backgroundImgUrl = movieDetail.images[0].others[0];
     movieDescription = movieDetail.description;
     movieFormat = '2D, 3D, IMAX 2D, IMAX 3D';
 
@@ -75,7 +81,7 @@ $.ajax({
     format.text(movieFormat);
     time.text(formatSec(runtimeInSecs));
     genre.text(formatGenre(movieGenre));
-    country.text(movieCountry);
+    language.text(movieLanguage);
     releaseDate.text(formatReleaseDate(movieReleaseDate));
     background.css('background-image', background.css('background-image') + ', ' + 'url(' + backgroundImgUrl + ')');
     info.text(movieDescription);
@@ -84,6 +90,5 @@ $.ajax({
 const book = $('#book');
 
 book.click(function () {
-    const url = "../theatre/" + id;
-    location.href = url;
+
 });

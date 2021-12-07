@@ -1,3 +1,7 @@
+.movie-detail-section {
+    margin-top: 61px;
+}
+
 .movie-detail {
     display: flex;
     flex-direction: column;
@@ -26,7 +30,7 @@
     width: 100%;
     display: flex;
     flex-direction: row;
-    margin: 30px;
+    margin: 25px;
 }
 
 .movie-detail-post_trailer {
@@ -47,7 +51,7 @@
 }
 
 .movie-detail-basic-info-wrapper {
-    margin-left: 40px;
+    margin-left: 70px;
     display: flex;
 }
 
@@ -114,7 +118,7 @@
     margin-top: 20px;
 }
 
-.attribute {
+.mdbi-attribute a{
     font-size: 16px;
     font-weight: normal;
     color: white !important;
@@ -134,7 +138,7 @@
 .mdbi-releaseInfo a {
     font-size: 12px;
     font-weight: normal;
-    color: white;
+    color: white !important;
     line-height: 1.2;
     margin: 0px;
 }
@@ -239,25 +243,30 @@
     max-height: 120px;
     min-width: 120px;
     min-height: 120px;
+    position:relative;
+    overflow:hidden;
 }
 
 .cast_img img {
     border-radius: 60px;
-    width: 100%;
-
+    position: absolute;
+    max-width: 120px;
+    max-height: 120px;
+    min-width: 100%;
+    min-height: 100%;
 }
 
 .cast h3 {
     margin: auto;
     padding-top: 10px;
-    font-size: 16px;
+    font-size: 14px;
     font-weight: normal;
     line-height: 1.5;
 }
 
 .cast h4 {
     margin: auto;
-    font-size: 14px;
+    font-size: 12px;
     font-weight: normal;
     color: rgb(102, 102, 102);
     line-height: 1.3;
