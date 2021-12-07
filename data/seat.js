@@ -9,6 +9,9 @@ module.exports = {
     async seatSelection(movieId, theatreId, screenId, showTimeId) {
 
         /*------------ Error Handling Start ------------*/
+        if (arguments.length > 4) throw 'Error: More number of parameters passed then required';
+
+        if (!movieId || !theatreId || !screenId || !showTimeId) throw 'Error: all parameters are not passed to the function';
 
         if (! ObjectId.isValid(movieId)) throw 'Error: movieId is not valid Object ID';
         if (! ObjectId.isValid(theatreId)) throw 'Error: theatreId is not valid Object ID';
@@ -18,9 +21,12 @@ module.exports = {
         /*------------ Error Handling End ------------*/
 
         let movie = await Movie.findOne({movieId: ObjectId(movieId) });
+        if (movie.length === 0) throw "Error: movie not found";
+
         let theatre = await Theatre.aggregate([
             {"$unwind": "$screens"}, {"$match": {"screens.screenId": ObjectId(screenId)}}
         ]);
+        if (theatre.length === 0) throw "Error: theatre not found";
 
         let showTime = await MovieScreens.aggregate([
             {"$unwind": "$screens"},
@@ -34,6 +40,8 @@ module.exports = {
                 }
             },
         ]);
+
+        if (showTime.length === 0) throw "Error: showTime not found";
 
         const bookingData = {
             movieId: movieId,

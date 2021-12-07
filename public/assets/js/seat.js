@@ -1,11 +1,16 @@
-const screenJSON = JSON.parse(seatInfo)
-// const movieJSON = JSON.parse(movieInfo);
 
-console.log(screenJSON)
+let errorMsg = ''
+if (!movieId || !movieName ||!movieDate || !theatreId || !theatreName || !showTimeId || !price || !seatInfo) {
+    errorMsg = 'Something has gone wrong please return to home page';
+    // What to do ??
+}
+
+const screenJSON = JSON.parse(seatInfo)
+
 const layout = screenJSON.layout;
 const seats = screenJSON.availability;
-console.log(screenJSON);
 let seatList = [];
+
 const continueButton = document.getElementById('continueButton');
 continueButton.disabled = true;
 
@@ -24,16 +29,11 @@ function addSeats () {
             if (ele){
                 seatDiv.className = "seat";
                 seatDiv.id = seatNos[seatNoIndex];
-                var node = document.createTextNode(seatNos[seatNoIndex]);
-                let seatNoDisplay = document.createElement("p");
-                seatNoDisplay.className = "seat-no";
-                // seatNoDisplay.appendChild(node);
-                seatDiv.appendChild(node);
-
+                let seatNoDisplay = document.createTextNode(seatNos[seatNoIndex]);
+                seatDiv.appendChild(seatNoDisplay);
                 if (parseInt(seats[seatNos[seatNoIndex]])) {
                     seatDiv.classList.add("occupied");
                 }
-
                 seatNoIndex++;
             }
             else seatDiv.classList.add("hidden")
@@ -55,11 +55,12 @@ theatreContainer.addEventListener('click', (e) => {
 
 function updateSelectedCount() {
     const selectedSeats = document.querySelectorAll('.row .seat.selected');
+
     let selectedSeatsList = [];
-    for (let ele of selectedSeats){
-        selectedSeatsList.push(ele.id)
+    for (let seat of selectedSeats){
+        selectedSeatsList.push(seat.id)
     }
-    console.log(selectedSeatsList)
+    //console.log(selectedSeatsList)
     seatList = selectedSeatsList;
 }
 
@@ -81,7 +82,6 @@ continueButton.addEventListener('click', e => {
         showTimeId: showTimeId,
         price: price
     }
-    console.log(summaryObj)
 
     const form = document.createElement("form");
     const purchaseSummary = document.createElement("input");
