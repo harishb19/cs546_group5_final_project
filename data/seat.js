@@ -44,6 +44,7 @@ module.exports = {
             availability: showTime[0].screens.showTime.availability,
             showtime: showTime[0].screens.showTime.showTimeId,
             language: movie.language,
+            price: showTime[0].screens.showTime.price
         }
         return bookingData;
     }

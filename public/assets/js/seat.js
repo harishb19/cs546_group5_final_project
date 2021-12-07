@@ -78,7 +78,8 @@ continueButton.addEventListener('click', e => {
         dateTime: movieDate,
         noOfSeats: seatList.length,
         seats: seatList,
-        showTimeId: showTimeId
+        showTimeId: showTimeId,
+        price: price
     }
     console.log(summaryObj)
 
