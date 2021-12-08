@@ -7,7 +7,8 @@
 <h2>Seat selection</h2>
 <div class="movie-info">
     <h3>{{movieInfo.movieName}}</h3>
-    <p>{{theatreInfo.theatreName}} | {{movieInfo.movieDate}} | {{movieInfo.movieTime}} | {{movieInfo.movieLanguage}} | ${{movieInfo.price}} </p>
+    <p>{{theatreInfo.theatreName}} | {{movieInfo.movieDate}} | {{movieInfo.movieTime}} | {{movieInfo.movieLanguage}} |
+        ${{movieInfo.price}} </p>
 </div>
 <div class="theatreContainer" id="theatreContainer">
     <div class="screen"></div>
@@ -16,15 +17,15 @@
 <button class="continueButton" id="continueButton">Continue</button>
 
 <script>
-        const movieId = '{{movieInfo.movieId}}';
-        const movieName = '{{movieInfo.movieName}}';
-        const movieDate = '{{movieInfo.movieDate}}';
-        const movieTime = '{{movieInfo.movieTime}}';
-        const theatreId = '{{theatreInfo.theatreId}}';
-        const theatreName = '{{theatreInfo.theatreName}}';
-        const showTimeId = '{{{movieInfo.showTimeId}}}';
-        const price = '{{movieInfo.price}}';
-        const seatInfo = '{{{seatInfo}}}';
+    const movieId = '{{movieInfo.movieId}}';
+    const movieName = '{{movieInfo.movieName}}';
+    const movieDate = '{{movieInfo.movieDate}}';
+    const movieTime = '{{movieInfo.movieTime}}';
+    const theatreId = '{{theatreInfo.theatreId}}';
+    const theatreName = '{{theatreInfo.theatreName}}';
+    const showTimeId = '{{{movieInfo.showTimeId}}}';
+    const price = '{{movieInfo.price}}';
+    const seatInfo = '{{{seatInfo}}}';
 </script>
 
 {{#section "script"}}

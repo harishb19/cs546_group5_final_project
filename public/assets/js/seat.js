@@ -1,6 +1,5 @@
-
 let errorMsg = ''
-if (!movieId || !movieName ||!movieDate || !theatreId || !theatreName || !showTimeId || !price || !seatInfo) {
+if (!movieId || !movieName || !movieDate || !theatreId || !theatreName || !showTimeId || !price || !seatInfo) {
     errorMsg = 'Something has gone wrong please return to home page';
     // What to do ??
 }
@@ -14,7 +13,7 @@ let seatList = [];
 const continueButton = document.getElementById('continueButton');
 continueButton.disabled = true;
 
-function addSeats () {
+function addSeats() {
     const seatNos = Object.keys(seats);
 
     let seatNoIndex = 0;
@@ -26,7 +25,7 @@ function addSeats () {
 
             let seatDiv = document.createElement("div");
 
-            if (ele){
+            if (ele) {
                 seatDiv.className = "seat";
                 seatDiv.id = seatNos[seatNoIndex];
                 let seatNoDisplay = document.createTextNode(seatNos[seatNoIndex]);
@@ -35,13 +34,13 @@ function addSeats () {
                     seatDiv.classList.add("occupied");
                 }
                 seatNoIndex++;
-            }
-            else seatDiv.classList.add("hidden")
+            } else seatDiv.classList.add("hidden")
             rowDiv.appendChild(seatDiv);
         }
         document.getElementById('theatreContainer').appendChild(rowDiv);
     }
 }
+
 addSeats();
 
 theatreContainer.addEventListener('click', (e) => {
@@ -57,7 +56,7 @@ function updateSelectedCount() {
     const selectedSeats = document.querySelectorAll('.row .seat.selected');
 
     let selectedSeatsList = [];
-    for (let seat of selectedSeats){
+    for (let seat of selectedSeats) {
         selectedSeatsList.push(seat.id)
     }
     //console.log(selectedSeatsList)
@@ -89,9 +88,9 @@ continueButton.addEventListener('click', e => {
     form.method = "POST";
     form.action = "/movies/" + screenJSON.movieId + "/book/seat/pay";
 
-    purchaseSummary.value=JSON.stringify(summaryObj);
-    purchaseSummary.type='hidden'
-    purchaseSummary.name="Purchase Summary";
+    purchaseSummary.value = JSON.stringify(summaryObj);
+    purchaseSummary.type = 'hidden'
+    purchaseSummary.name = "Purchase Summary";
     form.appendChild(purchaseSummary);
 
     document.body.appendChild(form);

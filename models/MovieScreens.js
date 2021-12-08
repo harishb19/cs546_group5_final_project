@@ -1,12 +1,10 @@
-const {ObjectId, Timestamp, Binary} = require("mongodb");
-const {Schema} = require("mongoose");
 const mongoose = require("mongoose");
 
-const movieScreensSchema = new Schema({
+const movieScreensSchema = new mongoose.Schema({
     movieId: {
         type: mongoose.Schema.Types.ObjectId,
         unique: true,
-        default: ObjectId()
+        required: true,
     },
     screens: [{
         screenId: {

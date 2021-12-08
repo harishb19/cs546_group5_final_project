@@ -22,7 +22,7 @@ const theatreSchema = new Schema({
         screenId: {
             type: mongoose.Schema.Types.ObjectId,
             unique: true,
-          
+
         },
 
         layout: [[{
