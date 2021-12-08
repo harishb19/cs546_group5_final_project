@@ -21,6 +21,21 @@ const initMiddleware = (app) => {
 
                 return new Handlebars.SafeString(JSON.stringify(obj));
             },
+            split: (string, separator) => {
+                return string.split(separator)
+            },
+            isEqual: (string1, string2) => {
+                console.log(string1, string2, "vheck")
+                return string1 === string2
+            },
+            splice: (string, start, end) => {
+
+                return string.slice(start, end)
+            },
+            accessElement: (array, index) => {
+                return array[index]
+            },
+
             section(name, options) {
                 if (!this._sections) {
                     this._sections = {};
@@ -28,10 +43,11 @@ const initMiddleware = (app) => {
                 this._sections[name] = options.fn(this);
                 return null;
             },
+
+
         }
     });
     handlebarsInstance.getPartials().then(r => console.log(r))
-
     app.use;
     app.use(logger('dev'));
     app.use(cors());
@@ -58,7 +74,7 @@ const initMiddleware = (app) => {
         res.locals.session = req.session;
         res.locals.toastMessage = req.flash('toastMessage');
         res.locals.toastStatus = req.flash('toastStatus');
-        if (res.locals.toastMessage != "" && res.locals.toastStatus != "") {
+        if (res.locals.toastMessage !== "" && res.locals.toastStatus !== "") {
             console.log('Flash Message: ' + res.locals.toastMessage + ' ' + res.locals.toastStatus);
         }
         next();
