@@ -90,5 +90,5 @@ $.ajax({
 const book = $('#book');
 
 book.click(function () {
-
+    location.href = window.location.href + "/book";
 });

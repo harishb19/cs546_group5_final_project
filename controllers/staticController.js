@@ -43,20 +43,21 @@ module.exports.home = function (req, res, next) {
 module.exports.moviesList = function (req, res, next) {
     res.render('pages/movie/list');
 }
-module.exports.movies = async function (req,res, next) {
+module.exports.movies = function (req,res, next) {
     res.render('pages/movie/details');
 }
 
-module.exports.movieDetail_Info = async (req, res) => {
+module.exports.movieDetail_Info = function (req, res) {
     const id = req.body.id;
     const movie_Id = mongoose.Types.ObjectId(id);
     movies.findOne({movieId: movie_Id}, (err, doc) => {
         if(err) return 'error!';
+        if (!doc) return 'error';
         return res.json({success: true, doc});
     });
 }
 
-module.exports.movieDetail_Cast = async (req, res) => {
+module.exports.movieDetail_Cast = function (req, res) {
     const id = req.body.id;
     const movie_Id = mongoose.Types.ObjectId(id);
     movies.findOne({movieId: movie_Id}, (err, doc) => {
@@ -66,7 +67,7 @@ module.exports.movieDetail_Cast = async (req, res) => {
     });
 }
 
-module.exports.movieDetail_Reviews = async (req, res) => {
+module.exports.movieDetail_Reviews = function (req, res) {
     const id = req.body.id;
     // Temporary Data Only for test
     //const movieDetail;
