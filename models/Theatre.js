@@ -1,11 +1,11 @@
-const {ObjectId, Timestamp, Binary} = require("mongodb");
 const {Schema} = require("mongoose");
+const mongoose = require("mongoose");
 
 const theatreSchema = new Schema({
     theatreId: {
         type: mongoose.Schema.Types.ObjectId,
         unique: true,
-        default: ObjectId()
+        default: new mongoose.Types.ObjectId()
     },
     theatreName: {
         type: String,
@@ -20,7 +20,7 @@ const theatreSchema = new Schema({
         screenId: {
             type: mongoose.Schema.Types.ObjectId,
             unique: true,
-            default: ObjectId()
+            default: new mongoose.Types.ObjectId()
         },
 
         layout: [[{

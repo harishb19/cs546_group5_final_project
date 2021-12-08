@@ -1,11 +1,43 @@
 const mongoose = require("mongoose");
-const {ObjectId} = require("mongodb");
+
+const ordersSchema = new mongoose.Schema({
+    orderId: {
+        type: mongoose.Schema.Types.ObjectId,
+        required: true,
+    },
+    movieId: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'Movie',
+        required: true
+    },
+    theatreId: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'Theatre',
+        required: true
+    },
+    showTimeId: {
+        type: String,
+        required: true
+    },
+    seats: [
+        {type: String, required: true}
+    ],
+    price: {
+        type: String,
+        required: true
+    }
+
+}
+,{
+    _id : false
+})
+
 
 const userSchema = new mongoose.Schema({
     userId: {
         type: mongoose.Schema.Types.ObjectId,
+        required: true,
         unique: true,
-        default: ObjectId()
     },
     gender: {
         type: String,
@@ -41,40 +73,15 @@ const userSchema = new mongoose.Schema({
         type: Date,
         required: true
     },
-    orders: [{
-        orderId: {
-            type: mongoose.Schema.Types.ObjectId,
-            unique: true,
-            required: true,
-            default: ObjectId()
-        },
-        movieId: {
-            type: mongoose.Schema.Types.ObjectId,
-            ref: 'Movies',
-            required: true
-        },
-        theatreId: {
-            type: mongoose.Schema.Types.ObjectId,
-            ref: 'Theatre',
-            required: true
-        },
-        showTimeId: {
-            type: String,
-            required: true
-        },
-        seats: [
-            {type: String, required: true}
-        ],
-        price: {
-            type: String,
-        }
-    }],
+    orders: {
+        type: [ordersSchema],
+        default: null,
+        required: false
+    }
 
 }, {
-    timestamps: true
+    timestamps: true,
+    _id: true
 })
-const orders = new mongoose.Schema({
-    type: { type: String, required: true },
-    data: String
-});
+
 module.exports = mongoose.model('Users', userSchema);

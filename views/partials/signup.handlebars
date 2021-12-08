@@ -1,14 +1,17 @@
 <!-- Email input -->
 <div class="form-outline mb-3">
-    <input required type="text" name="firstName" id="firstName" class="form-control form-control-lg"
-           placeholder="Enter first name" value="{{accessElement (split session.user.displayName " ") 0}}"/>
+    <input required type="text" name="givenName" id="givenName" class="form-control form-control-lg"
+           placeholder="Enter first name" value="{{session.user.given_name}}"
+           autocomplete="off"
+    />
     <label class="form-label" for="firstName">First Name</label>
 </div>
 
 <div class="form-outline mb-3">
-    <input required type="text" id="lastName" name="lastName" class="form-control form-control-lg"
+    <input required type="text" id="familyName" name="familyName" class="form-control form-control-lg"
            placeholder="Enter last name"
-           value="{{accessElement (split session.user.displayName " ") 1}}"
+           autocomplete="off"
+           value="{{split session.user.family_name}}"
     />
     <label class="form-label" for="lastName">Last Name</label>
 </div>
@@ -49,7 +52,9 @@
 </div>
 <div class="form-outline mb-3">
     <input required type="date" name="dateOfBirth" id="dateOfBirth" class="form-control form-control-lg"
-           placeholder="Enter date of birth" value="{{session.user.dateOfBirth}}"/>
+           placeholder="Enter date of birth" value="{{session.user.dateOfBirth}}"
+
+    />
     <label class="form-label" for="dateOfBirth">Date of Birth</label>
 </div>
 <div class="form-outline mb-3">
