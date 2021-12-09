@@ -71,7 +71,7 @@ const seatSelection = async (movieId, theatreId, screenId, showTimeId) => {
 
     /*------------ Error Handling End ------------*/
 
-    let movie = await Movie.findOne({movieId: ObjectId(movieId)});
+    let movie = await Movie.aggregate([{"$match": {movieId: ObjectId(movieId)}}]);
     if (!movie) throw "Error: movie not found";
 
     let theatre = await Theatre.aggregate([{"$unwind": "$screens"}, {"$match": {"screens.screenId": ObjectId(screenId)}}]);
@@ -91,13 +91,13 @@ const seatSelection = async (movieId, theatreId, screenId, showTimeId) => {
 
     return {
         movieId: movieId,
-        movieName: movie.movieName,
+        movieName: movie[0].movieName,
         theatreId: theatreId,
         theatreName: theatre[0].theatreName,
         layout: theatre[0].screens.layout,
         availability: showTime[0].screens.showTime.availability,
         showtime: showTime[0].screens.showTime.showTimeId,
-        language: movie.language,
+        language: movie[0].language,
         price: showTime[0].screens.showTime.price
     };
 }
