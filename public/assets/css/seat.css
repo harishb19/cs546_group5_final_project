@@ -57,10 +57,12 @@
     -webkit-appearance: none;
     appearance: none;
 }
+
 .theatreContainer {
     perspective: 1000px;
     margin-bottom: 30px;
 }
+
 .seat.selected {
     background-color: #6feaf6;
     color: black;
@@ -70,7 +72,6 @@
     background-color: #fff;
     color: black;
 }
-
 
 
 .seat:not(.occupied):hover {
