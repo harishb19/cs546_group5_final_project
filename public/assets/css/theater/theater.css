@@ -87,10 +87,11 @@
     color: #fff;
 }
 
-.theater-detail {
+.theater-detail-section {
     position: relative;
     display: flex;
     flex-direction: column;
+    margin-bottom: 30px;
 }
 
 .theater-detail-showtime {
@@ -199,5 +200,16 @@
     position: absolute;
     top: 30%;
     right: 0px;
+}
+
+.theater-error {
+    margin-top: 20px;
+    margin-bottom: 0;
+    padding: 20px;
+    border-radius: 4px;
+    border: 1px solid #cccfd1;
+    background-color: #fff;
+    position: relative;
+    display: none;
 }
 

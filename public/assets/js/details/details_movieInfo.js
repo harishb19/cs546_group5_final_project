@@ -10,6 +10,10 @@ const releaseDate = $('#releaseDate');
 const info = $('#info');
 const month = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
 
+/**
+ * general functions
+ */
+
 // Convert seconds into hours, minutes and second
 function formatSec(seconds) {
     let hours = 0, mins = 0;
@@ -53,42 +57,68 @@ function getMovieIdFromUrl() {
     return str;
 }
 
-let movieDetail;
+/**
+ * end general function
+ */
 
+
+/**
+ * Generate front page
+ */
+
+// get movie detail infomation
 $.ajax({
     type: 'post',
     url: '/details/movieInfo',
     contentType: 'application/json',
     data: JSON.stringify({
-        id: getMovieIdFromUrl()
+        id: movieId
     })
 }).then (function (responMessage) {
-    movieDetail = responMessage.doc;
-    postImgUrl = movieDetail.images[0].mainImg;
-    movieName = movieDetail.movieName;
-    IMDBRating = movieDetail.IMDBRating;
-    runtimeInSecs = movieDetail.runtimeInSecs;
-    movieGenre = movieDetail.genre;
-    movieLanguage = movieDetail.language;
-    movieReleaseDate = movieDetail.releaseDate;
-    backgroundImgUrl = movieDetail.images[0].others[0];
-    movieDescription = movieDetail.description;
-    movieFormat = '2D, 3D, IMAX 2D, IMAX 3D';
+    if (responMessage.success) {
+        let movieDetail = responMessage.doc;
+        if (!movieDetail.images || movieDetail.images.length == 0 || !movieDetail.images[0].mainImg) {
+            postImgUrl = "/public/assets/images/details/default-post-image.jpg";
+        } else {
+            postImgUrl = movieDetail.images[0].mainImg;
+        }
+        movieName = movieDetail.movieName;
+        IMDBRating = movieDetail.IMDBRating;
+        runtimeInSecs = movieDetail.runtimeInSecs;
+        movieGenre = movieDetail.genre;
+        movieLanguage = movieDetail.language;
+        movieReleaseDate = movieDetail.releaseDate;
+        if (!movieDetail.images || movieDetail.images.length == 0 || !movieDetail.images[0].others || movieDetail.images[0].others.length == 0) {
+            backgroundImgUrl = "/public/assets/images/details/default-background-image.jpg";
+        } else {
+            backgroundImgUrl = movieDetail.images[0].others[0];
+        }
+        
+        movieDescription = movieDetail.description;
+        movieFormat = '2D, 3D, IMAX 2D, IMAX 3D';
 
-    postImg.append("<img src=\"" + postImgUrl + "\">");
-    title.text(movieName);
-    rating.text(IMDBRating);
-    format.text(movieFormat);
-    time.text(formatSec(runtimeInSecs));
-    genre.text(formatGenre(movieGenre));
-    language.text(movieLanguage);
-    releaseDate.text(formatReleaseDate(movieReleaseDate));
-    background.css('background-image', background.css('background-image') + ', ' + 'url(' + backgroundImgUrl + ')');
-    info.text(movieDescription);
+        postImg.append("<img src=\"" + postImgUrl + "\">");
+        title.text(movieName);
+        rating.text(IMDBRating);
+        format.text(movieFormat);
+        time.text(formatSec(runtimeInSecs));
+        genre.text(formatGenre(movieGenre));
+        language.text(movieLanguage);
+        releaseDate.text(formatReleaseDate(movieReleaseDate));
+        background.css('background-image', background.css('background-image') + ', ' + 'url(' + backgroundImgUrl + ')');
+        info.text(movieDescription);
+    } else {
+        location.href = "http://" +window.location.host + "/movies";
+        
+    }
 });
 
+// link to theater list
 const book = $('#book');
-
 book.click(function () {
     location.href = window.location.href + "/book";
 });
+
+/**
+ * end generate front page
+ */

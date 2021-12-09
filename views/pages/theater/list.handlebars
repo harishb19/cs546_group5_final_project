@@ -12,13 +12,19 @@
                 <img src="/public/assets/images/details/arrow_right.png" id="calendar_arrow_right" class="arrow">
             </div>
         </section>
-        <section id="theater-detail" class="theater-detail">
+        <section id="theater-detail" class="theater-detail-section">
+            <div class="theater-error">
+                <h2>No such movie today!</h2>
+            </div>
         </section>
     </div>
 </section>
 
 
 {{#section "styles"}}
+    <script type="text/javascript">
+        const movieId = '{{id}}';
+    </script>
     <link rel="stylesheet" href="/public/assets/css/theater/theater.css">
 {{/section}}
 <script src="https://code.jquery.com/jquery-3.5.1.js" integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc=" crossorigin="anonymous"></script>

@@ -1,6 +1,6 @@
 const {registration, checkUserByEmailPassword} = require("../data/auth/auth");
 const movies = require("../models/Movies");
-const movieScreens = require("../models/MoveScreens");
+const movieScreens = require("../models/MovieScreens");
 const theater = require("../models/Theatre");
 let mongoose = require('mongoose');
 
@@ -45,25 +45,38 @@ module.exports.home = function (req, res, next) {
 module.exports.moviesList = function (req, res, next) {
     res.render('pages/movie/list');
 }
+
+
 module.exports.movies = function (req,res, next) {
-    res.render('pages/movie/details');
+    res.render('pages/movie/details', {id: req.params.id});
 }
 
 module.exports.movieDetail_Info = function (req, res) {
     const id = req.body.id;
-    const movie_Id = mongoose.Types.ObjectId(id);
+    let movie_Id;
+    try {
+        movie_Id = mongoose.Types.ObjectId(id);
+    } catch (error) {
+        return res.json({success: false});
+    }
     movies.findOne({movieId: movie_Id}, (err, doc) => {
-        if(err) return 'error!';
-        if (!doc) return 'error';
+        if(err) return res.json({success: false});
+        if (!doc) return res.json({success: false});
         return res.json({success: true, doc});
     });
 }
 
 module.exports.movieDetail_Cast = function (req, res) {
     const id = req.body.id;
-    const movie_Id = mongoose.Types.ObjectId(id);
+    let movie_Id;
+    try {
+        movie_Id = mongoose.Types.ObjectId(id);
+    } catch (error) {
+        return res.json({success: false});
+    }
     movies.findOne({movieId: movie_Id}, (err, doc) => {
-        if(err) return 'error!';
+        if(err) return res.json({success: false});
+        if (!doc) return res.json({success: false});
         const castInfo = doc.cast;
         return res.json({success: true, castInfo});
     });
@@ -92,13 +105,60 @@ module.exports.movieDetail_Reviews = function (req, res) {
     return res.json({success: true, reviewInfo});
 }
 module.exports.theaterList = function (req, res, next) {
-    res.render('pages/theater/list');
+    res.render('pages/theater/list', {id: req.params.id});
+}
+
+module.exports.screenInfo = function (req, res) {
+    let movie_Id;
+    try {
+        movie_Id = mongoose.Types.ObjectId(req.body.id);
+    } catch (error) {
+        return res.json({success: false});
+    }
+    const selectDate = new Date(req.body.selectDate + " 00:00:00 GMT");
+    movieScreens.findOne({movieId: movie_Id}, (err, doc) => {
+        if(err) return res.json({success: false});
+        if (!doc) return res.json({success: false});
+        let screenInfo = [];
+        let screens = doc.screens;
+        for (let i = 0; i < screens.length; ++i) {
+            let singleScreen = {
+                screenId: "",
+                showTimes: []
+            };
+            let screen = screens[i];
+            for (let j = 0; j < screen.showTime.length; ++j) {
+                let showTime = screen.showTime[j];
+                let date = showTime.date;
+                let showTimeTemp = {
+                    showTimeId: "",
+                    time: ""
+                }
+                if ((date - selectDate) == 0) {
+                    singleScreen.screenId = screens[i].screenId;
+                    showTimeTemp.showTimeId = showTime.showTimeId;
+                    showTimeTemp.time = showTime.time;
+                    singleScreen.showTimes.push(showTimeTemp);
+                }
+            }
+            if (singleScreen.showTimes.length != 0) screenInfo.push(singleScreen);
+        }
+        return res.json({success: true, screenInfo});
+    });
 }
 
 module.exports.theaterInfo = function (req, res) {
-    const movie_Id = mongoose.Types.ObjectId(req.body.id);
-    const select_date = req.body.select_data;
-    
+    let screenId;
+    try {
+        screenId = mongoose.Types.ObjectId(req.body.screenId);
+    } catch (error) {
+        return res.json({success: false});
+    }
+    theater.findOne({screenId: screenId}, (err, doc) => {
+        if(err) return res.json({success: false});
+        if (!doc) return res.json({success: false});
+        return res.json({success: true, doc});
+    });
 }
 
 module.exports.seatSelection = function (req, res, next) {
@@ -126,4 +186,3 @@ module.exports.logout = function (req, res, next) {
 
     res.redirect('/');
 };
-

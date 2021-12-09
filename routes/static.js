@@ -15,7 +15,6 @@ router.get('/movies/:id/book/seat', staticController.seatSelection);
 router.get('/movies/:id/book/seat/pay', staticController.checkout);
 router.post('/ticket', staticController.checkAuth,staticController.ticket);
 
-
 router.get('/logout',staticController.logout);
 
 
