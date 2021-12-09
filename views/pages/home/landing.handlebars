@@ -44,60 +44,10 @@
 {{!-- Upcoming Movies --}}
 <div class="container-fluid">
     <h4 class="mt-5">Upcoming Movies</h4>
-    {{!-- <p class="subtitle">Horizontal scrolling without CSS. Just copy scrolling wrapper classes</p> --}}
-    <div class="scrolling-wrapper row flex-row flex-nowrap mt-4 pb-4 pt-2" style="min-height: 300px; min-width: 300px;
-  margin-right: 5px; overflow-x: auto;">
-
-        <div class="col-3">
-            <div class="card card-block card-1">
-                <img src="https://wallpaperaccess.com/full/250763.jpg"/>
-            </div>
-        </div>
-        <div class="col-3">
-            <div class="card card-block card-2">
-                <img src="https://wallpaperaccess.com/full/250763.jpg"/>
-            </div>
-        </div>
-        <div class="col-3">
-            <div class="card card-block card-3">
-                <img src="https://wallpaperaccess.com/full/250763.jpg"/>
-            </div>
-        </div>
-        <div class="col-3">
-            <div class="card card-block card-4">
-                <img src="https://wallpaperaccess.com/full/250763.jpg"/>
-            </div>
-        </div>
-        <div class="col-3">
-            <div class="card card-block card-5">
-                <img src="https://wallpaperaccess.com/full/250763.jpg"/>
-            </div>
-        </div>
-        <div class="col-3">
-            <div class="card card-block card-6">
-                <img src="https://wallpaperaccess.com/full/250763.jpg"/>
-            </div>
-        </div>
-        <div class="col-3">
-            <div class="card card-block card-7">
-                <img src="https://wallpaperaccess.com/full/250763.jpg"/>
-            </div>
-        </div>
-        <div class="col-3">
-            <div class="card card-block card-8">
-                <img src="https://wallpaperaccess.com/full/250763.jpg"/>
-            </div>
-        </div>
-        <div class="col-3">
-            <div class="card card-block card-9">
-                <img src="https://wallpaperaccess.com/full/250763.jpg"/>
-            </div>
-        </div>
-        <div class="col-3">
-            <div class="card card-block card-10">
-                <img src="https://wallpaperaccess.com/full/250763.jpg"/>
-            </div>
-        </div>
+    <div class="scrolling-wrapper row flex-row flex-nowrap mt-4 pb-4 pt-2 new-upcoming-css">
+    {{#each upcomingMovies as |movie|}}
+                {{> topcard movie=(parseJson movie )}}
+            {{/each}}
     </div>
 </div>
 
@@ -105,62 +55,10 @@
 {{!-- Top Movies --}}
 <div class="container-fluid">
     <h4 class="mt-5">Top Movies</h4>
-    {{!-- <p class="subtitle">Horizontal scrolling without CSS. Just copy scrolling wrapper classes</p> --}}
-    <div class="scrolling-wrapper row flex-row flex-nowrap mt-4 pb-4 pt-2" style="min-height: 300px; min-width: 300px;
-  margin-right: 5px; overflow-x: auto;">
-
-        <div class="col-3">
-            <div class="card card-block card-1">
-                <img src="https://wallpaperaccess.com/full/250763.jpg"/>
-            </div>
-        </div>
-        <div class="col-3">
-            <div class="card card-block card-2">
-                <img src="https://wallpaperaccess.com/full/250763.jpg"/>
-            </div>
-        </div>
-        <div class="col-3">
-            <div class="card card-block card-3">
-                <img src="https://wallpaperaccess.com/full/250763.jpg"/>
-            </div>
-        </div>
-        <div class="col-3">
-            <div class="card card-block card-4">
-                <img src="https://wallpaperaccess.com/full/250763.jpg"/>
-            </div>
-        </div>
-        <div class="col-3">
-            <div class="card card-block card-5">
-                <img src="https://wallpaperaccess.com/full/250763.jpg"/>
-            </div>
-        </div>
-        <div class="col-3">
-            <div class="card card-block card-6">
-                <img src="https://wallpaperaccess.com/full/250763.jpg"/>
-            </div>
-        </div>
-        <div class="col-3">
-            <div class="card card-block card-7">
-                <img src="https://wallpaperaccess.com/full/250763.jpg"/>
-            </div>
-        </div>
-        <div class="col-3">
-            <div class="card card-block card-8">
-                <img src="https://wallpaperaccess.com/full/250763.jpg"/>
-            </div>
-        </div>
-        <div class="col-3">
-            <div class="card card-block card-9">
-                <img src="https://wallpaperaccess.com/full/250763.jpg"/>
-            </div>
-        </div>
-        <div class="col-3">
-            <div class="card card-block card-10">
-                <img src="https://wallpaperaccess.com/full/250763.jpg"/>
-            </div>
-        </div>
-
-
+    <div class="scrolling-wrapper row flex-row flex-nowrap mt-4 pb-4 pt-2 new-top-css">
+        {{#each topMovies as |movie|}}
+                {{> topcard movie=(parseJson movie )}}
+            {{/each}}
     </div>
 </div>
 
@@ -169,15 +67,11 @@
 {{!-- Genres --}}
 <div class="container-fluid">
     <h4 class="mt-5">Genres</h4>
-    <div class="scrolling-wrapper row flex-row flex-nowrap mt-4 pb-4 pt-2" style="min-height: 300px; min-width: 300px;
-  margin-right: 5px; overflow-x: auto;">
-
-        <div class="col-3">
-            <div class="card card-block card-1">
-                <p style="text-align: center; font-weight:bold;">Crime</p>
-                <img src="https://wallpaperaccess.com/full/250763.jpg"/>
-            </div>
-        </div>
+    <div class="scrolling-wrapper row flex-row flex-nowrap mt-4 pb-4 pt-2 new-genre-css">
+        {{#each genreMovies as |movie|}}
+                {{> genrecard movie=(parseJson movie )}}
+            {{/each}}
+            {{!-- <div>
         <div class="col-3">
             <div class="card card-block card-2">
                 <p style="text-align: center; font-weight:bold;">Action</p>
@@ -225,6 +119,17 @@
                 <p style="text-align: center; font-weight:bold;">Sci-fi</p>
                 <img src="https://wallpaperaccess.com/full/250763.jpg"/>
             </div>
-        </div>
+            </div> --}}
+        {{!-- </div> --}}
     </div>
 </div>
+{{#section "script"}}
+  <script type="text/javascript" > 
+      const openMovie=(id)=>{
+          window.location=`/movies/${id}`
+          }
+        const openGenre=(id)=>{
+          window.location=`/movies/`
+          }
+  </script>
+{{/section }}

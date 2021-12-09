@@ -1,5 +1,6 @@
 const { registration, checkUserByEmailPassword } = require("../data/auth/auth");
 const { getAllMovies } = require("../data/movies/movies");
+const { getLandingPage } = require("../data/home/home");
 
 module.exports.login = function (req, res, next) {
   if (req.session.user) {
@@ -36,7 +37,7 @@ module.exports.checkAuth = function (req, res, next) {
 };
 
 module.exports.home = function (req, res, next) {
-  res.render("pages/home/landing");
+  getLandingPage(req, res);
 };
 module.exports.moviesList = function (req, res, next) {
   getAllMovies(req, res);

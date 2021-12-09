@@ -1,4 +1,36 @@
-.carousel-inner{
-    object-fit:contain;
-    aspect-ratio: 16/9;
+.carousel-inner {
+  object-fit: contain;
+  aspect-ratio: 16/9;
+}
+.new-upcoming-css {
+  min-height: 300px;
+  min-width: 300px;
+  margin-right: 5px;
+  overflow-x: auto;
+}
+.top-card {
+  max-height: 300px;
+  aspect-ratio: 1;
+  object-fit: contain;
+}
+.new-top-css {
+  min-height: 300px;
+  min-width: 300px;
+  margin-right: 5px;
+  overflow-x: auto;
+}
+.genre-card {
+  max-height: 300px;
+  aspect-ratio: 1;
+  object-fit: contain;
+}
+.new-genre-css {
+  min-height: 300px;
+  min-width: 300px;
+  margin-right: 5px;
+  overflow-x: auto;
+}
+.para {
+  text-align: center;
+  font-weight: bold;
 }
