@@ -40,8 +40,6 @@ cast_right.click(function () {
     $('#movie-detail-cast  li').remove();
     const remainLength = castinfo.length - cast_count * cast_showCount;
     const beginIndex = cast_count * cast_showCount;
-    console.log('beginIndex: ' + beginIndex);
-    console.log('remainLength: ' + remainLength);
     if (remainLength <= cast_showCount) {
         cast_right.css('visibility','hidden');
         for (let i = beginIndex; i < castinfo.length; ++i) {

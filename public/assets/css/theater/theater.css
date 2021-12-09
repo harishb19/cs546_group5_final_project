@@ -13,6 +13,11 @@
     position: relative;
     overflow: hidden;
     margin-bottom: 10px;
+    width: 600px;
+}
+
+.theater-calendar {
+    margin-left: 60px;
 }
 
 .theater-calendar-list {
@@ -174,5 +179,25 @@
     border-radius: 4px;
     font-size: 16px;
     color: #fff;
+}
+
+.arrow{
+    max-width: 35px;
+    max-height: 40px;
+    min-width: 35px;
+    min-height: 40px; 
+    opacity: 0.7;
+}
+
+.calendar-left-triangle {
+    position: absolute;
+    left: 0;
+    top: 30%;
+}
+
+.calendar-right-triangle {
+    position: absolute;
+    top: 30%;
+    right: 0px;
 }
 

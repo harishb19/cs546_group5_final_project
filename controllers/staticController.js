@@ -1,5 +1,7 @@
 const {registration, checkUserByEmailPassword} = require("../data/auth/auth");
 const movies = require("../models/Movies");
+const movieScreens = require("../models/MoveScreens");
+const theater = require("../models/Theatre");
 let mongoose = require('mongoose');
 
 
@@ -70,7 +72,6 @@ module.exports.movieDetail_Cast = function (req, res) {
 module.exports.movieDetail_Reviews = function (req, res) {
     const id = req.body.id;
     // Temporary Data Only for test
-    //const movieDetail;
     const reviewInfo = [
         {
             userImgSrc: '',
@@ -93,6 +94,13 @@ module.exports.movieDetail_Reviews = function (req, res) {
 module.exports.theaterList = function (req, res, next) {
     res.render('pages/theater/list');
 }
+
+module.exports.theaterInfo = function (req, res) {
+    const movie_Id = mongoose.Types.ObjectId(req.body.id);
+    const select_date = req.body.select_data;
+    
+}
+
 module.exports.seatSelection = function (req, res, next) {
     res.render('pages/theater/seat');
 }
