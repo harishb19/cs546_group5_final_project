@@ -1,7 +1,7 @@
 const {ObjectId} = require("mongodb");
 const Movie = require("../../models/Movies");
 const MovieScreens = require('../../models/MovieScreens');
-
+const Theatre=require("../../models/Theatre");
 const seatSelectionHandler = async (req, res) => {
 
     if (!req.body || Object.keys(req.body).length < 4) {
@@ -61,7 +61,6 @@ const seatSelectionHandler = async (req, res) => {
 const seatSelection = async (movieId, theatreId, screenId, showTimeId) => {
 
     /*------------ Error Handling Start ------------*/
-    if (arguments.length > 4) throw 'Error: More number of parameters passed then required';
 
     if (!movieId || !theatreId || !screenId || !showTimeId) throw 'Error: all parameters are not passed to the function';
 
@@ -73,7 +72,7 @@ const seatSelection = async (movieId, theatreId, screenId, showTimeId) => {
     /*------------ Error Handling End ------------*/
 
     let movie = await Movie.findOne({movieId: ObjectId(movieId)});
-    if (movie.length === 0) throw "Error: movie not found";
+    if (!movie) throw "Error: movie not found";
 
     let theatre = await Theatre.aggregate([{"$unwind": "$screens"}, {"$match": {"screens.screenId": ObjectId(screenId)}}]);
     if (theatre.length === 0) throw "Error: theatre not found";

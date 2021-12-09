@@ -46,9 +46,10 @@ module.exports.movies = function (req, res, next) {
     res.render('pages/movie/details');
 }
 module.exports.theaterList = function (req, res, next) {
-    res.render('pages/theater/list');
+    res.render('pages/theater/list',{id:req.params.id});
 }
 module.exports.seatSelection = async function (req, res, next) {
+    console.log("In here")
     await seatSelectionHandler(req, res)
 
 }
