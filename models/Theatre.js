@@ -1,5 +1,6 @@
 const {Schema} = require("mongoose");
-const mongoose = require("mongoose");
+const mongoose = require('mongoose');
+
 
 const theatreSchema = new Schema({
     theatreId: {
@@ -17,10 +18,11 @@ const theatreSchema = new Schema({
     },
 
     screens: [{
+
         screenId: {
             type: mongoose.Schema.Types.ObjectId,
             unique: true,
-            default: new mongoose.Types.ObjectId()
+
         },
 
         layout: [[{
@@ -32,10 +34,7 @@ const theatreSchema = new Schema({
             type: Number,
             required: true,
         },
-
-
-    }]
-
+    }],
 
 }, {
     timestamps: true

@@ -8,6 +8,7 @@ let cors = require('cors');
 const exphbs = require("express-handlebars");
 const path = require("path");
 require('./passport')(passport);
+const {format, formatDistance} = require('date-fns');
 
 const initMiddleware = (app) => {
 
@@ -25,7 +26,6 @@ const initMiddleware = (app) => {
                 return string.split(separator)
             },
             isEqual: (string1, string2) => {
-                console.log(string1, string2, "vheck")
                 return string1 === string2
             },
             splice: (string, start, end) => {
@@ -35,7 +35,15 @@ const initMiddleware = (app) => {
             accessElement: (array, index) => {
                 return array[index]
             },
-
+            dateParser: (date) => {
+                return format(new Date(date), 'do MMM yy')
+            },
+            timeParser: (date) => {
+                return format(new Date(date), 'hh:mm a')
+            },
+            secondsParser: (seconds) => {
+                return formatDistance(0, seconds * 1000, {includeSeconds: false})
+            },
             section(name, options) {
                 if (!this._sections) {
                     this._sections = {};

@@ -495,7 +495,7 @@
         if (x < 1) { // acceleartion
             val = x - (1 - Math.exp(-x));
         } else {     // tail
-                     // the previous animation ended here:
+            // the previous animation ended here:
             start = Math.exp(-1);
             // simple viscous drag
             x -= 1;

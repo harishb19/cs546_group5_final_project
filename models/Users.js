@@ -1,36 +1,36 @@
 const mongoose = require("mongoose");
 
 const ordersSchema = new mongoose.Schema({
-    orderId: {
-        type: mongoose.Schema.Types.ObjectId,
-        required: true,
-    },
-    movieId: {
-        type: mongoose.Schema.Types.ObjectId,
-        ref: 'Movie',
-        required: true
-    },
-    theatreId: {
-        type: mongoose.Schema.Types.ObjectId,
-        ref: 'Theatre',
-        required: true
-    },
-    showTimeId: {
-        type: String,
-        required: true
-    },
-    seats: [
-        {type: String, required: true}
-    ],
-    price: {
-        type: String,
-        required: true
-    }
+        orderId: {
+            type: mongoose.Schema.Types.ObjectId,
+            required: true,
+        },
+        movieId: {
+            type: mongoose.Schema.Types.ObjectId,
+            ref: 'Movie',
+            required: true
+        },
+        theatreId: {
+            type: mongoose.Schema.Types.ObjectId,
+            ref: 'Theatre',
+            required: true
+        },
+        showTimeId: {
+            type: String,
+            required: true
+        },
+        seats: [
+            {type: String, required: true}
+        ],
+        price: {
+            type: String,
+            required: true
+        }
 
-}
-,{
-    _id : false
-})
+    }
+    , {
+        _id: false
+    })
 
 
 const userSchema = new mongoose.Schema({
