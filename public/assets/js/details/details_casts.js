@@ -4,7 +4,7 @@ const cast_right = $('#cast_arrow_right');
 const defaultCastUrl = '/public/assets/images/details/default-cast-image.png'
 
 let castinfo;
-let cast_showCount = 5;
+let cast_showCount = 6;
 let cast_count = 0;
 console.log("run detail_casts");
 $.ajax({

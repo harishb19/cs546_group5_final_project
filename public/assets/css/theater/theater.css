@@ -204,12 +204,12 @@
 
 .theater-error {
     margin-top: 20px;
-    margin-bottom: 0;
+    margin-bottom: 20px;
     padding: 20px;
     border-radius: 4px;
     border: 1px solid #cccfd1;
     background-color: #fff;
     position: relative;
-    display: none;
+    visibility: hidden;
 }
 

@@ -107,6 +107,7 @@ function getTheater(id, selectDate) {
     }).then ((responMessage) => {
         if (responMessage.success) {
             $('.theater-detail-showtime').remove();
+            $('.theater-error').css("visibility", "hidden");
             let screenInfo = responMessage.screenInfo;
             for (let i = 0; i < screenInfo.length; ++i) {
                 let screenId = screenInfo[i].screenId;
@@ -142,8 +143,9 @@ function getTheater(id, selectDate) {
                 });
             }
         } else {
-            console('error');
-            $('.theater-error').css("display", "");
+            console.log('error');
+            $('.theater-detail-showtime').remove();
+            $('.theater-error').css("visibility", "visible");
         }
         
     });

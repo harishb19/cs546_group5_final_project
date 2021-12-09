@@ -143,6 +143,7 @@ module.exports.screenInfo = function (req, res) {
             }
             if (singleScreen.showTimes.length != 0) screenInfo.push(singleScreen);
         }
+        if (screenInfo.length == 0) return res.json({success: false});
         return res.json({success: true, screenInfo});
     });
 }
