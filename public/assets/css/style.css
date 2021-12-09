@@ -1209,6 +1209,7 @@ figure:hover figcaption {
 }
 
 .testimonial {
+    background: url(../images/testimonial/testimonial_bg.jpg);
     background-attachment: fixed;
     overflow: hidden;
     position: relative

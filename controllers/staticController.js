@@ -126,3 +126,4 @@ module.exports.logout = function (req, res, next) {
 
     res.redirect('/');
 };
+

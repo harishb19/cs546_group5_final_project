@@ -1,43 +1,62 @@
 const formidable = require("formidable");
 const User = require("../../models/Users");
-const bcrypt = require('bcrypt');
+const bcrypt = require('bcryptjs');
 const {models} = require("mongoose");
+const {ObjectId} = require("mongodb");
 const saltRounds = 10;
 
 const registration = (req, res) => {
+    let today = new Date();
+    let dd = today.getDate();
+    let mm = today.getMonth() + 1;
+    let yyyy = today.getFullYear();
+
+    if (dd < 10) {
+        dd = '0' + dd;
+    }
+
+    if (mm < 10) {
+        mm = '0' + mm;
+    }
+    today = yyyy - 18 + '-' + mm + '-' + dd;
     const form = formidable({multiples: true});
     form.parse(req, (err, fields, files) => {
-
         if (fields.firstName === "" || fields.lastName === "" || fields.email === "" || fields.gender === undefined || fields.dateOfBirth === "" || fields.phoneNo === "" || fields.password === "" || err) {
             req.flash('toastMessage', `Please enter all the details`);
             res.redirect("back")
         } else {
-
-
-            const user = new User({
-                firstName: fields.firstName,
-                lastName: fields.lastName,
-                email: req.session.user.email,
-                imageUrl: req.session.imageUrl,
-                gender: fields.gender,
-                dateOfBirth: fields.dateOfBirth,
-                phoneNo: fields.phoneNo,
-            });
-            bcrypt.hash(fields.password, saltRounds, (err, hash) => {
-                user.password = hash
-                user.save((err, doc) => {
-                    if (err) {
-                        console.log(err);
-                        req.flash('toastMessage', `some error try again`);
-                        res.redirect("back")
-                    } else {
-                        req.session.newUser = false;
-                        req.flash('toastMessage', `some error try again`);
-                        req.flash('toastStatus', `success`);
-                        res.redirect('/');
-                    }
+            if (new Date(fields.dateOfBirth) > new Date(today)) {
+                req.flash('toastMessage', `Invalid Date of birth`);
+                res.redirect("back")
+            } else {
+                const user = new User({
+                    userId: new ObjectId(),
+                    firstName: fields.givenName,
+                    lastName: fields.familyName,
+                    email: req.session.user.email,
+                    imageUrl: req.session.imageUrl,
+                    gender: fields.gender,
+                    dateOfBirth: fields.dateOfBirth,
+                    phoneNo: fields.phoneNo,
                 });
-            });
+                console.log({...fields}, user, "review this")
+                bcrypt.hash(fields.password, saltRounds, (err, hash) => {
+                    user.password = hash
+                    user.save((err, doc) => {
+                        if (err) {
+                            console.log(err);
+                            req.flash('toastMessage', `some error try again`);
+                            res.redirect("back")
+                        } else {
+                            req.session.newUser = false;
+                            req.flash('toastStatus', `success`);
+                            req.flash('toastMessage', `Hello ${doc.firstName} ${doc.lastName}!`);
+                            res.redirect('/');
+                        }
+                    });
+                });
+            }
+
 
         }
     });
