@@ -2,6 +2,12 @@ const mongoose = require("mongoose");
 const {ObjectId, Timestamp} = require("mongodb");
 
 const movieSchema = new mongoose.Schema({
+
+    movieId: {
+        type: mongoose.Schema.Types.ObjectId,
+        unique: true,
+        required: true,
+    },
     movieName: {
         type: String,
         required: true
