@@ -13,7 +13,7 @@ router.get('/movies/:id', staticController.movies);
 router.get('/movies/:id/book', staticController.theaterList);
 router.post('/movies/:id/book/seat', staticController.seatSelection);
 router.post('/movies/:id/book/seat/pay', staticController.checkout);
-router.post('/ticket', staticController.checkAuth, staticController.ticket);
+router.post('/ticket', staticController.checkAuth, staticController.checkTicketStatus, staticController.ticket);
 router.post('/addTheatre', staticController.addTheatre);
 router.post('/addMovie', staticController.addMovie);
 router.post('/addMovieScreens', staticController.addMovieScreens);
@@ -26,12 +26,9 @@ router.get('/oauth/signin', passport.authenticate('google', {scope: ['profile', 
 
 
 // Google oAuth Callback
-router.get('/oauth/signin/callback',
-    passport.authenticate('google', {
-        successRedirect: '/',
-        failureRedirect: '/register'
-    })
-);
+router.get('/oauth/signin/callback', passport.authenticate('google', {
+    successRedirect: '/', failureRedirect: '/register'
+}));
 
 
 module.exports = router;

@@ -1,7 +1,8 @@
-const {registration, checkUserByEmailPassword} = require("../data/auth/auth");
+const {registration, checkUserByEmailPassword} = require("../data/auth/auth")
 const {seatSelectionHandler} = require("../data/seat/seat");
 const {checkoutHandler} = require("../data/checkout/checkout");
-
+const QRCode = require('qrcode')
+const {showPayDetails} = require("../data/checkout/checkout");
 
 module.exports.login = function (req, res, next) {
     if (req.session.user) {
@@ -46,20 +47,22 @@ module.exports.movies = function (req, res, next) {
     res.render('pages/movie/details');
 }
 module.exports.theaterList = function (req, res, next) {
-    res.render('pages/theater/list',{id:req.params.id});
+    res.render('pages/theater/list', {id: req.params.id});
 }
 module.exports.seatSelection = async function (req, res, next) {
-    console.log("In here")
     await seatSelectionHandler(req, res)
 
 }
 
 module.exports.checkout = function (req, res, next) {
-    checkoutHandler(req, res)
+    showPayDetails(req, res)
 }
 module.exports.ticket = function (req, res, next) {
     if (req.session.user) {
-        res.render('pages/checkout/ticket');
+        QRCode.toDataURL('I am a pony!', (err, url) => {
+            res.render('pages/checkout/ticket');
+        })
+
     } else {
         res.redirect("login")
     }
@@ -145,3 +148,24 @@ module.exports.addMovie = function (req, res, next) {
     })
     res.json({"check": "console log"});
 }
+
+module.exports.checkTicketStatus = (req, res, next) => {
+    if (req.session.checkout === true) {
+        next();
+    } else {
+        res.redirect('/movies', {toastMessage: 'Please select a movie', toastStatus: 'error'});
+    }
+}
+
+
+module.exports.logout = (req, res, next) => {
+    req.logout();
+    req.user = null;
+    req.session.user = null;
+    req.session.loggedIn = false;
+    req.flash('toastStatus', 'success');
+    req.flash('toastMessage', `Thanks for visiting. See you soon`);
+
+    res.redirect('/');
+};
+
