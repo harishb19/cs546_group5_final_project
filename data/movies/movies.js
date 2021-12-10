@@ -14,7 +14,7 @@ const getAllMovies = async (req, res) => {
       clearFilters: true,
     });
   } else {
-    req.flash("toastMessage", `email or password incorrect`);
+    req.flash("toastMessage", `Something went wrong`);
     res.redirect("back");
   }
 };
@@ -24,7 +24,7 @@ const getFilteredMovies = async (req, res) => {
     req.flash("toastMessage", "Invalid request");
     res.redirect("back");
   } else {
-    filters = JSON.parse(JSON.parse(filters));
+    filters = JSON.parse(filters);
     console.log(
       filters,
       typeof filters,
@@ -39,13 +39,21 @@ const getFilteredMovies = async (req, res) => {
       const languageFilter = filters.language;
       const genreFilter = filters.genre;
       console.log(languageFilter, genreFilter, "this is it");
-      let movies = [];
+      let movies = await Movies.find({});
       if (languageFilter && languageFilter.length > 0) {
-        movies = await Movies.find({
-          language: { $in: languageFilter },
+        movies = movies.filter((movie) => {
+          let language = movie.language.split(",").map((lang) => lang.trim());
+
+          let common = language.filter((x) => languageFilter.indexOf(x) !== -1);
+          console.log(
+            language,
+            languageFilter,
+            language.includes(languageFilter),
+            languageFilter.includes(languageFilter),
+            common
+          );
+          return common && common.length > 0;
         });
-      } else {
-        movies = await Movies.find({});
       }
 
       console.log(movies, "this is it");
@@ -69,11 +77,14 @@ const getFilteredMovies = async (req, res) => {
 
         const genreMovies = await getGenres();
         const langFilter = await getLanguages();
-        res.status(200).render("pages/movie/list", {
+        const sendParams = {
           movies: finalMovie,
           genreMovies,
           langFilter,
-        });
+          filters: JSON.stringify(filters),
+        };
+        console.log(sendParams);
+        res.status(200).render("pages/movie/list", sendParams);
       } else {
         req.flash("toastMessage", `Invalid request`);
         res.redirect("back");

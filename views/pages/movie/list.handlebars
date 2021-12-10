@@ -8,7 +8,7 @@
         <div class="col-2" style="margin-top: 15px;">
             <span class="filter-title">Filters</span>
             <div class="sec1">
-                <button class="btn" id="resetBtn"  type="button" onclick="resetFilterMovies()">
+                <button class="btn" id="resetBtn"  type="button" onclick="resetFilterMovies(true)">
                     Reset
                 </button>
                 <button class="btn" id="applyBtn" type="button" onclick="applyFilters()">
@@ -75,19 +75,20 @@
         </div>
     </div>
 </div>
-
 {{#section "script"}}
   <script type="text/javascript" > 
       const openMovie=(id)=>{
           window.location=`/movies/${id}`
           }
+          
   </script>
 
 <script src="/public/assets/js/movieFilters/movieFilters.js"></script>
   <script type="text/javascript">
     {{#if clearFilters}}
-    resetFilterMovies()
+    resetFilterMovies(false)
         {{else}}
+            movieFilter={{{filters}}}
             handelDefaultFilters()
     {{/if}}
   </script>
