@@ -130,7 +130,7 @@ function getTheater(id, selectDate) {
                     const showtime = screenInfo[i].showTimes;
                     for (let j = 0; j < showtime.length; ++j) {
                         link += "<li class=\"theater-detail-showtime_variants_time\">" + 
-                        "<form method=\"post\" action=\"/movies/{{id}}/book/seat\">" +
+                        "<form method=\"post\" action=\"/movies/"+ movieId + "/book/seat\">" +
                         "<input type=\"text\" name=\"movieId\" value=\"" + movieId + "\" hidden>" +
                         "<input type=\"text\" name=\"theatreId\" value=\"" + theaterInfo.theatreId + "\" hidden>" +
                         "<input type=\"text\" name=\"screenId\" value=\"" + screenId + "\" hidden/>" +
