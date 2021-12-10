@@ -1,5 +1,4 @@
 const mongoose = require("mongoose");
-const {ObjectId, Timestamp} = require("mongodb");
 
 const movieSchema = new mongoose.Schema({
     movieName: {
