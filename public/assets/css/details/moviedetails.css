@@ -82,8 +82,8 @@
 }
 
 .mdbi-rating_img img {
-    width: 90%;
-    height: 90%;
+    width: 95%;
+    height: 95%;
     margin: auto;
 }
 
@@ -93,7 +93,7 @@
 
 .mdbi-rating_rate p{
     color: rgb(238, 238, 238);
-    font-size: 24px;
+    font-size: 23px;
     margin: 0px;
 }
 
@@ -305,7 +305,7 @@
 
 .review-detail {
     position: relative;
-    margin-left: 10px;
+    margin-left: 25px;
     margin-right: 10px;
 }
 

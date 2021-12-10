@@ -50,11 +50,18 @@ function formatReleaseDate(releaseDate) {
     return releaseDay.toString() + " " + month[releaseMonth] + "," + releaseYear;
 }
 
-function getMovieIdFromUrl() {
-    const url = window.location.href;
-    let index = url.lastIndexOf('\/');
-    let str = url.substring(index + 1, url.length);
-    return str;
+function getIMDB(imdburl, rating) {
+    $.ajax({
+        method: 'post',
+        url: imdburl
+    }).then((responMessage) => {
+        if (responMessage) {
+            rating.text(responMessage.imdbRating + " IMDB Rating");
+        } else {
+            rating.text('N/A');
+        }
+        
+    });
 }
 
 /**
@@ -83,7 +90,7 @@ $.ajax({
             postImgUrl = movieDetail.images[0].mainImg;
         }
         movieName = movieDetail.movieName;
-        IMDBRating = movieDetail.IMDBRating;
+        imdbId = movieDetail.IMDBRating;
         runtimeInSecs = movieDetail.runtimeInSecs;
         movieGenre = movieDetail.genre;
         movieLanguage = movieDetail.language;
@@ -99,7 +106,8 @@ $.ajax({
 
         postImg.append("<img src=\"" + postImgUrl + "\">");
         title.text(movieName);
-        rating.text(IMDBRating);
+        getIMDB('http://www.omdbapi.com/?i=' + imdbId + '&apikey=5d806bd7', rating);
+        //rating.text(IMDBRating);    
         format.text(movieFormat);
         time.text(formatSec(runtimeInSecs));
         genre.text(formatGenre(movieGenre));

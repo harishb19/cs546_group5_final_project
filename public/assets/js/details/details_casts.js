@@ -6,7 +6,6 @@ const defaultCastUrl = '/public/assets/images/details/default-cast-image.png'
 let castinfo;
 let cast_showCount = 6;
 let cast_count = 0;
-console.log("run detail_casts");
 $.ajax({
     type: 'post',
     url: '/details/casts',
