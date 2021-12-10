@@ -7,6 +7,7 @@ const movieSchema = new mongoose.Schema({
         type: mongoose.Schema.Types.ObjectId,
         unique: true,
         required: true,
+
     },
     movieName: {
         type: String,
