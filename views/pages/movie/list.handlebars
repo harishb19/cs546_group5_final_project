@@ -4,16 +4,30 @@
 <br/>
 <div class="container">
     <div class="row">
+        
         <div class="col-2" style="margin-top: 15px;">
             <span class="filter-title">Filters</span>
             <div class="sec1">
+                <button class="btn" id="resetBtn"  type="button" onclick="resetFilterMovies()">
+                    Reset
+                </button>
+                <button class="btn" id="applyBtn" type="button" onclick="applyFilters()">
+                    Apply
+                </button>
+                
+        
                 <div>
                     <button class="btn" type="button" data-toggle="collapse" data-target="#collapseExample1"
                             aria-expanded="false" aria-controls="collapseExample">
                         Languages
                     </button>
                     <div class="collapse" id="collapseExample1">
-                        <div>
+                            {{#each langFilter as |lang|}}
+                               <div class="checkbox">
+                                <label><input type="checkbox" id="lang-{{getObject lang "name"}}" value="" class="cb" onclick="filterMovies('language','{{getObject lang "name"}}')"/>{{getObject lang "name"}}</label>
+                            </div>
+                            {{/each}}
+                        {{!-- <div>
                             <div class="checkbox">
                                 <label><input class="checkboxinput" type="checkbox" value="" class="cb">English</label>
                             </div>
@@ -26,57 +40,24 @@
                             <div class="checkbox">
                                 <label><input type="checkbox" value="" class="cb">Japanese</label>
                             </div>
-                        </div>
+                        </div> --}}
                     </div>
                     <button class="btn" type="button" data-toggle="collapse" data-target="#collapseExample2"
                             aria-expanded="false" aria-controls="collapseExample">
                         Genres
                     </button>
                     <div class="collapse" id="collapseExample2">
-                        <div>
-                            <div class="checkbox">
-                                <label><input type="checkbox" value="" class="cb">Action</label>
+                            {{#each genreMovies as |genre|}}
+                               <div class="checkbox">
+                                <label>
+                                    <input type="checkbox" value="" 
+                                    id="genre-{{getObject genre "name"}}"
+                                     class="cb" onclick="filterMovies('genre','{{getObject genre "name"}}')">
+                                    
+                                {{getObject genre "name"}}
+                                </label>
                             </div>
-                            <div class="checkbox">
-                                <label><input type="checkbox" value="" class="cb">Animation</label>
-                            </div>
-                            <div class="checkbox">
-                                <label><input type="checkbox" value="" class="cb">Comedy</label>
-                            </div>
-                            <div class="checkbox">
-                                <label><input type="checkbox" value="" class="cb">Crime</label>
-                            </div>
-                            <div class="checkbox">
-                                <label><input type="checkbox" value="" class="cb">Drama</label>
-                            </div>
-                            <div class="checkbox">
-                                <label><input type="checkbox" value="" class="cb">Horror</label>
-                            </div>
-                            <div class="checkbox">
-                                <label><input type="checkbox" value="" class="cb">Romance</label>
-                            </div>
-                            <div class="checkbox">
-                                <label><input type="checkbox" value="" class="cb">Sci-fi</label>
-                            </div>
-                            <div class="checkbox">
-                                <label><input type="checkbox" value="" class="cb">Thriller</label>
-                            </div>
-                        </div>
-                    </div>
-                    <button class="btn" type="button" data-toggle="collapse" data-target="#collapseExample3"
-                            aria-expanded="false" aria-controls="collapseExample">
-                        Format
-                    </button>
-                    <div class="collapse" id="collapseExample3">
-                        <div>
-                            <div class="checkbox">
-                                <label><input type="checkbox" value="" class="cb">2D</label>
-                            </div>
-                            <div class="checkbox">
-                                <label><input type="checkbox" value="" class="cb">3D</label>
-                            </div>
-
-                        </div>
+                            {{/each}}
                     </div>
                 </div>
             </div>
@@ -95,3 +76,20 @@
     </div>
 </div>
 
+{{#section "script"}}
+  <script type="text/javascript" > 
+      const openMovie=(id)=>{
+          window.location=`/movies/${id}`
+          }
+  </script>
+
+<script src="/public/assets/js/movieFilters/movieFilters.js"></script>
+  <script type="text/javascript">
+    {{#if clearFilters}}
+    resetFilterMovies()
+        {{else}}
+            handelDefaultFilters()
+    {{/if}}
+  </script>
+
+{{/section }}

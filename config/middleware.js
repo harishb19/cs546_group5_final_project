@@ -34,11 +34,20 @@ const initMiddleware = (app) => {
         return array[index];
       },
       getObject: (object, key) => {
+        if (!object || !key) {
+          return "";
+        }
         let newObject = JSON.parse(JSON.stringify(object));
         return newObject[key];
       },
       getObjectFromArray: (array, index, key) => {
+        if (!array || !array[index]) {
+          return "";
+        }
         let obj = array[index];
+        if (!obj || !(`${key}` in obj)) {
+          return "";
+        }
         return obj[key];
       },
       parseJson: (object) => {

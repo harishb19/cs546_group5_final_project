@@ -1,5 +1,5 @@
 const { registration, checkUserByEmailPassword } = require("../data/auth/auth");
-const { getAllMovies } = require("../data/movies/movies");
+const { getAllMovies, getFilteredMovies } = require("../data/movies/movies");
 const { getLandingPage } = require("../data/home/home");
 
 module.exports.login = function (req, res, next) {
@@ -39,8 +39,11 @@ module.exports.checkAuth = function (req, res, next) {
 module.exports.home = function (req, res, next) {
   getLandingPage(req, res);
 };
-module.exports.moviesList = function (req, res, next) {
-  getAllMovies(req, res);
+module.exports.moviesList = async function (req, res, next) {
+  await getAllMovies(req, res);
+};
+module.exports.moviesListWithFilters = async function (req, res, next) {
+  await getFilteredMovies(req, res);
 };
 module.exports.movies = function (req, res, next) {
   res.render("pages/movie/details");

@@ -2,6 +2,7 @@ const Movies = require("../../models/Movies");
 const { models } = require("mongoose");
 const Genres = require("../../models/Genres");
 const TopMovies = require("../../models/TopMovies");
+const Language = require("../../models/Language");
 
 const getLandingPage = async (req, res) => {
   const genreMovies = await getGenres();
@@ -9,7 +10,6 @@ const getLandingPage = async (req, res) => {
   const topMovies = await getTopMovies();
   res.render("pages/home/landing", { upcomingMovies, topMovies, genreMovies });
 };
-
 const getUpcomingMovies = async () => {
   const movies = await Movies.find({});
   if (!movies) {
@@ -45,7 +45,13 @@ const getGenres = async () => {
   const genres = await Genres.find({});
   return genres;
 };
+const getLanguages = async () => {
+  const lang = await Language.find({});
+  return lang;
+};
 
 module.exports = {
   getLandingPage,
+  getGenres,
+  getLanguages,
 };

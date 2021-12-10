@@ -4,6 +4,7 @@ const staticController = require("../controllers/staticController");
 const passport = require("passport");
 const Genres = require("../models/Genres");
 const TopMovies = require("../models/TopMovies");
+const Language = require("../models/Language");
 
 router.get("/", staticController.home);
 router.get("/login", staticController.login);
@@ -15,6 +16,7 @@ router.post(
   staticController.register
 );
 router.get("/movies", staticController.moviesList);
+router.post("/movies", staticController.moviesListWithFilters);
 router.get("/movies/:id", staticController.movies);
 router.get("/movies/:id/book", staticController.theaterList);
 router.get("/movies/:id/book/seat", staticController.seatSelection);
@@ -53,7 +55,22 @@ router.post("/top", function (req, res) {
     }
   });
 });
-
+router.post("/language", function (req, res) {
+  const { name } = req.body;
+  let lang = new Language();
+  lang.name = name;
+  lang.save((err, doc) => {
+    if (err) {
+      console.log(err);
+      req.flash("toastMessage", `some error try again`);
+      res.json({ err: err });
+    } else {
+      req.flash("toastMessage", `done`);
+      req.flash("toastStatus", `success`);
+      res.json({ success: "success" });
+    }
+  });
+});
 router.get("/logout", staticController.logout);
 
 // Google oAuth Sign In

@@ -68,59 +68,9 @@
 <div class="container-fluid">
     <h4 class="mt-5">Genres</h4>
     <div class="scrolling-wrapper row flex-row flex-nowrap mt-4 pb-4 pt-2 new-genre-css">
-        {{#each genreMovies as |movie|}}
-                {{> genrecard movie=(parseJson movie )}}
+        {{#each genreMovies as |genre|}}
+                {{> genrecard genre=(parseJson genre )}}
             {{/each}}
-            {{!-- <div>
-        <div class="col-3">
-            <div class="card card-block card-2">
-                <p style="text-align: center; font-weight:bold;">Action</p>
-                <img src="https://wallpaperaccess.com/full/250763.jpg"/>
-            </div>
-        </div>
-        <div class="col-3">
-            <div class="card card-block card-3">
-                <p style="text-align: center; font-weight:bold;">Drama</p>
-                <img src="https://wallpaperaccess.com/full/250763.jpg"/>
-            </div>
-        </div>
-        <div class="col-3">
-            <div class="card card-block card-4">
-                <p style="text-align: center; font-weight:bold;">Comedy</p>
-                <img src="https://wallpaperaccess.com/full/250763.jpg"/>
-            </div>
-        </div>
-        <div class="col-3">
-            <div class="card card-block card-5">
-                <p style="text-align: center; font-weight:bold;">Thriller</p>
-                <img src="https://wallpaperaccess.com/full/250763.jpg"/>
-            </div>
-        </div>
-        <div class="col-3">
-            <div class="card card-block card-6">
-                <p style="text-align: center; font-weight:bold;">Romance</p>
-                <img src="https://wallpaperaccess.com/full/250763.jpg"/>
-            </div>
-        </div>
-        <div class="col-3">
-            <div class="card card-block card-7">
-                <p style="text-align: center; font-weight:bold;">Horror</p>
-                <img src="https://wallpaperaccess.com/full/250763.jpg"/>
-            </div>
-        </div>
-        <div class="col-3">
-            <div class="card card-block card-8">
-                <p style="text-align: center; font-weight:bold;">Animation</p>
-                <img src="https://wallpaperaccess.com/full/250763.jpg"/>
-            </div>
-        </div>
-        <div class="col-3">
-            <div class="card card-block card-9">
-                <p style="text-align: center; font-weight:bold;">Sci-fi</p>
-                <img src="https://wallpaperaccess.com/full/250763.jpg"/>
-            </div>
-            </div> --}}
-        {{!-- </div> --}}
     </div>
 </div>
 {{#section "script"}}
@@ -132,4 +82,11 @@
           window.location=`/movies/`
           }
   </script>
+  <script src="/public/assets/js/movieFilters/movieFilters.js"></script>
+ <script type="text/javascript">
+     const genreClick=(name)=>{
+      filterMovies('genre',`${name}`)
+      applyFilters();
+      }
+ </script>
 {{/section }}

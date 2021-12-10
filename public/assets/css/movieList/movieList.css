@@ -21,25 +21,11 @@ li a:hover {
   text-decoration: none;
   color: darksalmon;
 }
-
-.fa-circle {
-  font-size: 20px;
-}
-
-#red {
-  color: #e94545d7;
-}
-
-#teal {
-  color: rgb(69, 129, 129);
-}
-
-#blue {
-  color: #0000ff;
-}
-
 .card {
   display: inline-block;
+}
+.card-img-top:hover {
+  cursor: pointer;
 }
 
 .card-img-top {
@@ -57,13 +43,19 @@ li a:hover {
   padding: 0;
   padding-left: 2px;
 }
+.card-body:hover {
+  cursor: pointer;
+}
 
 .filter {
   display: none;
   padding: 0;
   margin: 0;
 }
-
+.hidden,
+#resetTrigger {
+  display: none !important;
+}
 @media (min-width: 991px) {
   .card {
     width: 190px;
