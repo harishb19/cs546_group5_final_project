@@ -2,10 +2,13 @@ const {registration, checkUserByEmailPassword} = require("../data/auth/auth");
 const {getAllMovies, getFilteredMovies} = require("../data/movies/movies");
 const {getLandingPage} = require("../data/home/home");
 
-module.exports.setUser=(req,res,next)=>{
-    if (req.session.user) {
-       res.userName=req.session.user.name
+module.exports.setUser = (req, res, next) => {
+    if (req.session.loggedIn === true) {
+        console.log(req.session.user, "plxxxxxx")
+        res.locals.userName = req.session.user.firstName
+        res.locals.userImg = req.session.user.imageUrl
     }
+    // console.log(res)
     next()
 }
 module.exports.login = function (req, res, next) {
@@ -36,8 +39,7 @@ module.exports.checkAuth = function (req, res, next) {
         next();
     } else {
         res.redirect("/", {
-            toastMessage: "You must Sign In to Continue !",
-            toastStatus: "success",
+            toastMessage: "You must Sign In to Continue !", toastStatus: "success",
         });
     }
 };
