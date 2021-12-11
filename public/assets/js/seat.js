@@ -64,8 +64,7 @@ function updateSelectedCount() {
 }
 
 function updateButton() {
-    if (!seatList.length) continueButton.disabled = true;
-    else continueButton.disabled = false;
+    if (!seatList.length) continueButton.disabled = true; else continueButton.disabled = false;
 }
 
 continueButton.addEventListener('click', e => {
@@ -73,7 +72,10 @@ continueButton.addEventListener('click', e => {
     const summaryObj = {
         movieId: movieId,
         movieName: movieName,
+        movieImage: movieImage,
         theatreId: theatreId,
+        runtime: runtime,
+        language: language,
         theatreName: theatreName,
         dateTime: movieDate,
         noOfSeats: seatList.length,

@@ -1,25 +1,18 @@
 const {isValidObjectId} = require("mongoose");
-const checkout = () => {
 
-}
 const bodyCheck = (req) => {
     if (!req.body) throw 'Error: Request body empty';
     if (!req.body['Purchase Summary']) throw 'Error: Request body empty'
 }
-const elementValidation = (movieId,
-                           movieName,
-                           theatreId,
-                           theatreName,
-                           dateTime,
-                           noOfSeats,
-                           seats,
-                           showTimeId,
-                           price) => {
-    if (!movieId || !movieName || !theatreId || !theatreName || !dateTime || !noOfSeats || !seats || !showTimeId || !price) throw 'Error: Missing data in Purchase Summary';
+const elementValidation = (movieId, movieImage, movieName, theatreId, theatreName, dateTime, noOfSeats, seats, showTimeId, price, runtime, language) => {
+    if (!movieId || !movieImage || !movieName || !theatreId || !theatreName || !dateTime || !noOfSeats || !seats || !showTimeId || !price || !runtime || !language) throw 'Error: Missing data in Purchase Summary';
 
     if (!isValidObjectId(movieId)) throw 'Error: movieId is not a valid ObjectId';
     if (!isValidObjectId(theatreId)) throw 'Error: theatreId is not a valid ObjectId';
+    if (typeof movieImage !== "string") throw 'Error: movieImage not a string'
     if (typeof movieName !== 'string') throw 'Error: movieName not of type string';
+    if (typeof language !== 'string') throw 'Error: language not of type string';
+    if (typeof runtime !== 'number') throw 'Error: runtime not of type number';
     if (typeof theatreName !== 'string') throw 'Error: theatreName not of type of string';
     if (!new Date(dateTime)) throw 'Error: dateTime cannot be converted to type Date';
     if (typeof noOfSeats !== 'number') throw 'Error: noOfSeats not of type of number';
@@ -27,13 +20,14 @@ const elementValidation = (movieId,
     if (!new Date(showTimeId)) throw 'Error: showTimeId cannot be converted to type Date';
     if (!parseFloat(price)) throw 'Error: price cannot be parsed to Float';
 }
-const checkoutHandler = (req, res) => {
+const showPayDetails = (req, res) => {
     try {
         /*------------ Error Handling Start ------------*/
         bodyCheck(req)
 
         const {
             movieId,
+            movieImage,
             movieName,
             theatreId,
             theatreName,
@@ -41,30 +35,27 @@ const checkoutHandler = (req, res) => {
             noOfSeats,
             seats,
             showTimeId,
-            price
+            price,
+            runtime,
+            language
         } = JSON.parse(req.body['Purchase Summary']);
 
-        elementValidation(movieId,
-            movieName,
-            theatreId,
-            theatreName,
-            dateTime,
-            noOfSeats,
-            seats,
-            showTimeId,
-            price)
+        elementValidation(movieId, movieImage, movieName, theatreId, theatreName, dateTime, noOfSeats, seats, showTimeId, price, runtime, language)
         /*------------ Error Handling End ------------*/
 
         const purchaseSummary = {
-            movieId: movieId,
-            movieName: movieName,
-            theatreId: theatreId,
-            theatreName: theatreName,
-            dateTime: dateTime,
-            noOfSeats: noOfSeats,
-            seats: seats,
-            showTimeId: showTimeId,
-            price: price,
+            movieId,
+            movieImage,
+            movieName,
+            language,
+            theatreId,
+            theatreName,
+            dateTime,
+            noOfSeats,
+            seats,
+            showTimeId,
+            price,
+            runtime,
             totalAmount: parseFloat(price) * noOfSeats
         }
 
@@ -75,8 +66,17 @@ const checkoutHandler = (req, res) => {
         req.flash("Invalid request")
         res.redirect('back')
     }
+}
+
+
+const bookTicket = () => {
 
 }
+
+const showTicket = () => {
+
+}
+
 module.exports = {
-    checkoutHandler
+    showPayDetails, bookTicket, showTicket
 }
