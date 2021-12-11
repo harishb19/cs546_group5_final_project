@@ -42,11 +42,13 @@ li a:hover {
 
 .card-body p {
     margin: 2px;
+    color: whitesmoke;
 }
 
 .card-body {
     padding: 0;
     padding-left: 2px;
+    background-color: #0b0b0b;
 }
 
 .card-body:hover {
@@ -173,6 +175,7 @@ li a:hover {
 }
 
 .filter-title {
+    color: whitesmoke;
     cursor: initial !important;
     font-size: larger;
     margin-top: 20px;
