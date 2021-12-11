@@ -49,7 +49,7 @@ module.exports.moviesList = function (req, res, next) {
 }
 
 
-module.exports.movies = function (req,res, next) {
+module.exports.movies = function (req, res, next) {
     res.render('pages/movie/details', {id: req.params.id});
 }
 
@@ -62,7 +62,7 @@ module.exports.movieDetail_Info = function (req, res) {
         return res.json({success: false});
     }
     movies.findOne({movieId: movie_Id}, (err, doc) => {
-        if(err) return res.json({success: false});
+        if (err) return res.json({success: false});
         if (!doc) return res.json({success: false});
         return res.json({success: true, doc});
     });
@@ -77,7 +77,7 @@ module.exports.movieDetail_Cast = function (req, res) {
         return res.json({success: false});
     }
     movies.findOne({movieId: movie_Id}, (err, doc) => {
-        if(err) return res.json({success: false});
+        if (err) return res.json({success: false});
         if (!doc) return res.json({success: false});
         const castInfo = doc.cast;
         return res.json({success: true, castInfo});
@@ -119,7 +119,7 @@ module.exports.screenInfo = function (req, res) {
     }
     const selectDate = new Date(req.body.selectDate + " 00:00:00 GMT");
     movieScreens.findOne({movieId: movie_Id}, (err, doc) => {
-        if(err) return res.json({success: false});
+        if (err) return res.json({success: false});
         if (!doc) return res.json({success: false});
         let screenInfo = [];
         let screens = doc.screens;
@@ -158,7 +158,7 @@ module.exports.theaterInfo = function (req, res) {
         return res.json({success: false});
     }
     theater.findOne({screenId: screenId}, (err, doc) => {
-        if(err) return res.json({success: false});
+        if (err) return res.json({success: false});
         if (!doc) return res.json({success: false});
         return res.json({success: true, doc});
     });

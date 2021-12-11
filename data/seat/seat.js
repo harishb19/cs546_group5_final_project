@@ -1,7 +1,7 @@
 const {ObjectId} = require("mongodb");
 const Movie = require("../../models/Movies");
 const MovieScreens = require('../../models/MovieScreens');
-const Theatre=require("../../models/Theatre");
+const Theatre = require("../../models/Theatre");
 
 const seatSelectionHandler = async (req, res) => {
 

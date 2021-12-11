@@ -1,8 +1,8 @@
-(function($) {
+(function ($) {
     let user;
     getUserData();
 
-    $('#user-details-edit-btn').on("click",function () {
+    $('#user-details-edit-btn').on("click", function () {
         $('.user-details-undo-btn').css('display', 'block');
         $('.user-details-edit-btn').css('display', 'none');
         $('.user-data-display').css('display', 'none');
@@ -10,7 +10,7 @@
         $('#user-fname-input').val(user.firstName);
         $('#user-lname-input').val(user.lastName);
         var $radios = $('input:radio[name=gender]');
-        if($radios.is(':checked') === false) {
+        if ($radios.is(':checked') === false) {
             $radios.filter(`[value=${user.gender}]`).prop('checked', true);
         }
         let userdob = new Date(user.dateOfBirth);
@@ -18,7 +18,7 @@
         $('#user-dob-input').val(ISODateString(userdob));
     })
 
-    $('#user-details-undo-btn').on("click",function () {
+    $('#user-details-undo-btn').on("click", function () {
         $('.user-details-undo-btn').css('display', 'none');
         $('.user-details-edit-btn').css('display', 'block');
         $('.user-data-display').css('display', 'block');
@@ -34,11 +34,11 @@
 
         var requestConfig = {
             method: 'POST',
-            url: `/users/update/${user.userId}` ,
-            dataType : 'json', // data type
-            data : $("#ajax-form").serialize(), // post data || get data
+            url: `/users/update/${user.userId}`,
+            dataType: 'json', // data type
+            data: $("#ajax-form").serialize(), // post data || get data
         };
-        $.ajax(requestConfig).then(function(responseMessage) {
+        $.ajax(requestConfig).then(function (responseMessage) {
 
         });
         getUserData();
@@ -50,10 +50,10 @@
             url: '/users/userdata'
         };
 
-        $.ajax(requestConfig).then(function(responseMessage) {
+        $.ajax(requestConfig).then(function (responseMessage) {
             var userdata = $(responseMessage);
             user = userdata[0]
-            $('#greetUser').html( `Hi ${user.firstName} !`);
+            $('#greetUser').html(`Hi ${user.firstName} !`);
             $('#user-fname').html(user.firstName);
             $('#user-lname').html(user.lastName);
             $('#user-gender').html(user.gender);
@@ -70,10 +70,14 @@
             console.log('here');
         });
     }
-    function ISODateString(d){
-        function pad(n){return n<10 ? '0'+n : n}
-        return d.getUTCFullYear()+'-'
-            + pad(d.getUTCMonth()+1)+'-'
+
+    function ISODateString(d) {
+        function pad(n) {
+            return n < 10 ? '0' + n : n
+        }
+
+        return d.getUTCFullYear() + '-'
+            + pad(d.getUTCMonth() + 1) + '-'
             + pad(d.getUTCDate())
     }
 
