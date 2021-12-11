@@ -23,7 +23,7 @@
                                     <p id="rating"></p>
                                 </div>
                             </section>
-                            <section class="mdbi-format"> 
+                            <section class="mdbi-format">
                                 <p id="format"></p>
                             </section>
                             <section class="mdbi-attribute">
@@ -70,7 +70,7 @@
                     <div class="movie-detail-info_cast">
                         <div class="cast-detail">
                             <ul id="movie-detail-cast" class="movie-detail-info_cast_list">
-                    
+
                             </ul>
                         </div>
                         <div class="cast-left-triangle">
@@ -87,7 +87,7 @@
                     </div>
                     <div class="movie-detail-info_reviews">
                         <div class="review-detail">
-                            <ul id="movie-detail-reviews" class="movie-detail-info_review_list"> 
+                            <ul id="movie-detail-reviews" class="movie-detail-info_review_list">
                             </ul>
                         </div>
                         <div class="review-left-triangle">
@@ -104,13 +104,18 @@
     </div>
 </section>
 {{#section "styles"}}
+
+<link rel="stylesheet" href="/public/assets/css/details/movieDetails.css">
+
+{{/section}}
+{{#section "script"}}
     <script type="text/javascript">
         const movieId = '{{id}}';
     </script>
-<link rel="stylesheet" href="/public/assets/css/details/movieDetails.css">
+    <script src="/public/assets/js/details/details_movieInfo.js"></script>
+    <script src="/public/assets/js/details/details_casts.js"></script>
+    <script src="/public/assets/js/details/details_reviews.js"></script>
 {{/section}}
 
-<script src="https://code.jquery.com/jquery-3.5.1.js" integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc=" crossorigin="anonymous"></script>
-<script src="/public/assets/js/details/details_movieInfo.js"></script>
-<script src="/public/assets/js/details/details_casts.js"></script>
-<script src="/public/assets/js/details/details_reviews.js"></script>
+
+
