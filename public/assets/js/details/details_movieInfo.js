@@ -60,7 +60,7 @@ function getIMDB(imdburl, rating) {
         } else {
             rating.text('N/A');
         }
-        
+
     });
 }
 
@@ -81,7 +81,7 @@ $.ajax({
     data: JSON.stringify({
         id: movieId
     })
-}).then (function (responMessage) {
+}).then(function (responMessage) {
     if (responMessage.success) {
         let movieDetail = responMessage.doc;
         if (!movieDetail.images || movieDetail.images.length == 0 || !movieDetail.images[0].mainImg) {
@@ -100,14 +100,14 @@ $.ajax({
         } else {
             backgroundImgUrl = movieDetail.images[0].others[0];
         }
-        
+
         movieDescription = movieDetail.description;
         movieFormat = '2D, 3D, IMAX 2D, IMAX 3D';
 
         postImg.append("<img src=\"" + postImgUrl + "\">");
         title.text(movieName);
         getIMDB('http://www.omdbapi.com/?i=' + imdbId + '&apikey=5d806bd7', rating);
-        //rating.text(IMDBRating);    
+        //rating.text(IMDBRating);
         format.text(movieFormat);
         time.text(formatSec(runtimeInSecs));
         genre.text(formatGenre(movieGenre));
@@ -116,8 +116,8 @@ $.ajax({
         background.css('background-image', background.css('background-image') + ', ' + 'url(' + backgroundImgUrl + ')');
         info.text(movieDescription);
     } else {
-        location.href = "http://" +window.location.host + "/movies";
-        
+        location.href = "http://" + window.location.host + "/movies";
+
     }
 });
 

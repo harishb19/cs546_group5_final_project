@@ -8,7 +8,8 @@ let cors = require('cors');
 const exphbs = require("express-handlebars");
 const path = require("path");
 require('./passport')(passport);
-const { format } = require('date-fns');
+const {format, formatDistance} = require('date-fns');
+
 
 const initMiddleware = (app) => {
 
@@ -35,8 +36,14 @@ const initMiddleware = (app) => {
             accessElement: (array, index) => {
                 return array[index]
             },
-            dateParser:(date)=>{
-              return format(new Date(date),'do MMM yy')
+            dateParser: (date) => {
+                return format(new Date(date), 'do MMM yy')
+            },
+            timeParser: (date) => {
+                return format(new Date(date), 'hh:mm a')
+            },
+            secondsParser: (seconds) => {
+                return formatDistance(0, seconds * 1000, {includeSeconds: false})
             },
             section(name, options) {
                 if (!this._sections) {

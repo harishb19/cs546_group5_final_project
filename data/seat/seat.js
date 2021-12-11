@@ -1,7 +1,7 @@
 const {ObjectId} = require("mongodb");
 const Movie = require("../../models/Movies");
 const MovieScreens = require('../../models/MovieScreens');
-const Theatre=require("../../models/Theatre");
+const Theatre = require("../../models/Theatre");
 
 const seatSelectionHandler = async (req, res) => {
 
@@ -16,8 +16,7 @@ const seatSelectionHandler = async (req, res) => {
             req.flash('toastMessage', `Invalid request`);
             res.redirect("back")
         }
-        /*------------ Error Handling End ------------*/
-        else {
+        /*------------ Error Handling End ------------*/ else {
             try {
                 const screenInfoObj = await seatSelection(movieId, theatreId, screenId, showTimeId);
                 const screenInfo = {
@@ -33,6 +32,8 @@ const seatSelectionHandler = async (req, res) => {
                 const movieInfo = {
                     movieId: screenInfoObj.movieId,
                     movieName: screenInfoObj.movieName,
+                    movieImage: screenInfoObj.movieImage,
+                    runtime: screenInfoObj.runtime,
                     movieLanguage: screenInfoObj.language,
                     movieDate: movieDateTime,
                     showTimeId: screenInfoObj.showtime,
@@ -70,7 +71,7 @@ const seatSelection = async (movieId, theatreId, screenId, showTimeId) => {
     if (!movie) throw "Error: movie not found";
 
     let theatre = await Theatre.aggregate([{"$unwind": "$screens"}, {"$match": {"screens.screenId": ObjectId(screenId)}}]);
-    if (theatre.length === 0) throw "Error: theatre not found";
+    if (!theatre) throw "Error: theatre not found";
 
     let showTime = await MovieScreens.aggregate([{"$unwind": "$screens"}, {"$unwind": "$screens.showTime"}, {
         "$match": {
@@ -82,17 +83,19 @@ const seatSelection = async (movieId, theatreId, screenId, showTimeId) => {
         }
     },]);
 
-    if (showTime.length === 0) throw "Error: showTime not found";
+    if (!showTime) throw "Error: showTime not found";
 
     return {
         movieId: movieId,
         movieName: movie.movieName,
+        movieImage: movie.images[0].mainImg,
         theatreId: theatreId,
         theatreName: theatre[0].theatreName,
         layout: theatre[0].screens.layout,
         availability: showTime[0].screens.showTime.availability,
         showtime: showTime[0].screens.showTime.showTimeId,
         language: movie.language,
+        runtime: movie.runtimeInSecs,
         price: showTime[0].screens.showTime.price
     };
 }
