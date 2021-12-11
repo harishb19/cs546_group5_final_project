@@ -1,5 +1,4 @@
 const Movies = require("../../models/Movies");
-const {models} = require("mongoose");
 const {getGenres, getLanguages} = require("../home/home");
 
 const getAllMovies = async (req, res) => {

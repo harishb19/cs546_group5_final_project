@@ -56,6 +56,8 @@ const initMiddleware = (app) => {
                 }
                 this._sections[name] = options.fn(this);
                 return null;
+            }, splitLanguage(string, separator) {
+                return string.split(",").map((lang) => lang.trim())
             },
         },
     });
