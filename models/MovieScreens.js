@@ -1,12 +1,11 @@
-const {ObjectId, Timestamp, Binary} = require("mongodb");
-const {Schema} = require("mongoose");
 const mongoose = require("mongoose");
 
-const movieScreensSchema = new Schema({
+const movieScreensSchema = new mongoose.Schema({
     movieId: {
         type: mongoose.Schema.Types.ObjectId,
         unique: true,
-        default: ObjectId()
+        required: true,
+        ref: 'Movie'
     },
     screens: [{
         screenId: {
@@ -15,7 +14,7 @@ const movieScreensSchema = new Schema({
         },
         showTime: [{
             showTimeId: {
-                type: Timestamp,
+                type: Date,
                 required: true,
             },
             date: {
@@ -30,10 +29,10 @@ const movieScreensSchema = new Schema({
                 type: Number,
                 required: true
             },
-            availability: [{
-                    type: Map,
-                    of: String
-                }],
+            availability: {
+                type: Map,
+                of: String
+            }
         }]
     }],
 }, {

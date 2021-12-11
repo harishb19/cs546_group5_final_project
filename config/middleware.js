@@ -7,7 +7,8 @@ const passport = require("passport");
 let cors = require("cors");
 const exphbs = require("express-handlebars");
 const path = require("path");
-require("./passport")(passport);
+require('./passport')(passport);
+const { format } = require('date-fns');
 
 const initMiddleware = (app) => {
     // const static = express.static('public');
@@ -17,22 +18,15 @@ const initMiddleware = (app) => {
                 if (typeof spacing === "number") return new Handlebars.SafeString(JSON.stringify(obj, null, spacing));
 
                 return new Handlebars.SafeString(JSON.stringify(obj));
-            }, split: (string, separator) => {
-                return string.split(separator);
-            }, isEqual: (string1, string2) => {
-                console.log(string1, string2, "vheck");
-                return string1 === string2;
-            }, splice: (string, start, end) => {
-                return string.slice(start, end);
-            }, accessElement: (array, index) => {
-                return array[index];
-            }, getObject: (object, key) => {
+            },
+            getObject: (object, key) => {
                 if (!object || !key) {
                     return "";
                 }
                 let newObject = JSON.parse(JSON.stringify(object));
                 return newObject[key];
-            }, getObjectFromArray: (array, index, key) => {
+            },
+            getObjectFromArray: (array, index, key) => {
                 if (key === "movieId") {
                     console.log(array, index, "CHAL JA")
                 }
@@ -47,10 +41,28 @@ const initMiddleware = (app) => {
 
 
                 return obj[key];
-            }, parseJson: (object) => {
+            },
+            parseJson: (object) => {
                 let newObject = JSON.parse(JSON.stringify(object));
                 return newObject;
-            }, section(name, options) {
+            },
+            split: (string, separator) => {
+                return string.split(separator)
+            },
+            isEqual: (string1, string2) => {
+                return string1 === string2
+            },
+            splice: (string, start, end) => {
+
+                return string.slice(start, end)
+            },
+            accessElement: (array, index) => {
+                return array[index]
+            },
+            dateParser:(date)=>{
+              return format(new Date(date),'do MMM yy')
+            },
+            section(name, options) {
                 if (!this._sections) {
                     this._sections = {};
                 }

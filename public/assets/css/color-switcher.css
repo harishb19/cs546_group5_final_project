@@ -6,9 +6,10 @@
     margin: 0 0 15px;
     text-transform: uppercase;
 }
-#color-style-switcher { 
+
+#color-style-switcher {
     text-align: center;
-    background-color: rgba(0,0,0, 0.8);
+    background-color: rgba(0, 0, 0, 0.8);
     border-radius: 0 0 3px;
     left: -189px;
     padding: 11px 0;
@@ -17,14 +18,17 @@
     width: 190px;
     z-index: 9999;
 }
+
 #color-style-switcher div {
     padding: 5px 10px;
 }
+
 #color-style-switcher .bottom {
     padding: 0;
 }
+
 #color-style-switcher .bottom a.settings {
-    background-color: rgba(0,0,0, 0.8);
+    background-color: rgba(0, 0, 0, 0.8);
     border-radius: 0 3px 3px 0;
     display: block;
     font-size: 12px;
@@ -36,11 +40,13 @@
     top: 0;
     width: 40px;
 }
-#color-style-switcher .bottom a i{
+
+#color-style-switcher .bottom a i {
     font-size: 24px;
     color: #fff;
     line-height: 40px;
 }
+
 #color-style-switcher select {
     background: none repeat scroll 0 0 #F6F6F6;
     border: 1px solid #FFFFFF;
@@ -49,16 +55,19 @@
     padding: 5px 10px;
     width: 150px;
 }
+
 ul.colors {
     list-style: none outside none;
     margin: 0px;
     overflow: hidden;
-	padding:0;
+    padding: 0;
 }
+
 ul.colors li {
     float: left;
     margin: 5px;
 }
+
 ul.colors li a {
     border-radius: 2px;
     cursor: pointer;
@@ -70,18 +79,20 @@ ul.colors li a {
 ul.colors li a.active {
     position: relative;
 }
+
 ul.colors li a.active:after {
     color: #fff;
-    content:"\f12c";
+    content: "\f12c";
     font-family: "Material Design Icons";
     font-size: 11px;
     right: 10px;
     position: absolute;
     top: 3px;
 }
-ul.colors li a.color1.active:after, ul.colors li a.color8.active:after{
-    color:#FFFFFF;
-} 
+
+ul.colors li a.color1.active:after, ul.colors li a.color8.active:after {
+    color: #FFFFFF;
+}
 
 @media only screen and (max-width: 500px) {
     #color-style-switcher {
@@ -92,31 +103,37 @@ ul.colors li a.color1.active:after, ul.colors li a.color8.active:after{
 /* Color Style Switcher  End */
 
 
-
 /* Colors */
 
 /* light-version */
 ul.colors .color1 {
-    background: #3F51B5;    
+    background: #3F51B5;
 }
+
 ul.colors .color2 {
-    background: #ed145b; 
+    background: #ed145b;
 }
+
 ul.colors .color3 {
-     background: #FF5274 ; 
+    background: #FF5274;
 }
+
 ul.colors .color4 {
-     background: #7C4DFF;  
+    background: #7C4DFF;
 }
+
 ul.colors .color5 {
-     background: #2196F3; 
+    background: #2196F3;
 }
+
 ul.colors .color6 {
-     background: #e53935; 
+    background: #e53935;
 }
+
 ul.colors .color7 {
-     background: #4CAF50; 
+    background: #4CAF50;
 }
+
 ul.colors .color8 {
-     background: #FB8C00;  
+    background: #FB8C00;
 }

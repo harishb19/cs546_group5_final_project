@@ -1,0 +1,51 @@
+{{#section "styles"}}
+    <link rel="stylesheet" href="../../../public/assets/css/userprofile.css"/>
+{{/section}}
+
+
+<h1 id="greetUser"></h1>
+
+<h2>User Details</h2>
+<button id="user-details-edit-btn">Edit</button>
+<form id="ajax-form">
+    <div class="display-same-line">
+        <h3>First Name: </h3> <h3 id="user-fname" class="user-data-display"></h3> <input id="user-fname-input" name="firstName" class="user-AJAX-form" type="text">
+    </div>
+
+    <div class="display-same-line">
+        <h3>Last Name</h3> <h3 id="user-lname" class="user-data-display"></h3> <input id="user-lname-input" name="lastName" class="user-AJAX-form" type="text">
+    </div>
+
+    <div>
+        <div class="display-same-line"><h3>Gender: </h3> <h3 id="user-gender" class="user-data-display"></h3></div>
+        <input class="user-AJAX-form" type="radio" id="gender-male" name="gender" value="male">
+        <label class="user-AJAX-form" for="gender-male">Male</label><br>
+        <input class="user-AJAX-form" type="radio" id="gender-female" name="gender" value="female">
+        <label class="user-AJAX-form" for="css">Female</label><br>
+        <input class="user-AJAX-form" type="radio" id="gender-other" name="gender" value="other">
+        <label class="user-AJAX-form" for="gender-other">Other</label>
+    </div>
+
+    <div>
+        <h3>Date of Birth</h3> <h3 id="user-dob" class="user-data-display"></h3>
+        <input name="dateOfBirth" id="user-dob-input" class="user-AJAX-form" type="date">
+    </div>
+
+    <input type="submit" name="ajax-submit-btn" id="ajax-submit-btn" class="user-AJAX-form">
+
+</form>
+
+
+{{#section "script"}}
+    <script type="text/javascript">
+        const userId = '{{user.userId}}';
+        let firstName = '{{user.firstName}}';
+        let lastName = '{{user.lastName}}';
+        let gender = '{{user.gender}}';
+        let dateOfBirth = '{{user.dateOfBirth}}';
+        let phoneNo = '{{user.phoneNo}}';
+        const email = '{{{user.email}}}';
+    </script>
+
+    <script src="../../../public/assets/js/profile.js"></script>
+{{/section}}
