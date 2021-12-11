@@ -1,4 +1,5 @@
 const {isValidObjectId} = require("mongoose");
+const movieScreens = require("../models/MovieScreens");
 
 const bodyCheck = (req) => {
     if (!req.body) throw 'Error: Request body empty';
@@ -69,7 +70,31 @@ const showPayDetails = (req, res) => {
 }
 
 
-const bookTicket = () => {
+const bookTicket = async (req, res) => {
+    bodyCheck(req)
+    const {
+        movieId,
+        movieImage,
+        movieName,
+        theatreId,
+        theatreName,
+        dateTime,
+        noOfSeats,
+        seats,
+        showTimeId,
+        price,
+        runtime,
+        language
+    } = JSON.parse(req.body['Purchase Summary']);
+
+    elementValidation(movieId, movieImage, movieName, theatreId, theatreName, dateTime, noOfSeats, seats, showTimeId, price, runtime, language)
+    let updateSeat = movieScreens.findOneAndUpdate({
+        $and: [
+            {movieId},
+            {"screens": {$elemMatch: {screenId}}}
+        ]
+    })
+
 
 }
 

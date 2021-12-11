@@ -15,37 +15,34 @@ const initMiddleware = (app) => {
 
     // const static = express.static('public');
     const handlebarsInstance = exphbs.create({
-        defaultLayout: 'main/index',
-        helpers: {
+        defaultLayout: 'main/index', helpers: {
             asJSON: (obj, spacing) => {
-                if (typeof spacing === 'number')
-                    return new Handlebars.SafeString(JSON.stringify(obj, null, spacing));
+                if (typeof spacing === 'number') return new Handlebars.SafeString(JSON.stringify(obj, null, spacing));
 
                 return new Handlebars.SafeString(JSON.stringify(obj));
             },
-            split: (string, separator) => {
+            stringifyJson: (object) => {
+                console.log(object)
+                object = JSON.stringify(object)
+                console.log(object)
+
+                return object;
+            }, split: (string, separator) => {
                 return string.split(separator)
-            },
-            isEqual: (string1, string2) => {
+            }, isEqual: (string1, string2) => {
                 return string1 === string2
-            },
-            splice: (string, start, end) => {
+            }, splice: (string, start, end) => {
 
                 return string.slice(start, end)
-            },
-            accessElement: (array, index) => {
+            }, accessElement: (array, index) => {
                 return array[index]
-            },
-            dateParser: (date) => {
+            }, dateParser: (date) => {
                 return format(new Date(date), 'do MMM yy')
-            },
-            timeParser: (date) => {
+            }, timeParser: (date) => {
                 return format(new Date(date), 'hh:mm a')
-            },
-            secondsParser: (seconds) => {
+            }, secondsParser: (seconds) => {
                 return formatDistance(0, seconds * 1000, {includeSeconds: false})
-            },
-            section(name, options) {
+            }, section(name, options) {
                 if (!this._sections) {
                     this._sections = {};
                 }
@@ -69,10 +66,7 @@ const initMiddleware = (app) => {
 
     app.use('/public', express.static(path.join(__dirname, '../public')));
     app.use(session({
-        secret: '1cd9589eeee9a628ff35a9e4ba3607ed',
-        resave: true,
-        saveUninitialized: true,
-        cookie: {maxAge: 2628000000}
+        secret: '1cd9589eeee9a628ff35a9e4ba3607ed', resave: true, saveUninitialized: true, cookie: {maxAge: 2628000000}
     }));
     app.use(passport.initialize());
     app.use(passport.session());

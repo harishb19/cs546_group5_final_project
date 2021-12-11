@@ -28,7 +28,7 @@
                     </div>
                     <div class="col-md-4 col-6 ps-30 my-4">
                         <p class="text-muted">Seats</p>
-                        <p class="h5 m-0">{{purchaseSummary.seats}} ({{purchaseSummary.noOfSeats}})</p>
+                        <p class="h5 m-0">{{purchaseSummary.seats}}</p>
                     </div>
                     <div class="col-md-4 col-6 ps-30 my-4">
                         <p class="text-muted">Language</p>
@@ -50,7 +50,7 @@
                     </div>
                     <div class="d-flex justify-content-between mb-2">
                         <p class="textmuted">Seats</p>
-                        <p class="fs-14 fw-bold">2</p>
+                        <p class="fs-14 fw-bold">{{purchaseSummary.noOfSeats}}</p>
                     </div>
                     <div class="d-flex justify-content-between mb-2">
                         <p class="textmuted">Subtotal</p>
@@ -67,12 +67,13 @@
                         <div class="d-flex align-text-top "><span
                                 class="fas fa-dollar-sign mt-1 pe-1 fs-14 "></span><span
                                 class="h4">{{purchaseSummary.totalAmount}}</span></div>
-                     </div>
+                    </div>
                 </div>
                 <div class="col-12 px-0">
                     <div class="row m-0">
                         <div class="col-12 mb-4 p-0">
-                            <div class="btn btn-primary">Purchase<span class="fas fa-arrow-right ps-2"></span></div>
+                            <div class="btn btn-primary" onclick="handleSeatBooking()">Purchase<span
+                                    class="fas fa-arrow-right ps-2"></span></div>
                         </div>
                     </div>
                 </div>
@@ -80,3 +81,11 @@
         </div>
     </div>
 </div>
+{{#section "script"}}
+    <script type="text/javascript">
+
+        let checkoutObject ={{{stringifyJson purchaseSummary}}}
+
+    </script>
+    <script type="text/javascript" src="/public/assets/js/checkout/checkout.js"></script>
+{{/section}}

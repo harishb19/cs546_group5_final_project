@@ -1,7 +1,7 @@
 const {registration, checkUserByEmailPassword} = require("../data/auth/auth")
 const {seatSelectionHandler} = require("../data/seat/seat");
 const QRCode = require('qrcode')
-const {showPayDetails} = require("../data/checkout/checkout");
+const {showPayDetails, bookTicket} = require("../data/checkout/checkout");
 const movies = require("../models/Movies");
 const movieScreens = require("../models/MovieScreens");
 const theater = require("../models/Theatre");
@@ -170,10 +170,11 @@ module.exports.checkout = function (req, res, next) {
     showPayDetails(req, res)
 }
 
-module.exports.ticket = function (req, res, next) {
+module.exports.ticket = async (req, res, next) => {
     if (req.session.user) {
-        QRCode.toDataURL('I am a pony!', (err, url) => {
-            res.render('pages/checkout/ticket');
+        const ticketId = await bookTicket(req, res)
+        QRCode.toDataURL(ticketId, (err, url) => {
+            res.render('pages/checkout/ticket', {url});
         })
 
     } else {
