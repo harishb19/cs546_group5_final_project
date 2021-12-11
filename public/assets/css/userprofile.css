@@ -1,5 +1,6 @@
 .user-AJAX-form {
     display: none;
+    color: black;
 }
 
 .display-same-line {
@@ -16,4 +17,13 @@
 
 .user-details-edit-btn {
 
+}
+
+input:invalid {
+    border: 2px dashed red;
+}
+
+.invalid-error {
+    display: none;
+    color: red;
 }
