@@ -5,8 +5,11 @@
              alt="{{movie.movieName}}">
         <div class="card-body">
             <p class="card-text">{{movie.movieName}}</p>
-            <p>{{movie.language}}</p>
-            <p class="card-text"><small class="text-muted">IMDB rating:</small></p>
+            {{#each (splitLanguage movie.language ",") as |language|}}
+                <div class="chip">
+                    {{language}}
+                </div>
+            {{/each}}
         </div>
     </div>
 </div>

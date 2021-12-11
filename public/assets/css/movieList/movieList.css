@@ -181,3 +181,10 @@ li a:hover {
 .checkbox-material {
     margin-right: 10px;
 }
+
+.chip {
+    display: inline-block;
+    padding: 0 1em;
+    border-radius: 10px;
+    background-color: #f1f1f1;
+}

@@ -2,6 +2,12 @@ const {registration, checkUserByEmailPassword} = require("../data/auth/auth");
 const {getAllMovies, getFilteredMovies} = require("../data/movies/movies");
 const {getLandingPage} = require("../data/home/home");
 
+module.exports.setUser=(req,res,next)=>{
+    if (req.session.user) {
+       res.userName=req.session.user.name
+    }
+    next()
+}
 module.exports.login = function (req, res, next) {
     if (req.session.user) {
         res.redirect("/");

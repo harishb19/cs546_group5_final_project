@@ -7,7 +7,7 @@ const TopMovies = require("../models/TopMovies");
 const Language = require("../models/Language");
 const Banner = require("../models/Banner");
 
-router.get("/", staticController.home);
+router.get("/", staticController.setUser,staticController.home);
 router.get("/login", staticController.login);
 router.post("/login", staticController.loginAuth);
 router.get("/register", staticController.register);
@@ -16,13 +16,13 @@ router.post(
     staticController.registerSubmit,
     staticController.register
 );
-router.get("/movies", staticController.moviesList);
-router.post("/movies", staticController.moviesListWithFilters);
-router.get("/movies/:id", staticController.movies);
-router.get("/movies/:id/book", staticController.theaterList);
-router.get("/movies/:id/book/seat", staticController.seatSelection);
-router.get("/movies/:id/book/seat/pay", staticController.checkout);
-router.post("/ticket", staticController.checkAuth, staticController.ticket);
+router.get("/movies", staticController.setUser,staticController.moviesList);
+router.post("/movies", staticController.setUser,staticController.moviesListWithFilters);
+router.get("/movies/:id", staticController.setUser,staticController.movies);
+router.get("/movies/:id/book", staticController.setUser,staticController.theaterList);
+router.get("/movies/:id/book/seat", staticController.setUser,staticController.seatSelection);
+router.get("/movies/:id/book/seat/pay", staticController.setUser,staticController.checkout);
+router.post("/ticket", staticController.checkAuth,staticController.setUser, staticController.ticket);
 router.post("/top", function (req, res) {
     const {movieId} = req.body;
     let tm = new TopMovies();
