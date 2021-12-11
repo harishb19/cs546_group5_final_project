@@ -5,7 +5,7 @@ const userSchema = new mongoose.Schema({
     userId: {
         type: mongoose.Schema.Types.ObjectId,
         unique: true,
-        default:ObjectId()
+        default: ObjectId()
     },
     gender: {
         type: String,

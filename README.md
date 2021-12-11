@@ -1,16 +1,22 @@
 # CMA - Catch Movies in Action
+
 ## Description
+
 This project follows an MVC architecture
 
 ## Installation
 
-Module available through the [npm registry](https://www.npmjs.com/). It can be installed using the [`npm`](https://docs.npmjs.com/getting-started/installing-npm-packages-locally) or [`yarn`](https://yarnpkg.com/en/) command line tool.
+Module available through the [npm registry](https://www.npmjs.com/). It can be installed using
+the [`npm`](https://docs.npmjs.com/getting-started/installing-npm-packages-locally) or [`yarn`](https://yarnpkg.com/en/)
+command line tool.
 
 ```sh
 # NPM (Recomend)
 npm install --save
 ```
+
 ## Running
+
 ```sh
 # NPM (Recomend)
 npm start
@@ -111,7 +117,9 @@ npm start
 
 ## Contributors
 
-Pull requests and stars are always welcome. For bugs and feature requests, please [create an issue](https://github.com/harishb19/cs546_group5_final_project/issues). [List of all contributors](https://github.com/harishb19/cs546_group5_final_project/graphs/contributors).
+Pull requests and stars are always welcome. For bugs and feature requests,
+please [create an issue](https://github.com/harishb19/cs546_group5_final_project/issues)
+. [List of all contributors](https://github.com/harishb19/cs546_group5_final_project/graphs/contributors).
 
 ## License
 

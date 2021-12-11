@@ -16,15 +16,15 @@ const movieSchema = new mongoose.Schema({
         required: true
     }],
     cast: [{
-        name:{
+        name: {
             type: String,
             required: true
         },
-        asCharacter:{
+        asCharacter: {
             type: String,
             required: true
         },
-        img:{
+        img: {
             type: String,
             required: true
         }
@@ -46,8 +46,8 @@ const movieSchema = new mongoose.Schema({
         type: Date,
         required: true
     },
-    language:{
-      type: String
+    language: {
+        type: String
     },
     runtimeInSecs: {
         type: Number,

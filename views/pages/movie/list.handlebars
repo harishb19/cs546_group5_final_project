@@ -4,29 +4,31 @@
 <br/>
 <div class="container">
     <div class="row">
-        
+
         <div class="col-2" style="margin-top: 15px;">
             <span class="filter-title">Filters</span>
             <div class="sec1">
-                <button class="btn" id="resetBtn"  type="button" onclick="resetFilterMovies(true)">
+                <button class="btn" id="resetBtn" type="button" onclick="resetFilterMovies(true)">
                     Reset
                 </button>
                 <button class="btn" id="applyBtn" type="button" onclick="applyFilters()">
                     Apply
                 </button>
-                
-        
+
+
                 <div>
                     <button class="btn" type="button" data-toggle="collapse" data-target="#collapseExample1"
                             aria-expanded="false" aria-controls="collapseExample">
                         Languages
                     </button>
                     <div class="collapse" id="collapseExample1">
-                            {{#each langFilter as |lang|}}
-                               <div class="checkbox">
-                                <label><input type="checkbox" id="lang-{{getObject lang "name"}}" value="" class="cb" onclick="filterMovies('language','{{getObject lang "name"}}')"/>{{getObject lang "name"}}</label>
+                        {{#each langFilter as |lang|}}
+                            <div class="checkbox">
+                                <label><input type="checkbox" id="lang-{{getObject lang "name"}}" value="" class="cb"
+                                              onclick="filterMovies('language','{{getObject lang "name"}}')"/>{{getObject
+                                        lang "name"}}</label>
                             </div>
-                            {{/each}}
+                        {{/each}}
                         {{!-- <div>
                             <div class="checkbox">
                                 <label><input class="checkboxinput" type="checkbox" value="" class="cb">English</label>
@@ -47,17 +49,17 @@
                         Genres
                     </button>
                     <div class="collapse" id="collapseExample2">
-                            {{#each genreMovies as |genre|}}
-                               <div class="checkbox">
+                        {{#each genreMovies as |genre|}}
+                            <div class="checkbox">
                                 <label>
-                                    <input type="checkbox" value="" 
-                                    id="genre-{{getObject genre "name"}}"
-                                     class="cb" onclick="filterMovies('genre','{{getObject genre "name"}}')">
-                                    
-                                {{getObject genre "name"}}
+                                    <input type="checkbox" value=""
+                                           id="genre-{{getObject genre "name"}}"
+                                           class="cb" onclick="filterMovies('genre','{{getObject genre "name"}}')">
+
+                                    {{getObject genre "name"}}
                                 </label>
                             </div>
-                            {{/each}}
+                        {{/each}}
                     </div>
                 </div>
             </div>
@@ -66,7 +68,7 @@
             <div class="sec2" id="products">
                 <div class="container">
                     <div class="row mt-3">
-                       {{#each movies as |movie|}}
+                        {{#each movies as |movie|}}
                             {{> moviecard movie=(parseJson movie )}}
                         {{/each}}
                     </div>
@@ -76,21 +78,21 @@
     </div>
 </div>
 {{#section "script"}}
-  <script type="text/javascript" > 
-      const openMovie=(id)=>{
-          window.location=`/movies/${id}`
-          }
-          
-  </script>
+    <script type="text/javascript">
+        const openMovie = (id) => {
+            window.location = `/movies/${id}`
+        }
 
-<script src="/public/assets/js/movieFilters/movieFilters.js"></script>
-  <script type="text/javascript">
-    {{#if clearFilters}}
-    resetFilterMovies(false)
-        {{else}}
-            movieFilter={{{filters}}}
+    </script>
+
+    <script src="/public/assets/js/movieFilters/movieFilters.js"></script>
+    <script type="text/javascript">
+            {{#if clearFilters}}
+            resetFilterMovies(false)
+            {{else}}
+            movieFilter ={{{filters}}}
             handelDefaultFilters()
-    {{/if}}
-  </script>
+            {{/if}}
+    </script>
 
 {{/section }}

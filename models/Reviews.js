@@ -5,7 +5,7 @@ const reviewSchema = new mongoose.Schema({
     reviewId: {
         type: mongoose.Schema.Types.ObjectId,
         unique: true,
-        default:ObjectId()
+        default: ObjectId()
     },
     userId: {
         type: mongoose.Schema.Types.ObjectId,
