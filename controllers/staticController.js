@@ -2,12 +2,23 @@ const {registration, checkUserByEmailPassword} = require("../data/auth/auth")
 const {seatSelectionHandler} = require("../data/seat/seat");
 const QRCode = require('qrcode')
 const {showPayDetails, bookTicket} = require("../data/checkout/checkout");
+const {getAllMovies, getFilteredMovies} = require("../data/movies/movies");
+const {getLandingPage} = require("../data/home/home");
+
 const movies = require("../models/Movies");
 const movieScreens = require("../models/MovieScreens");
 const theater = require("../models/Theatre");
 let mongoose = require('mongoose');
 
-
+module.exports.setUser = (req, res, next) => {
+    if (req.session.loggedIn === true) {
+        console.log(req.session.user, "plxxxxxx")
+        res.locals.userName = req.session.user.firstName
+        res.locals.userImg = req.session.user.imageUrl
+    }
+    // console.log(res)
+    next()
+}
 module.exports.login = function (req, res, next) {
     if (req.session.user) {
         res.redirect('/');
@@ -25,7 +36,6 @@ module.exports.loginAuth = function (req, res, next) {
     checkUserByEmailPassword(req, res)
 
 }
-
 module.exports.register = function (req, res, next) {
     if (req.session.newUser === true) {
         res.render('pages/auth/auth', {isLogin: false});
@@ -44,14 +54,15 @@ module.exports.checkAuth = function (req, res, next) {
     }
 }
 
-module.exports.home = function (req, res, next) {
-    res.render('pages/home/landing')
-}
-
-module.exports.moviesList = function (req, res, next) {
-    res.render('pages/movie/list');
-}
-
+module.exports.home = async (req, res, next) => {
+    await getLandingPage(req, res);
+};
+module.exports.moviesList = async function (req, res, next) {
+    await getAllMovies(req, res);
+};
+module.exports.moviesListWithFilters = async function (req, res, next) {
+    await getFilteredMovies(req, res);
+};
 module.exports.movies = function (req, res, next) {
     res.render('pages/movie/details', {id: req.params.id});
 }
@@ -263,10 +274,10 @@ module.exports.logout = (req, res, next) => {
     req.user = null;
     req.session.user = null;
     req.session.loggedIn = false;
-    req.flash('toastStatus', 'success');
-    req.flash('toastMessage', `Thanks for visiting. See you soon`);
+    req.flash("toastStatus", "success");
+    req.flash("toastMessage", `Thanks for visiting. See you soon`);
 
-    res.redirect('/');
+    res.redirect("/");
 };
 
 

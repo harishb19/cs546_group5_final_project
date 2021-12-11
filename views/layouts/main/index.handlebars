@@ -23,6 +23,9 @@
             crossorigin="anonymous"
     />
 
+    <!-- Meterial Icon CSS -->
+    <link rel="stylesheet" href="/public/assets/css/materialdesignicons.min.css">
+
     <!-- Material CSS -->
     <link rel="stylesheet" href="/public/assets/css/material.min.css">
     <!-- Ripples CSS -->
@@ -82,9 +85,8 @@
 
 </head>
 
-<body>
 
-{{> nav}}
+{{> nav userName=userName }}
 
 {{{body}}}
 
@@ -129,7 +131,13 @@
 <script src="/public/assets/js/main.js"></script>
 <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
 
+
 {{{_sections.script}}}
+<script>
+    if (window.history.replaceState) {
+        window.history.replaceState(null, null, window.location.href);
+    }
+</script>
 
 </body>
 
