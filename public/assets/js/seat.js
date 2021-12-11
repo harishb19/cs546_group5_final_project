@@ -5,7 +5,7 @@ if (!movieId || !movieName || !movieDate || !theatreId || !theatreName || !showT
 }
 
 const screenJSON = JSON.parse(seatInfo)
-
+console.log(screenJSON);
 const layout = screenJSON.layout;
 const seats = screenJSON.availability;
 let seatList = [];
@@ -86,7 +86,7 @@ continueButton.addEventListener('click', e => {
     const purchaseSummary = document.createElement("input");
 
     form.method = "POST";
-    form.action = "/movies/" + screenJSON.movieId + "/book/seat/pay";
+    form.action = "/movies/" + movieId + "/book/seat/pay";
 
     purchaseSummary.value = JSON.stringify(summaryObj);
     purchaseSummary.type = 'hidden'

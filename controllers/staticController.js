@@ -1,4 +1,6 @@
 const {registration, checkUserByEmailPassword} = require("../data/auth/auth");
+const {seatSelectionHandler} = require("../data/seat/seat");
+const {checkoutHandler} = require("../data/checkout/checkout");
 const movies = require("../models/Movies");
 const movieScreens = require("../models/MovieScreens");
 const theater = require("../models/Theatre");
@@ -162,11 +164,11 @@ module.exports.theaterInfo = function (req, res) {
     });
 }
 
-module.exports.seatSelection = function (req, res, next) {
-    res.render('pages/theater/seat');
+module.exports.seatSelection = async function (req, res, next) {
+    await seatSelectionHandler(req, res)
 }
 module.exports.checkout = function (req, res, next) {
-    res.render('pages/checkout/orderSummary');
+    checkoutHandler(req, res)
 }
 module.exports.ticket = function (req, res, next) {
     if (req.session.user) {

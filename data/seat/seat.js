@@ -2,6 +2,7 @@ const {ObjectId} = require("mongodb");
 const Movie = require("../../models/Movies");
 const MovieScreens = require('../../models/MovieScreens');
 const Theatre=require("../../models/Theatre");
+
 const seatSelectionHandler = async (req, res) => {
 
     if (!req.body || Object.keys(req.body).length < 4) {
@@ -49,14 +50,8 @@ const seatSelectionHandler = async (req, res) => {
                 req.flash("Invalid request")
                 res.redirect("back")
             }
-
-
         }
-
-
     }
-
-
 }
 const seatSelection = async (movieId, theatreId, screenId, showTimeId) => {
 
