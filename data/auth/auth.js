@@ -1,7 +1,6 @@
 const formidable = require("formidable");
 const User = require("../../models/Users");
 const bcrypt = require("bcryptjs");
-const {models} = require("mongoose");
 const saltRounds = 10;
 
 const registration = (req, res) => {
