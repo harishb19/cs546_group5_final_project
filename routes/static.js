@@ -17,6 +17,7 @@ router.post('/ticket', staticController.checkAuth, staticController.checkTicketS
 router.post('/addTheatre', staticController.addTheatre);
 router.post('/addMovie', staticController.addMovie);
 router.post('/addMovieScreens', staticController.addMovieScreens);
+// router.post('/ticket', staticController.checkAuth, staticController.ticket);
 
 router.get('/logout', staticController.logout);
 
@@ -32,3 +33,4 @@ router.get('/oauth/signin/callback', passport.authenticate('google', {
 
 
 module.exports = router;
+
