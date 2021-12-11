@@ -2,9 +2,9 @@ const {registration, checkUserByEmailPassword} = require("../data/auth/auth");
 const {getAllMovies, getFilteredMovies} = require("../data/movies/movies");
 const {getLandingPage} = require("../data/home/home");
 
-module.exports.setUser=(req,res,next)=>{
+module.exports.setUser = (req, res, next) => {
     if (req.session.user) {
-       res.userName=req.session.user.name
+        res.userName = req.session.user.name
     }
     next()
 }

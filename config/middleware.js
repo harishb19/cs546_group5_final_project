@@ -41,8 +41,8 @@ const initMiddleware = (app) => {
                 return newObject[key];
             },
             getObjectFromArray: (array, index, key) => {
-                if (key==="movieId"){
-                    console.log(array,index,"CHAL JA")
+                if (key === "movieId") {
+                    console.log(array, index, "CHAL JA")
                 }
 
                 if (!array || !array[index]) {
@@ -67,7 +67,7 @@ const initMiddleware = (app) => {
                 this._sections[name] = options.fn(this);
                 return null;
             },
-            splitLanguage(string,separator){
+            splitLanguage(string, separator) {
                 return string.split(",").map((lang) => lang.trim())
             },
         },

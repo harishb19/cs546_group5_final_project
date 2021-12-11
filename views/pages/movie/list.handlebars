@@ -25,7 +25,8 @@
                         {{#each langFilter as |lang|}}
                             <div class="checkbox">
                                 <label><input type="checkbox" id="lang-{{getObject lang "name"}}" value="" class="cb"
-                                              onclick="filterMovies('language','{{getObject lang "name"}}')"/>{{getObject
+                                              onclick="filterMovies('language','{{getObject lang
+                                                                                            "name"}}')"/>{{getObject
                                         lang "name"}}</label>
                             </div>
                         {{/each}}

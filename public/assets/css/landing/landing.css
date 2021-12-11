@@ -32,7 +32,8 @@
     overflow-x: auto;
     justify-content: flex-start;
 }
-.new-top-css>img{
+
+.new-top-css > img {
     margin: auto 1em !important;
 }
 

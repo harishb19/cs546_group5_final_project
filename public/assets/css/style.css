@@ -1889,16 +1889,19 @@ ul.recent-post li .post-text span {
 .call-to-action-section {
     display: flex;
     justify-content: center;
-    width:100%;
+    width: 100%;
     height: 500px !important;
     overflow: hidden;
 }
-.call-to-action-section>div{
+
+.call-to-action-section > div {
     width: 100%;
 }
-.call-to-action-section img{
+
+.call-to-action-section img {
     object-fit: contain !important;
 }
+
 .call-to-action-section h1 {
     color: #18191b;
     font-size: 56px;

@@ -7,7 +7,7 @@ const TopMovies = require("../models/TopMovies");
 const Language = require("../models/Language");
 const Banner = require("../models/Banner");
 
-router.get("/", staticController.setUser,staticController.home);
+router.get("/", staticController.setUser, staticController.home);
 router.get("/login", staticController.login);
 router.post("/login", staticController.loginAuth);
 router.get("/register", staticController.register);
@@ -16,13 +16,13 @@ router.post(
     staticController.registerSubmit,
     staticController.register
 );
-router.get("/movies", staticController.setUser,staticController.moviesList);
-router.post("/movies", staticController.setUser,staticController.moviesListWithFilters);
-router.get("/movies/:id", staticController.setUser,staticController.movies);
-router.get("/movies/:id/book", staticController.setUser,staticController.theaterList);
-router.get("/movies/:id/book/seat", staticController.setUser,staticController.seatSelection);
-router.get("/movies/:id/book/seat/pay", staticController.setUser,staticController.checkout);
-router.post("/ticket", staticController.checkAuth,staticController.setUser, staticController.ticket);
+router.get("/movies", staticController.setUser, staticController.moviesList);
+router.post("/movies", staticController.setUser, staticController.moviesListWithFilters);
+router.get("/movies/:id", staticController.setUser, staticController.movies);
+router.get("/movies/:id/book", staticController.setUser, staticController.theaterList);
+router.get("/movies/:id/book/seat", staticController.setUser, staticController.seatSelection);
+router.get("/movies/:id/book/seat/pay", staticController.setUser, staticController.checkout);
+router.post("/ticket", staticController.checkAuth, staticController.setUser, staticController.ticket);
 router.post("/top", function (req, res) {
     const {movieId} = req.body;
     let tm = new TopMovies();
@@ -40,7 +40,7 @@ router.post("/top", function (req, res) {
     });
 });
 router.post("/banner", function (req, res) {
-    const {movieId,image} = req.body;
+    const {movieId, image} = req.body;
     let ban = new Banner();
     ban.movieId = movieId;
     ban.image = image;

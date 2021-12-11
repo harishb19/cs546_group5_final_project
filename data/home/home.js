@@ -5,7 +5,7 @@ const Language = require("../../models/Language");
 const Banner = require("../../models/Banner");
 
 
-const getBanner = async() => {
+const getBanner = async () => {
     const banner = await Banner.find({});
     return banner;
 }
@@ -14,9 +14,9 @@ const getLandingPage = async (req, res) => {
     const genreMovies = await getGenres();
     const upcomingMovies = await getUpcomingMovies();
     const topMovies = await getTopMovies();
-    const bannerIndex=Array.from(Array(banners.length).keys())
-    console.log(banners,"IS this banner?")
-    res.render("pages/home/landing", {upcomingMovies, topMovies, genreMovies, banners,bannerIndex});
+    const bannerIndex = Array.from(Array(banners.length).keys())
+    console.log(banners, "IS this banner?")
+    res.render("pages/home/landing", {upcomingMovies, topMovies, genreMovies, banners, bannerIndex});
 };
 const getUpcomingMovies = async () => {
     const movies = await Movies.find({});

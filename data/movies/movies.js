@@ -62,7 +62,7 @@ const getFilteredMovies = async (req, res) => {
                 if (genreFilter && genreFilter.length > 0) {
                     movies.forEach((movie) => {
                         if (movie.genre) {
-                            let genre=movie.genre.map(gen=>gen.trim())
+                            let genre = movie.genre.map(gen => gen.trim())
                             let common = genreFilter.filter((value) =>
                                 genre.includes(value)
                             );
