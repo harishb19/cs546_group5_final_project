@@ -111,7 +111,7 @@ function getTheater(id, selectDate) {
                     let theaterInfo = responMessage.doc;
                     link = "";
                     link += "<div class=\"theater-detail-showtime\">" + "<div class=\"theater-detail-showtime_header\">" +
-                    "<div class=\"theater-detail-showtime_header_name\"><h2>" + theaterInfo.theatreName + "</h2></div>" + 
+                    "<div class=\"theater-detail-showtime_header_name\"><h1>" + theaterInfo.theatreName + "</h1></div>" + 
                     "<div class=\"theater-detail-showtime_header_address\"><p>" + theaterInfo.location + "</p></div></div>" + 
                     "<div class=\"theater-detail-showtime_variants\">" + "<div class=\"theater-detail-showtime_variants_format\">" +
                     "Standard</div>" + "<div class=\"theater-detail-showtime_variants_list_wrapper\">" + 

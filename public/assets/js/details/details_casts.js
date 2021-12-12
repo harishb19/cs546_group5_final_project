@@ -24,13 +24,13 @@ $.ajax({
             for (let i = 0; i < castinfo.length; ++i) {
                 if (castinfo[i].img.length == 0) castinfo[i].img = defaultCastUrl;
                 link += "<li class=\"cast\">" + "<div class=\"cast_img\">" + 
-                    "<img src=\"" + castinfo[i].img + "\"></div><h3>" + castinfo[i].name + "</h3><h4>" + castinfo[i].asCharacter + "</h4></li>";
+                    "<img src=\"" + castinfo[i].img + "\" alt=\"Cast Image\"></div><h3>" + castinfo[i].name + "</h3><h4>" + castinfo[i].asCharacter + "</h4></li>";
             }
         } else {
             for (let i = 0; i < cast_showCount; ++i) {
                 if (castinfo[i].img.length == 0) castinfo[i].img = defaultCastUrl;
                 link += "<li class=\"cast\">" + "<div class=\"cast_img\">" + 
-                    "<img src=\"" + castinfo[i].img + "\"></div><h3>" + castinfo[i].name + "</h3><h4>" + castinfo[i].asCharacter + "</h4></li>";
+                    "<img src=\"" + castinfo[i].img + "\" alt=\"Cast Image\"></div><h3>" + castinfo[i].name + "</h3><h4>" + castinfo[i].asCharacter + "</h4></li>";
             }
             cast_right.css('visibility','visible');
         }
@@ -53,13 +53,13 @@ cast_right.click(function () {
         for (let i = beginIndex; i < castinfo.length; ++i) {
             if (castinfo[i].img.length == 0) castinfo[i].img = defaultCastUrl;
             link += "<li class=\"cast\">" + "<div class=\"cast_img\">" + 
-                "<img src=\"" + castinfo[i].img + "\"></div><h3>" + castinfo[i].name + "</h3><h4>" + castinfo[i].asCharacter + "</h4></li>";
+                "<img src=\"" + castinfo[i].img + "\" alt=\"Cast Image\"></div><h3>" + castinfo[i].name + "</h3><h4>" + castinfo[i].asCharacter + "</h4></li>";
         }
     } else {
         for (let i = beginIndex; i < beginIndex + cast_showCount; ++i) {
             if (castinfo[i].img.length == 0) castinfo[i].img = defaultCastUrl;
             link += "<li class=\"cast\">" + "<div class=\"cast_img\">" + 
-                "<img src=\"" + castinfo[i].img + "\"></div><h3>" + castinfo[i].name + "</h3><h4>" + castinfo[i].asCharacter + "</h4></li>";
+                "<img src=\"" + castinfo[i].img + "\" alt=\"Cast Image\"></div><h3>" + castinfo[i].name + "</h3><h4>" + castinfo[i].asCharacter + "</h4></li>";
         }
     }
     cast.append(link);
@@ -76,7 +76,7 @@ cast_left.click(function () {
     for (let i = beginIndex; i < beginIndex + cast_showCount; ++i) {
         if (castinfo[i].img.length == 0) castinfo[i].img = defaultCastUrl;
         link += "<li class=\"cast\">" + "<div class=\"cast_img\">" + 
-            "<img src=\"" + castinfo[i].img + "\"></div><h3>" + castinfo[i].name + "</h3><h4>" + castinfo[i].asCharacter + "</h4></li>";
+            "<img src=\"" + castinfo[i].img + "\" alt=\"Cast Image\"></div><h3>" + castinfo[i].name + "</h3><h4>" + castinfo[i].asCharacter + "</h4></li>";
     }
     cast.append(link);
 });

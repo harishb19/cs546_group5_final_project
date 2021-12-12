@@ -24,7 +24,7 @@ $.ajax({
                 if (reviewinfo[i].userImgSrc.length == 0) reviewinfo[i].userImgSrc = defaultUserUrl;
                 review_link += "<li class=\"review\">" + "<div class=\"review-wrapper\">" + "<div class=\"review-info\">" + 
                 "<div class=\"reviewer-header\">" + "<div class=\"reviewer\">" + "<div class=\"reviewer-img\">" + 
-                "<img src=\"" + reviewinfo[i].userImgSrc + "\"></div>" + "<div class=\"reviewer-name\"><h3>" + 
+                "<img src=\"" + reviewinfo[i].userImgSrc + "\" alt=\"User Image\"></div>" + "<div class=\"reviewer-name\"><h3>" + 
                 reviewinfo[i].userName + "</h3></div></div></div>" + "<div class=\"review-content\"><p>" + 
                 reviewinfo[i].userReview + "</p></div></div></div></li>";
             }
@@ -33,7 +33,7 @@ $.ajax({
                 if (reviewinfo[i].userImgSrc.length == 0) reviewinfo[i].userImgSrc = defaultUserUrl;
                 review_link += "<li class=\"review\">" + "<div class=\"review-wrapper\">" + "<div class=\"review-info\">" + 
                 "<div class=\"reviewer-header\">" + "<div class=\"reviewer\">" + "<div class=\"reviewer-img\">" + 
-                "<img src=\"" + reviewinfo[i].userImgSrc + "\"></div>" + "<div class=\"reviewer-name\"><h3>" + 
+                "<img src=\"" + reviewinfo[i].userImgSrc + "\" alt=\"User Image\"></div>" + "<div class=\"reviewer-name\"><h3>" + 
                 reviewinfo[i].userName + "</h3></div></div></div>" + "<div class=\"review-content\"><p>" + 
                 reviewinfo[i].userReview + "</p></div></div></div></li>";
             }
@@ -59,7 +59,7 @@ review_right.click(function () {
             if (reviewinfo[i].userImgSrc.length == 0) reviewinfo[i].userImgSrc = defaultUserUrl;
             review_link += "<li class=\"review\">" + "<div class=\"review-wrapper\">" + "<div class=\"review-info\">" + 
             "<div class=\"reviewer-header\">" + "<div class=\"reviewer\">" + "<div class=\"reviewer-img\">" + 
-            "<img src=\"" + reviewinfo[i].userImgSrc + "\"></div>" + "<div class=\"reviewer-name\"><h3>" + 
+            "<img src=\"" + reviewinfo[i].userImgSrc + "\" alt=\"User Image\"></div>" + "<div class=\"reviewer-name\"><h3>" + 
             reviewinfo[i].userName + "</h3></div></div></div>" + "<div class=\"review-content\"><p>" + 
             reviewinfo[i].userReview + "</p></div></div></div></li>";
         }
@@ -68,7 +68,7 @@ review_right.click(function () {
             if (reviewinfo[i].userImgSrc.length == 0) reviewinfo[i].userImgSrc = defaultUserUrl;
             review_link += "<li class=\"review\">" + "<div class=\"review-wrapper\">" + "<div class=\"review-info\">" + 
             "<div class=\"reviewer-header\">" + "<div class=\"reviewer\">" + "<div class=\"reviewer-img\">" + 
-            "<img src=\"" + reviewinfo[i].userImgSrc + "\"></div>" + "<div class=\"reviewer-name\"><h3>" + 
+            "<img src=\"" + reviewinfo[i].userImgSrc + "\" alt=\"User Image\"></div>" + "<div class=\"reviewer-name\"><h3>" + 
             reviewinfo[i].userName + "</h3></div></div></div>" + "<div class=\"review-content\"><p>" + 
             reviewinfo[i].userReview + "</p></div></div></div></li>";
         }
@@ -88,7 +88,7 @@ review_left.click(function () {
         if (reviewinfo[i].userImgSrc.length == 0) reviewinfo[i].userImgSrc = defaultUserUrl;
         review_link += "<li class=\"review\">" + "<div class=\"review-wrapper\">" + "<div class=\"review-info\">" + 
         "<div class=\"reviewer-header\">" + "<div class=\"reviewer\">" + "<div class=\"reviewer-img\">" + 
-        "<img src=\"" + reviewinfo[i].userImgSrc + "\"></div>" + "<div class=\"reviewer-name\"><h3>" + 
+        "<img src=\"" + reviewinfo[i].userImgSrc + "\" alt=\"User Image\"></div>" + "<div class=\"reviewer-name\"><h3>" + 
         reviewinfo[i].userName + "</h3></div></div></div>" + "<div class=\"review-content\"><p>" + 
         reviewinfo[i].userReview + "</p></div></div></div></li>";
     }

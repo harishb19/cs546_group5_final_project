@@ -113,7 +113,7 @@
     display: flex;
 }
 
-.theater-detail-showtime_header_name h2 {
+.theater-detail-showtime_header_name h1 {
     font-size: 1rem;
     font-weight: 700;
     overflow-wrap: break-word;

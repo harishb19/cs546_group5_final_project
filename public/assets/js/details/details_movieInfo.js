@@ -104,7 +104,7 @@ $.ajax({
         movieDescription = movieDetail.description;
         movieFormat = '2D, 3D, IMAX 2D, IMAX 3D';
 
-        postImg.append("<img src=\"" + postImgUrl + "\">");
+        postImg.append("<img src=\"" + postImgUrl + "\" alt=\"Post Image\">");
         title.text(movieName);
         getIMDB('http://www.omdbapi.com/?i=' + imdbId + '&apikey=5d806bd7', rating);
         //rating.text(IMDBRating);    
