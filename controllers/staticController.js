@@ -211,8 +211,6 @@ module.exports.ticket = async (req, res, next) => {
         req.flash("toastMessage", "Something went wrong");
         req.redirect("/")
     }
-
-
 }
 
 
@@ -240,10 +238,10 @@ module.exports.addTheatre = function (req, res, next) {
     console.log(id)
     const {theatreId, theatreName, location, screens} = req.body;
 
-    const theatre = new Theatre({
+    const addTheatre = new theater({
         theatreId: theatreId, theatreName: theatreName, location: location, screens: screens
     })
-    theatre.save(function (err, doc) {
+    addTheatre.save(function (err, doc) {
         if (err) {
             console.log(err);
         } else {
