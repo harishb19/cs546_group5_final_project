@@ -50,7 +50,7 @@ function getThreeWeek() {
         curDay += 1;
         curWeek = (curWeek + 1) % 7;
         threeWeek[i].week = weeks[curWeek];
-        if (curDay > month_day[curMonth - 1][1]) {
+        if (curDay > month_day[curMonth][1]) {
             if (curMonth == 11) {
                 curMonth = 0;
                 curYear += 1;
