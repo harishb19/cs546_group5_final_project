@@ -38,6 +38,7 @@ const updateUserData = async (userId, firstName, lastName, gender, dateOfBirth, 
     if (!new Date(dateOfBirth)) throw "Error: dateOfBirth not of type date";
     if (phoneNo.match(/\d/g).length !== 10) throw 'Error: Invalid Phone Number';
 
+
     /*------------ Error Handling End ------------*/
 
     const updatedInfo = await Users.updateOne(

@@ -1,13 +1,25 @@
 const {registration, checkUserByEmailPassword} = require("../data/auth/auth")
 const {seatSelectionHandler} = require("../data/seat/seat");
 const QRCode = require('qrcode')
-const {showPayDetails} = require("../data/checkout/checkout");
+
+const {showPayDetails, bookTicket} = require("../data/checkout/checkout");
+const {getAllMovies, getFilteredMovies} = require("../data/movies/movies");
+const {getLandingPage} = require("../data/home/home");
+
 const movies = require("../models/Movies");
 const movieScreens = require("../models/MovieScreens");
 const theater = require("../models/Theatre");
 let mongoose = require('mongoose');
-
-
+const ip = require("ip");
+module.exports.setUser = (req, res, next) => {
+    if (req.session.loggedIn === true) {
+        console.log(req.session.user, "plxxxxxx")
+        res.locals.userName = req.session.user.firstName
+        res.locals.userImg = req.session.user.imageUrl
+    }
+    // console.log(res)
+    next()
+}
 module.exports.login = function (req, res, next) {
     if (req.session.user) {
         res.redirect('/');
@@ -25,7 +37,6 @@ module.exports.loginAuth = function (req, res, next) {
     checkUserByEmailPassword(req, res)
 
 }
-
 module.exports.register = function (req, res, next) {
     if (req.session.newUser === true) {
         res.render('pages/auth/auth', {isLogin: false});
@@ -40,19 +51,26 @@ module.exports.checkAuth = function (req, res, next) {
     if (req.session.loggedIn === true) {
         next();
     } else {
-        res.redirect('/', {toastMessage: 'You must Sign In to Continue !', toastStatus: 'success'});
+        req.flash("toastMessage", `You must Sign In to Continue !`);
+        res.redirect("back")
     }
 }
 
-module.exports.home = function (req, res, next) {
-    res.render('pages/home/landing')
-}
 
-module.exports.moviesList = function (req, res, next) {
-    res.render('pages/movie/list');
-}
-
+module.exports.home = async (req, res, next) => {
+    res.locals.title = "CMA"
+    await getLandingPage(req, res);
+};
+module.exports.moviesList = async function (req, res, next) {
+    res.locals.title = "Movies"
+    await getAllMovies(req, res);
+};
+module.exports.moviesListWithFilters = async function (req, res, next) {
+    res.locals.title = "Movies"
+    await getFilteredMovies(req, res);
+};
 module.exports.movies = function (req, res, next) {
+    res.locals.title = "Movies"
     res.render('pages/movie/details', {id: req.params.id});
 }
 
@@ -107,14 +125,19 @@ module.exports.movieDetail_Reviews = function (req, res) {
 }
 
 module.exports.theaterList = function (req, res, next) {
+    res.locals.title = "Book"
+
     res.render('pages/theater/list', {id: req.params.id});
 }
 
 module.exports.seatSelection = async function (req, res, next) {
+    res.locals.title = "Seats"
     await seatSelectionHandler(req, res)
 }
 
 module.exports.screenInfo = function (req, res) {
+    res.locals.title = "Screen"
+
     let movie_Id;
     try {
         movie_Id = mongoose.Types.ObjectId(req.body.id);
@@ -153,6 +176,8 @@ module.exports.screenInfo = function (req, res) {
 }
 
 module.exports.theaterInfo = function (req, res) {
+    res.locals.title = "Theater"
+
     let screenId;
     try {
         screenId = mongoose.Types.ObjectId(req.body.screenId);
@@ -167,19 +192,29 @@ module.exports.theaterInfo = function (req, res) {
 }
 
 module.exports.checkout = function (req, res, next) {
+
+    res.locals.title = "Pay"
+
     showPayDetails(req, res)
 }
 
-module.exports.ticket = function (req, res, next) {
-    if (req.session.user) {
-        QRCode.toDataURL('I am a pony!', (err, url) => {
-            res.render('pages/checkout/ticket');
-        })
+module.exports.ticket = async (req, res, next) => {
+    res.locals.title = "Ticket"
 
+    const ticket = await bookTicket(req, res)
+    console.log(ticket)
+    if (ticket.orderId.toString()) {
+        QRCode.toDataURL(`http://${ip.address()}:3000/verify/${ticket.orderId.toString()}`, (err, url) => {
+            res.render('pages/checkout/ticket', {url: url, ticket});
+        })
     } else {
-        res.redirect("login")
+        req.flash("toastMessage", "Something went wrong");
+        req.redirect("/")
     }
+
+
 }
+
 
 module.exports.addMovieScreens = function (req, res, next) {
     const {movieId, screens} = req.body;
@@ -243,11 +278,12 @@ module.exports.addMovie = function (req, res, next) {
             console.log(err);
         } else {
             req.session.newUser === false;
-            console.log("new movie added.");
+
         }
     })
     res.json({"check": "console log"});
 }
+
 
 module.exports.checkTicketStatus = (req, res, next) => {
     if (req.session.checkout === true) {
@@ -262,10 +298,12 @@ module.exports.logout = (req, res, next) => {
     req.user = null;
     req.session.user = null;
     req.session.loggedIn = false;
-    req.flash('toastStatus', 'success');
-    req.flash('toastMessage', `Thanks for visiting. See you soon`);
+    req.session.isAdmin = false;
 
-    res.redirect('/');
+    req.flash("toastStatus", "success");
+    req.flash("toastMessage", `Thanks for visiting. See you soon`);
+
+    res.redirect("/");
 };
 
 
