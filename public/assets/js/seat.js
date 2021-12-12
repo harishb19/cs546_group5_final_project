@@ -76,7 +76,7 @@ continueButton.addEventListener('click', e => {
         theatreId: theatreId,
         runtime: runtime,
         language: language,
-        screenId:screenId,
+        screenId: screenId,
         theatreName: theatreName,
         dateTime: movieDate,
         noOfSeats: seatList.length,

@@ -4,8 +4,9 @@
     margin: 16px;
     border: 1px solid #E0E0E0;
     position: relative;
-    width:100%;
+    width: 100%;
 }
+
 .ticket:before {
     content: "";
     width: 32px;
@@ -21,6 +22,7 @@
     margin-top: -16px;
     border-radius: 50%;
 }
+
 .ticket:after {
     content: "";
     width: 32px;
@@ -36,10 +38,12 @@
     margin-top: -16px;
     border-radius: 50%;
 }
+
 .ticket--start {
     position: relative;
     border-right: 1px dashed #E0E0E0;
 }
+
 .ticket--start:before {
     content: "";
     width: 32px;
@@ -56,6 +60,7 @@
     margin-top: -16px;
     border-radius: 50%;
 }
+
 .ticket--start:after {
     content: "";
     width: 32px;
@@ -72,22 +77,27 @@
     margin-top: -16px;
     border-radius: 50%;
 }
+
 .ticket--start > img {
     display: block;
-    margin :auto;
+    margin: auto;
     padding: 24px;
     max-height: 400px;
 }
+
 .ticket--center {
     padding: 24px;
     flex: 1;
 }
+
 .ticket--center--row {
     display: flex;
 }
+
 .ticket--center--row:not(:last-child) {
     padding-bottom: 48px;
 }
+
 .ticket--center--row:first-child span {
     color: #4872b0;
     text-transform: uppercase;
@@ -95,11 +105,13 @@
     font-size: 13px;
     font-weight: 500;
 }
+
 .ticket--center--row:first-child strong {
     font-size: 20px;
     font-weight: 400;
     text-transform: uppercase;
 }
+
 .ticket--center--col {
     display: flex;
     flex: 1;
@@ -107,9 +119,11 @@
     box-sizing: border-box;
     flex-direction: column;
 }
+
 .ticket--center--col:not(:last-child) {
     padding-right: 16px;
 }
+
 .ticket--end {
     padding: 24px;
     background-color: #4872b0;
@@ -117,6 +131,7 @@
     flex-direction: column;
     position: relative;
 }
+
 .ticket--end:before {
     content: "";
     width: 32px;
@@ -133,6 +148,7 @@
     margin-top: -16px;
     border-radius: 50%;
 }
+
 .ticket--end:after {
     content: "";
     width: 32px;
@@ -149,25 +165,29 @@
     margin-top: -16px;
     border-radius: 50%;
 }
+
 .ticket--end > div:first-child {
     flex: 1;
     justify-content: center;
     align-items: center;
     display: flex;
-    width:100%
+    width: 100%
 }
+
 .ticket--end > div:first-child > img {
     margin: auto;
     width: 128px;
     padding: 4px;
     background-color: #fff;
 }
+
 .ticket--end > div:last-child > img {
     display: block;
     margin: 0 auto;
     filter: brightness(0) invert(1);
     opacity: 0.64;
 }
+
 .ticket--info--title {
     text-transform: uppercase;
     color: #757575;
@@ -178,6 +198,7 @@
     overflow: hidden;
     text-overflow: ellipsis;
 }
+
 .ticket--info--subtitle {
     font-size: 16px;
     line-height: 24px;
@@ -187,6 +208,7 @@
     overflow: hidden;
     text-overflow: ellipsis;
 }
+
 .ticket--info--content {
     font-size: 13px;
     line-height: 24px;
