@@ -1,0 +1,24 @@
+
+<h2>Your Order History</h2>
+
+<table class="table">
+    <thread>
+        <tr>
+            <th>Movie</th>
+            <th>Theatre</th>
+            <th>Show Time</th>
+            <th>Seats</th>
+            <th>Price Per Ticket</th>
+        </tr>
+    </thread>
+    <tbody>
+{{#each orderHistory}}
+    <tr>
+    {{#each this}}
+        <th>{{this}}</th>
+
+    {{/each}}
+    </tr>
+{{/each}}
+    </tbody>
+</table>

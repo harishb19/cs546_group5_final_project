@@ -1,5 +1,5 @@
 const {userdata} = require("./userController");
-const {updateUserData, getUserData} = require("../data/user/user");
+const {updateUserData, getUserData, getUserOrderHistory} = require("../data/user/user");
 const {ObjectId} = require("mongodb");
 
 module.exports.home = async function (req, res, next) {
@@ -17,8 +17,11 @@ module.exports.home = async function (req, res, next) {
     // }
     res.render('pages/user/profile', {user: user});
 }
-module.exports.history = function (req, res, next) {
-    res.render('orders');
+module.exports.history = async function (req, res, next) {
+
+    const userOrderHistory = await getUserOrderHistory(req.session.user.userId);
+
+    res.render('pages/user/orderHistory', {'orderHistory': userOrderHistory});
 }
 module.exports.active = function (req, res, next) {
     res.render('tickers');
