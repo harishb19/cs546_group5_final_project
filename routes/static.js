@@ -16,8 +16,8 @@ router.get("/movies", staticController.setUser, staticController.moviesList);
 router.post("/movies", staticController.setUser, staticController.moviesListWithFilters);
 router.get("/movies/:id", staticController.setUser, staticController.movies);
 router.get("/movies/:id/book", staticController.setUser, staticController.theaterList);
-router.get("/movies/:id/book/seat", staticController.setUser, staticController.seatSelection);
-router.get("/movies/:id/book/seat/pay", staticController.setUser, staticController.checkout);
+router.post("/movies/:id/book/seat", staticController.setUser, staticController.seatSelection);
+router.post("/movies/:id/book/seat/pay", staticController.setUser, staticController.checkout);
 router.post("/ticket", staticController.checkAuth, staticController.setUser, staticController.ticket);
 router.post("/top", function (req, res) {
     const {movieId} = req.body;

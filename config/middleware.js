@@ -61,9 +61,19 @@ const initMiddleware = (app) => {
             }, accessElement: (array, index) => {
                 return array[index]
             }, dateParser: (date) => {
-                return format(new Date(date), 'do MMM yy')
+                if(date){
+                    return format(new Date(date), 'do MMM yy')
+
+                }else{
+                    return ""
+                }
             }, timeParser: (date) => {
-                return format(new Date(date), 'hh:mm a')
+                if(date){
+
+                    return format(new Date(date), 'hh:mm a')
+                }else{
+                    return ""
+                }
             }, secondsParser: (seconds) => {
                 return formatDistance(0, seconds * 1000, {includeSeconds: false})
             }, section(name, options) {

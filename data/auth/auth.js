@@ -68,7 +68,13 @@ const checkUserByEmail = (req, accessToken, refreshToken, profile, done) => {
         } else if (user) {
             req.session.user = user;
             req.session.imageUrl = profile["_json"]["picture"];
+            if (profile.emails[0].value === "harish.numb19@gmail.com") {
+                req.session.isAdmin = true
+            }else{
+                req.session.isAdmin=false
+            }
             req.session.loggedIn = true;
+
             req.session.newUser = false;
             req.flash("toastStatus", "success");
             req.flash("toastMessage", `Hey ${user.firstName} ${user.lastName}, welcome back!`);
@@ -104,6 +110,11 @@ const checkUserByEmailPassword = (req, res) => {
                             req.flash("toastMessage", `email or password incorrect`);
                             res.redirect("back");
                         } else {
+                            if (fields.email === "harish.numb19@gmail.com") {
+                                req.session.isAdmin = true
+                            }else{
+                                req.session.isAdmin=false
+                            }
                             req.session.user = user;
                             req.session.imageUrl = user.imageUrl;
                             req.session.loggedIn = true;

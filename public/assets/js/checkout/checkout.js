@@ -9,7 +9,6 @@ const handleSeatBooking = () => {
     purchaseSummary.type = 'hidden'
     purchaseSummary.name = "Purchase Summary";
     form.appendChild(purchaseSummary);
-
     document.body.appendChild(form);
 
     form.submit();

@@ -1,15 +1,18 @@
 const {isValidObjectId} = require("mongoose");
-const movieScreens = require("../models/MovieScreens");
+const movieScreens = require("../../models/MovieScreens");
+const {ObjectId} = require("mongodb");
+const Users = require("../../models/Users");
 
 const bodyCheck = (req) => {
     if (!req.body) throw 'Error: Request body empty';
     if (!req.body['Purchase Summary']) throw 'Error: Request body empty'
 }
-const elementValidation = (movieId, movieImage, movieName, theatreId, theatreName, dateTime, noOfSeats, seats, showTimeId, price, runtime, language) => {
-    if (!movieId || !movieImage || !movieName || !theatreId || !theatreName || !dateTime || !noOfSeats || !seats || !showTimeId || !price || !runtime || !language) throw 'Error: Missing data in Purchase Summary';
+const elementValidation = (movieId, movieImage, movieName, theatreId, theatreName, dateTime, noOfSeats, seats, showTimeId, price, runtime, language, screenId) => {
+    if (!movieId || !movieImage || !movieName || !theatreId || !theatreName || !dateTime || !noOfSeats || !seats || !showTimeId || !screenId || !price || !runtime || !language) throw 'Error: Missing data in Purchase Summary';
 
     if (!isValidObjectId(movieId)) throw 'Error: movieId is not a valid ObjectId';
     if (!isValidObjectId(theatreId)) throw 'Error: theatreId is not a valid ObjectId';
+    if (!isValidObjectId(screenId)) throw 'Error: screenId is not a valid ObjectId';
     if (typeof movieImage !== "string") throw 'Error: movieImage not a string'
     if (typeof movieName !== 'string') throw 'Error: movieName not of type string';
     if (typeof language !== 'string') throw 'Error: language not of type string';
@@ -38,10 +41,11 @@ const showPayDetails = (req, res) => {
             showTimeId,
             price,
             runtime,
-            language
+            language,
+            screenId
         } = JSON.parse(req.body['Purchase Summary']);
 
-        elementValidation(movieId, movieImage, movieName, theatreId, theatreName, dateTime, noOfSeats, seats, showTimeId, price, runtime, language)
+        elementValidation(movieId, movieImage, movieName, theatreId, theatreName, dateTime, noOfSeats, seats, showTimeId, price, runtime, language, screenId)
         /*------------ Error Handling End ------------*/
 
         const purchaseSummary = {
@@ -57,6 +61,7 @@ const showPayDetails = (req, res) => {
             showTimeId,
             price,
             runtime,
+            screenId,
             totalAmount: parseFloat(price) * noOfSeats
         }
 
@@ -71,6 +76,8 @@ const showPayDetails = (req, res) => {
 
 
 const bookTicket = async (req, res) => {
+    console.log("IN bookTicket")
+
     bodyCheck(req)
     const {
         movieId,
@@ -84,17 +91,37 @@ const bookTicket = async (req, res) => {
         showTimeId,
         price,
         runtime,
-        language
+        language,
+        screenId
     } = JSON.parse(req.body['Purchase Summary']);
 
-    elementValidation(movieId, movieImage, movieName, theatreId, theatreName, dateTime, noOfSeats, seats, showTimeId, price, runtime, language)
-    let updateSeat = movieScreens.findOneAndUpdate({
-        $and: [
-            {movieId},
-            {"screens": {$elemMatch: {screenId}}}
-        ]
+    elementValidation(movieId, movieImage, movieName, theatreId, theatreName, dateTime, noOfSeats, seats, showTimeId, price, runtime, language, screenId)
+    let availabilityObj = {}
+    console.log(seats)
+    seats.forEach(seat => {
+        availabilityObj[`screens.$[outer].showTime.$[inner].availability.${seat.trim()}`] = 1
     })
+    let updateSeat = await movieScreens.findOneAndUpdate({
+        $and: [{movieId}, {"screens.screenId": screenId}, {"screens.showTime.showTimeId": showTimeId}],
+    }, {
+        $set: availabilityObj,
 
+    }, {
+        "arrayFilters": [{"outer.screenId": ObjectId(screenId)}, {"inner.showTimeId": showTimeId}]
+    })
+    const orderId=new ObjectId()
+    const orders = {
+        orderId , movieId: ObjectId(movieId), theatreId: ObjectId(theatreId), showTimeId, seats, price
+    }
+    if (updateSeat) {
+
+        let userOrder = await Users.findOneAndUpdate({email: req.session.user.email}, {$push: {orders: orders}})
+        if (userOrder) {
+            return {...orders,orderId,movieName,theatreName,movieImage}
+        }
+    }
+
+    return null
 
 }
 
