@@ -121,7 +121,7 @@
             $('#user-lname').html(user.lastName);
             $('#user-gender').html(user.gender.charAt(0).toUpperCase() + user.gender.slice(1));
             const dob = new Date(user.dateOfBirth);
-            $('#user-dob').html(dob.toLocaleString("en-US", {timeZone: "GMT"}).substring(0,9));
+            $('#user-dob').html(dob.toLocaleString("en-US", {timeZone: "GMT"}).substring(0,10));
             console.log(user);
             $('#user-phone').html(formatPhoneNumber(user.phoneNo));
             $('#user-email').html(user.email)
