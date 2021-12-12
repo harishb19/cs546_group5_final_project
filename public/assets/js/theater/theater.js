@@ -90,7 +90,18 @@ function getShowtime(date) {
 }
 
 // Format 00:00:00 to front page time
-function frontTime(time) {
+function frontTime(showTimeId) {
+
+    const sti = new Date(showTimeId);
+    let stiString = sti.toLocaleTimeString();
+
+    if (stiString.length > 10)
+        return stiString.substring(0, 5) + " " + stiString.substring(9,);
+    else{
+        stiString = "0" + stiString;
+        return stiString.substring(0, 5) + " " + stiString.substring(9,);
+    }
+
     return time.substring(0, 5);
 }
 
@@ -136,7 +147,7 @@ function getTheater(id, selectDate) {
                             "<input type=\"text\" name=\"screenId\" value=\"" + screenId + "\" hidden/>" +
                             "<input type=\"text\" name=\"showTimeId\" value=\"" + showtime[j].showTimeId + "\" hidden >" +
                             "<button type=\"submit\" class=\"theater-detail-showtime_variants_time_btn\">" +
-                            frontTime(showtime[j].time) + "</button></form></li>";
+                            frontTime(showtime[j].showTimeId) + "</button></form></li>";
                     }
                     link += "</ul></div></div></div>";
                     theater_detail.append(link);
