@@ -130,7 +130,7 @@ function getTheater(id, selectDate) {
                         screenId: screenId
                     })
                 }).then((responMessage) => {
-                    let theaterInfo = responMessage.doc;
+                    let theaterInfo = responMessage.theaterObj.theaterObj;
                     link = "";
                     link += "<div class=\"theater-detail-showtime\">" + "<div class=\"theater-detail-showtime_header\">" +
                         "<div class=\"theater-detail-showtime_header_name\"><h2>" + theaterInfo.theatreName + "</h2></div>" +
