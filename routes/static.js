@@ -7,6 +7,7 @@ const TopMovies = require("../models/TopMovies");
 const Language = require("../models/Language");
 const Banner = require("../models/Banner");
 
+
 router.get("/", staticController.setUser, staticController.home);
 router.get("/login", staticController.login);
 router.post("/login", staticController.loginAuth);

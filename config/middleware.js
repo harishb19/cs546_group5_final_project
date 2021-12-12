@@ -60,6 +60,7 @@ const initMiddleware = (app) => {
                 return string.slice(start, end)
             }, accessElement: (array, index) => {
                 return array[index]
+
             }, dateParser: (date) => {
                 if (date) {
                     return format(new Date(date), 'do MMM yy')

@@ -1,4 +1,5 @@
 const {isValidObjectId} = require("mongoose");
+
 const movieScreens = require("../../models/MovieScreens");
 const {ObjectId} = require("mongodb");
 const Users = require("../../models/Users");
@@ -6,7 +7,7 @@ const Users = require("../../models/Users");
 const bodyCheck = (req) => {
     if (!req.body) throw 'Error: Request body empty';
     if (!req.body['Purchase Summary']) throw 'Error: Request body empty'
-}
+
 const elementValidation = (movieId, movieImage, movieName, theatreId, theatreName, dateTime, noOfSeats, seats, showTimeId, price, runtime, language, screenId) => {
     if (!movieId || !movieImage || !movieName || !theatreId || !theatreName || !dateTime || !noOfSeats || !seats || !showTimeId || !screenId || !price || !runtime || !language) throw 'Error: Missing data in Purchase Summary';
 
@@ -41,6 +42,7 @@ const showPayDetails = (req, res) => {
             showTimeId,
             price,
             runtime,
+
             language,
             screenId
         } = JSON.parse(req.body['Purchase Summary']);
@@ -73,6 +75,7 @@ const showPayDetails = (req, res) => {
         res.redirect('back')
     }
 }
+
 
 
 const bookTicket = async (req, res) => {

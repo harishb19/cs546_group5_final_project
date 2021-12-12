@@ -1,6 +1,7 @@
 const {registration, checkUserByEmailPassword} = require("../data/auth/auth")
 const {seatSelectionHandler} = require("../data/seat/seat");
 const QRCode = require('qrcode')
+
 const {showPayDetails, bookTicket} = require("../data/checkout/checkout");
 const {getAllMovies, getFilteredMovies} = require("../data/movies/movies");
 const {getLandingPage} = require("../data/home/home");
@@ -54,6 +55,7 @@ module.exports.checkAuth = function (req, res, next) {
         res.redirect("back")
     }
 }
+
 
 module.exports.home = async (req, res, next) => {
     res.locals.title = "CMA"
@@ -130,7 +132,6 @@ module.exports.theaterList = function (req, res, next) {
 
 module.exports.seatSelection = async function (req, res, next) {
     res.locals.title = "Seats"
-
     await seatSelectionHandler(req, res)
 }
 
@@ -191,6 +192,7 @@ module.exports.theaterInfo = function (req, res) {
 }
 
 module.exports.checkout = function (req, res, next) {
+
     res.locals.title = "Pay"
 
     showPayDetails(req, res)
@@ -276,11 +278,12 @@ module.exports.addMovie = function (req, res, next) {
             console.log(err);
         } else {
             req.session.newUser === false;
-            console.log("new movie added.");
+
         }
     })
     res.json({"check": "console log"});
 }
+
 
 module.exports.checkTicketStatus = (req, res, next) => {
     if (req.session.checkout === true) {

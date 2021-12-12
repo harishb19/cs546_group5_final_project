@@ -19,21 +19,25 @@ const getUserData = async (userId) => {
         firstName: user.firstName,
         lastName: user.lastName,
         gender: user.gender,
-        dateOfBirth: user.dateOfBirth
+        dateOfBirth: user.dateOfBirth,
+        phoneNo: user.phoneNo,
+        email: user.email
     }
     return returnUserObj;
 }
 
-const updateUserData = async (userId, firstName, lastName, gender, dateOfBirth) => {
+const updateUserData = async (userId, firstName, lastName, gender, dateOfBirth, phoneNo) => {
 
     /*------------ Error Handling Start ------------*/
 
-    if (!userId || !firstName || !lastName || !gender || !dateOfBirth) throw "Error: Request body empty || Error: less data passed"
+    if (!userId || !firstName || !lastName || !gender || !dateOfBirth || !phoneNo) throw "Error: Request body empty || Error: less data passed"
     if (!ObjectId.isValid(userId)) throw "Error: Invalid userId";
     if (typeof firstName != 'string') throw "Error: firstName not of type string";
     if (typeof lastName != 'string') throw "Error: lastName not of type string";
     if (typeof gender != 'string') throw "Error: gender not of type string";
-    if (!new Date(dateOfBirth)) throw "Error: dateOfBirth not of type date"
+    if (!new Date(dateOfBirth)) throw "Error: dateOfBirth not of type date";
+    if (phoneNo.match(/\d/g).length !== 10) throw 'Error: Invalid Phone Number';
+
 
     /*------------ Error Handling End ------------*/
 
@@ -42,9 +46,10 @@ const updateUserData = async (userId, firstName, lastName, gender, dateOfBirth) 
         {
             $set: {
                 firstName: firstName,
-                lastname: lastName,
+                lastName: lastName,
                 gender: gender,
                 dateOfBirth: dateOfBirth,
+                phoneNo: phoneNo
             }
         }
     );

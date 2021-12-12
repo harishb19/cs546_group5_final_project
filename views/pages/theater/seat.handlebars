@@ -4,8 +4,7 @@
 <div class="containerSeat">
     <div class="movie-info">
         <h3>{{movieInfo.movieName}}</h3>
-        <p>{{theatreInfo.theatreName}} | {{dateParser movieInfo.movieDate}} | {{movieInfo.movieTime}}
-            | {{movieInfo.movieLanguage}} |
+        <p>{{theatreInfo.theatreName}} | {{dateParser movieInfo.movieDate}} | {{timeParser movieInfo.movieDate}} | {{movieInfo.movieLanguage}} |
             ${{movieInfo.price}} </p>
     </div>
     <div class="theatreContainer" id="theatreContainer">
