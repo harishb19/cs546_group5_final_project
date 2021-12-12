@@ -5,16 +5,7 @@ const {ObjectId} = require("mongodb");
 module.exports.home = async function (req, res, next) {
 
     const user = await getUserData(req.session.user.userId);
-    //     {
-    //     userId: req.session.user.userId,
-    //     firstName: req.session.user.firstName,
-    //     lastName: req.session.user.lastName,
-    //     email: req.session.user.email,
-    //     imageUrl: req.session.user.imageUrl,
-    //     phoneNo: req.session.user.phoneNo,
-    //     dateOfBirth: req.session.user.dateOfBirth,
-    //     gender: req.session.user.gender
-    // }
+
     res.render('pages/user/profile', {user: user});
 }
 module.exports.history = async function (req, res, next) {

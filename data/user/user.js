@@ -78,12 +78,20 @@ const getUserOrderHistory = async (userId) => {
         let movie = await Movie.findOne({movieId: order.movieId})
         let theatre = await Theatre.findOne({theatreId: order.theatreId})
 
+        const dob = new Date(order.showTimeId);
+        const date = dob.toLocaleString("en-US", {timeZone: "GMT"})
+        let showDate = date.substring(0,10);
+
+        let showtime = date.substring(11,)
+        let totalCost = Number(order.price) * order.seats.length;
         let history = {
             movieName: movie.movieName,
             theatreName: theatre.theatreName,
-            showTime: order.showTimeId,
+            showDate: showDate,
+            showTime: showtime,
             seats: order.seats,
-            price: order.price,
+            price:  "$"+ order.price,
+            totalCost: "$"+ totalCost.toString()
         }
         userOrderHistory.push(history);
     }
