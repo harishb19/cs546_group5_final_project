@@ -7,7 +7,7 @@ const bannerSchema = new mongoose.Schema(
             ref: "Movies",
             required: true,
         },
-        image:{
+        image: {
             type: String,
             required: true,
         }

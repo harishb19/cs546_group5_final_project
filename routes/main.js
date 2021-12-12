@@ -2,7 +2,7 @@ const staticRoutes = require('./static');
 const userRoutes = require('./user');
 const detailsRoutes = require('./details');
 const theaterRoutes = require('./theater');
-const verifyRoutes= require('./verify');
+const verifyRoutes = require('./verify');
 const initRoutes = function (app) {
     console.log("Initializing Routes...");
 
@@ -12,7 +12,7 @@ const initRoutes = function (app) {
     app.use('/details', detailsRoutes); //Details
     app.use('/theater', theaterRoutes); // Theater
 
-    app.use("*", (req,res) => {
+    app.use("*", (req, res) => {
         res.render('pages/error/notFound');
 
     })

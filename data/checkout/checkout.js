@@ -109,15 +109,15 @@ const bookTicket = async (req, res) => {
     }, {
         "arrayFilters": [{"outer.screenId": ObjectId(screenId)}, {"inner.showTimeId": showTimeId}]
     })
-    const orderId=new ObjectId()
+    const orderId = new ObjectId()
     const orders = {
-        orderId , movieId: ObjectId(movieId), theatreId: ObjectId(theatreId), showTimeId, seats, price
+        orderId, movieId: ObjectId(movieId), theatreId: ObjectId(theatreId), showTimeId, seats, price
     }
     if (updateSeat) {
 
         let userOrder = await Users.findOneAndUpdate({email: req.session.user.email}, {$push: {orders: orders}})
         if (userOrder) {
-            return {...orders,orderId,movieName,theatreName,movieImage}
+            return {...orders, orderId, movieName, theatreName, movieImage}
         }
     }
 

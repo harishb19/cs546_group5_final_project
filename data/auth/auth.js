@@ -70,8 +70,8 @@ const checkUserByEmail = (req, accessToken, refreshToken, profile, done) => {
             req.session.imageUrl = profile["_json"]["picture"];
             if (profile.emails[0].value === "harish.numb19@gmail.com") {
                 req.session.isAdmin = true
-            }else{
-                req.session.isAdmin=false
+            } else {
+                req.session.isAdmin = false
             }
             req.session.loggedIn = true;
 
@@ -112,8 +112,8 @@ const checkUserByEmailPassword = (req, res) => {
                         } else {
                             if (fields.email === "harish.numb19@gmail.com") {
                                 req.session.isAdmin = true
-                            }else{
-                                req.session.isAdmin=false
+                            } else {
+                                req.session.isAdmin = false
                             }
                             req.session.user = user;
                             req.session.imageUrl = user.imageUrl;

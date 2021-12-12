@@ -26,6 +26,7 @@
     border-top-right-radius: 8px;
     border-bottom-right-radius: 8px;
 }
+
 .ticket-cardRight:before, .ticket-cardRight:after {
     content: "";
     position: absolute;
@@ -36,9 +37,11 @@
     border-radius: 50%;
     left: -0.5em;
 }
+
 .ticket-cardRight:before {
     top: -0.4em;
 }
+
 .ticket-cardRight:after {
     bottom: -0.4em;
 }
@@ -47,6 +50,7 @@ h1 {
     font-size: 1.1em;
     margin-top: 0;
 }
+
 h1 span {
     font-weight: normal;
 }
@@ -55,11 +59,13 @@ h1 span {
     text-transform: uppercase;
     font-weight: normal;
 }
+
 .ticket-title h2, .ticket-name h2, .ticket-seat h2, .ticket-time h2 {
     font-size: 0.9em;
     color: #525252;
     margin: 0;
 }
+
 .ticket-title span, .ticket-name span, .ticket-seat span, .ticket-time span {
     font-size: 0.7em;
     color: #a2aeae;
@@ -90,12 +96,14 @@ h1 span {
     border-radius: 1em/0.6em;
     z-index: 1;
 }
+
 .ticket-eye:before, .ticket-eye:after {
     content: "";
     display: block;
     position: absolute;
     border-radius: 50%;
 }
+
 .ticket-eye:before {
     width: 1em;
     height: 1em;
@@ -104,6 +112,7 @@ h1 span {
     left: 8px;
     top: 4px;
 }
+
 .ticket-eye:after {
     width: 0.5em;
     height: 0.5em;
@@ -117,11 +126,13 @@ h1 span {
     text-align: center;
     text-transform: uppercase;
 }
+
 .ticket-number h3 {
     color: #e84c3d;
     margin: 0.9em 0 0 0;
     font-size: 2.5em;
 }
+
 .ticket-number span {
     display: block;
     color: #a2aeae;

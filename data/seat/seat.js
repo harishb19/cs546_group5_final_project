@@ -30,7 +30,7 @@ const seatSelectionHandler = async (req, res) => {
                 const movieDateTime = screenInfoObj.showtime.toString();
 
                 const movieInfo = {
-                    screenId:screenId,
+                    screenId: screenId,
                     movieId: screenInfoObj.movieId,
                     movieName: screenInfoObj.movieName,
                     movieImage: screenInfoObj.movieImage,
