@@ -5,7 +5,7 @@ if (!movieId || !movieName || !movieDate || !theatreId || !theatreName || !showT
 }
 
 const screenJSON = JSON.parse(seatInfo)
-
+console.log(screenJSON);
 const layout = screenJSON.layout;
 const seats = screenJSON.availability;
 let seatList = [];
@@ -64,8 +64,7 @@ function updateSelectedCount() {
 }
 
 function updateButton() {
-    if (!seatList.length) continueButton.disabled = true;
-    else continueButton.disabled = false;
+    if (!seatList.length) continueButton.disabled = true; else continueButton.disabled = false;
 }
 
 continueButton.addEventListener('click', e => {
@@ -73,7 +72,11 @@ continueButton.addEventListener('click', e => {
     const summaryObj = {
         movieId: movieId,
         movieName: movieName,
+        movieImage: movieImage,
         theatreId: theatreId,
+        runtime: runtime,
+        language: language,
+        screenId: screenId,
         theatreName: theatreName,
         dateTime: movieDate,
         noOfSeats: seatList.length,
@@ -86,7 +89,7 @@ continueButton.addEventListener('click', e => {
     const purchaseSummary = document.createElement("input");
 
     form.method = "POST";
-    form.action = "/movies/" + screenJSON.movieId + "/book/seat/pay";
+    form.action = "/movies/" + movieId + "/book/seat/pay";
 
     purchaseSummary.value = JSON.stringify(summaryObj);
     purchaseSummary.type = 'hidden'

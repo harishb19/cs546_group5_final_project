@@ -4,7 +4,9 @@ const movieScreensSchema = new mongoose.Schema({
     movieId: {
         type: mongoose.Schema.Types.ObjectId,
         unique: true,
+
         required: true,
+        ref: 'Movie'
     },
     screens: [{
         screenId: {
