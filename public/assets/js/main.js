@@ -33,21 +33,21 @@
         });
 
         //  VIDEO POP-UP
-        $('.video-popup').magnificPopup({
-            disableOn: 700,
-            type: 'iframe',
-            mainClass: 'mfp-fade',
-            removalDelay: 160,
-            preloader: false,
-            fixedContentPos: false,
-        });
+        // $('.video-popup').magnificPopup({
+        //     disableOn: 700,
+        //     type: 'iframe',
+        //     mainClass: 'mfp-fade',
+        //     removalDelay: 160,
+        //     preloader: false,
+        //     fixedContentPos: false,
+        // });
 
         //WOW Scroll Spy
-        var wow = new WOW({
-            //disabled for mobile
-            mobile: false
-        });
-        wow.init();
+        // var wow = new WOW({
+        //     //disabled for mobile
+        //     mobile: false
+        // });
+        // wow.init();
         // Testimonial Carousel
         var owl = $(".testimonials-carousel");
         owl.owlCarousel({
@@ -134,15 +134,15 @@
         })
 
         // Slick Nav
-        $('.wpb-mobile-menu').slicknav({
-            prependTo: '.navbar-header',
-            parentTag: 'span',
-            allowParentLinks: true,
-            duplicate: false,
-            label: '',
-            closedSymbol: '<i class="mdi mdi-chevron-right"></i>',
-            openedSymbol: '<i class="mdi mdi-chevron-down"></i>',
-        });
+        // $('.wpb-mobile-menu').slicknav({
+        //     prependTo: '.navbar-header',
+        //     parentTag: 'span',
+        //     allowParentLinks: true,
+        //     duplicate: false,
+        //     label: '',
+        //     closedSymbol: '<i class="mdi mdi-chevron-right"></i>',
+        //     openedSymbol: '<i class="mdi mdi-chevron-down"></i>',
+        // });
 
         // Back Top Link
         var offset = 200;
