@@ -163,7 +163,7 @@
     width: 100%;
     border: 1px solid rgb(248, 68, 100);
     border-radius: 8px;
-    display: flex;
+    display: flex !important;
 }
 
 .mdbi-book_button span {
