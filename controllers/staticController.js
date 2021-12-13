@@ -6,6 +6,7 @@ const {showPayDetails, bookTicket} = require("../data/checkout/checkout");
 const {getAllMovies, getFilteredMovies} = require("../data/movies/movies");
 const {getLandingPage} = require("../data/home/home");
 const {theaterInfo} = require("../data/theater/theater");
+const {getMovieScheduled} = require("../data/moviescreen/moviescreen");
 
 const movies = require("../models/Movies");
 const movieScreens = require("../models/MovieScreens");
@@ -135,6 +136,19 @@ module.exports.theaterList = function (req, res, next) {
     res.render('pages/theater/list', {id: req.params.id});
 }
 
+module.exports.movieScheduled = async function (req, res, next) {
+
+    try {
+        if (Object.keys(req.body).length < 1) throw "Error: movieId not passed";
+        if (! ObjectId.isValid(req.body.movieId)) throw "Error: not valid movieId";
+        const movieId = req.body.movieId;
+        const scheduled = await getMovieScheduled(movieId);
+        res.json({scheduled: true})
+    }catch (e){
+        res.json({scheduled: false} )
+    }
+}
+
 module.exports.seatSelection = async function (req, res, next) {
     res.locals.title = "Seats"
     await seatSelectionHandler(req, res)
@@ -185,7 +199,7 @@ module.exports.theaterInfo = async function (req, res) {
     res.locals.title = "Theater"
 
     try {
-        if (Object.keys(req.body) < 1) throw "Error: less data passed";
+        if (Object.keys(req.body).length < 1) throw "Error: less data passed";
         if (! ObjectId.isValid(req.body.screenId)) throw "Error: not valid screenId";
         const screenId = req.body.screenId;
         const theaterObj = await theaterInfo(screenId);
