@@ -20,75 +20,75 @@ router.get("/movies/:id/book", staticController.setUser, staticController.theate
 router.post("/movies/:id/book/seat", staticController.setUser, staticController.seatSelection);
 router.post("/movies/:id/book/seat/pay", staticController.setUser, staticController.checkout);
 router.post("/ticket", staticController.checkAuth, staticController.setUser, staticController.ticket);
-router.post("/top", function (req, res) {
-    const {movieId} = req.body;
-    let tm = new TopMovies();
-    tm.movieId = movieId;
-    tm.save((err, doc) => {
-        if (err) {
-            console.log(err);
-            req.flash("toastMessage", `some error try again`);
-            res.json({err: err});
-        } else {
-            req.flash("toastMessage", `done`);
-            req.flash("toastStatus", `success`);
-            res.json({success: "success"});
-        }
-    });
-});
-router.post("/banner", function (req, res) {
-    const {movieId, image} = req.body;
-    let ban = new Banner();
-    ban.movieId = movieId;
-    ban.image = image;
-    ban.save((err, doc) => {
-        if (err) {
-            console.log(err);
-            req.flash("toastMessage", `some error try again`);
-            res.json({err: err});
-        } else {
-            req.flash("toastMessage", `done`);
-            req.flash("toastStatus", `success`);
-            res.json({success: "success"});
-        }
-    });
-});
-router.post("/genre", function (req, res) {
-    const {name, images} = req.body;
-    let gen = new Genres();
-    gen.name = name;
-    gen.images = images;
-    gen.save((err, doc) => {
-        if (err) {
-            console.log(err);
-            req.flash("toastMessage", `some error try again`);
-            res.json({err: err});
-        } else {
-            req.flash("toastMessage", `done`);
-            req.flash("toastStatus", `success`);
-            res.json({success: "success"});
-        }
-    });
-});
-router.post("/language", function (req, res) {
-    const {name} = req.body;
-    let lang = new Language();
-    lang.name = name;
-    lang.save((err, doc) => {
-        if (err) {
-            console.log(err);
-            req.flash("toastMessage", `some error try again`);
-            res.json({err: err});
-        } else {
-            req.flash("toastMessage", `done`);
-            req.flash("toastStatus", `success`);
-            res.json({success: "success"});
-        }
-    });
-});
-router.post('/addTheatre', staticController.addTheatre);
-router.post('/addMovie', staticController.addMovie);
-router.post('/addMovieScreens', staticController.addMovieScreens);
+// router.post("/top", function (req, res) {
+//     const {movieId} = req.body;
+//     let tm = new TopMovies();
+//     tm.movieId = movieId;
+//     tm.save((err, doc) => {
+//         if (err) {
+//             console.log(err);
+//             req.flash("toastMessage", `some error try again`);
+//             res.json({err: err});
+//         } else {
+//             req.flash("toastMessage", `done`);
+//             req.flash("toastStatus", `success`);
+//             res.json({success: "success"});
+//         }
+//     });
+// });
+// router.post("/banner", function (req, res) {
+//     const {movieId, image} = req.body;
+//     let ban = new Banner();
+//     ban.movieId = movieId;
+//     ban.image = image;
+//     ban.save((err, doc) => {
+//         if (err) {
+//             console.log(err);
+//             req.flash("toastMessage", `some error try again`);
+//             res.json({err: err});
+//         } else {
+//             req.flash("toastMessage", `done`);
+//             req.flash("toastStatus", `success`);
+//             res.json({success: "success"});
+//         }
+//     });
+// });
+// router.post("/genre", function (req, res) {
+//     const {name, images} = req.body;
+//     let gen = new Genres();
+//     gen.name = name;
+//     gen.images = images;
+//     gen.save((err, doc) => {
+//         if (err) {
+//             console.log(err);
+//             req.flash("toastMessage", `some error try again`);
+//             res.json({err: err});
+//         } else {
+//             req.flash("toastMessage", `done`);
+//             req.flash("toastStatus", `success`);
+//             res.json({success: "success"});
+//         }
+//     });
+// });
+// router.post("/language", function (req, res) {
+//     const {name} = req.body;
+//     let lang = new Language();
+//     lang.name = name;
+//     lang.save((err, doc) => {
+//         if (err) {
+//             console.log(err);
+//             req.flash("toastMessage", `some error try again`);
+//             res.json({err: err});
+//         } else {
+//             req.flash("toastMessage", `done`);
+//             req.flash("toastStatus", `success`);
+//             res.json({success: "success"});
+//         }
+//     });
+// });
+// router.post('/addTheatre', staticController.addTheatre);
+// router.post('/addMovie', staticController.addMovie);
+// router.post('/addMovieScreens', staticController.addMovieScreens);
 router.get("/logout", staticController.logout);
 
 // Google oAuth Sign In

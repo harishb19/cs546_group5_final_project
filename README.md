@@ -14,6 +14,13 @@ command line tool.
 # NPM (Recomend)
 npm install --save
 ```
+```sh
+create a .env file in the route derectory containing the following key
+ATLAS_URI - Mongo url
+database - DB name
+CLIENT_ID - Google id
+CLIENT_SECRET - Google secret
+```
 
 ## Running
 
@@ -24,96 +31,31 @@ npm start
 
 ## Dependencies
 
-<details>
-	<summary><a href="https://ghub.io/connect-flash">connect-flash</a>: Flash message middleware for Connect.</summary>
-	<b>Author</b>: Jared Hanson</br>
-	<b>License</b>: </br>
-	<b>Version</b>: ^0.1.1
-</details>
-<details>
-	<summary><a href="https://ghub.io/connect-mongodb-session">connect-mongodb-session</a>: MongoDB session store for connect/express built by MongoDB</summary>
-	<b>Author</b>: Valeri Karpov</br>
-	<b>License</b>: </br>
-	<b>Version</b>: ^3.1.1
-</details>
-<details>
-	<summary><a href="https://ghub.io/cors">cors</a>: Node.js CORS middleware</summary>
-	<b>Author</b>: Troy Goode</br>
-	<b>License</b>: MIT</br>
-	<b>Version</b>: ^2.8.5
-</details>
-<details>
-	<summary><a href="https://ghub.io/dotenv">dotenv</a>: Loads environment variables from .env file</summary>
-	<b>Author</b>: ~jcblw, scottmotte, motdotla</br>
-	<b>License</b>: BSD-2-Clause</br>
-	<b>Version</b>: ^10.0.0
-</details>
-<details>
-	<summary><a href="https://ghub.io/express">express</a>: Fast, unopinionated, minimalist web framework</summary>
-	<b>Author</b>: TJ Holowaychuk</br>
-	<b>License</b>: MIT</br>
-	<b>Version</b>: ^4.17.1
-</details>
-<details>
-	<summary><a href="https://ghub.io/express-handlebars">express-handlebars</a>: A Handlebars view engine for Express which doesn&#x27;t suck.</summary>
-	<b>Author</b>: Eric Ferraiuolo</br>
-	<b>License</b>: BSD-3-Clause</br>
-	<b>Version</b>: ^6.0.1
-</details>
-<details>
-	<summary><a href="https://ghub.io/formidable">formidable</a>: A node.js module for parsing form data, especially file uploads.</summary>
-	<b>Author</b>: felixge, grossacasacs, kornel, quantumsheep, tunnckocore</br>
-	<b>License</b>: MIT</br>
-	<b>Version</b>: ^2.0.1
-</details>
-<details>
-	<summary><a href="https://ghub.io/method-override">method-override</a>: Override HTTP verbs</summary>
-	<b>Author</b>: fishrock123, tjholowaychuk, dougwilson, jongleberry, defunctzombie</br>
-	<b>License</b>: MIT</br>
-	<b>Version</b>: ^3.0.0
-</details>
-<details>
-	<summary><a href="https://ghub.io/mongodb">mongodb</a>: The official MongoDB driver for Node.js</summary>
-	<b>Author</b>: The MongoDB NodeJS Team</br>
-	<b>License</b>: Apache-2.0</br>
-	<b>Version</b>: ^4.2.0
-</details>
-<details>
-	<summary><a href="https://ghub.io/mongoose">mongoose</a>: Mongoose MongoDB ODM</summary>
-	<b>Author</b>: Guillermo Rauch</br>
-	<b>License</b>: MIT</br>
-	<b>Version</b>: ^6.0.13
-</details>
-<details>
-	<summary><a href="https://ghub.io/morgan">morgan</a>: HTTP request logger middleware for node.js</summary>
-	<b>Author</b>: dougwilson</br>
-	<b>License</b>: MIT</br>
-	<b>Version</b>: ^1.10.0
-</details>
-<details>
-	<summary><a href="https://ghub.io/passport">passport</a>: Simple, unobtrusive authentication for Node.js.</summary>
-	<b>Author</b>: Jared Hanson</br>
-	<b>License</b>: MIT</br>
-	<b>Version</b>: ^0.5.0
-</details>
-<details>
-	<summary><a href="https://ghub.io/passport-google-oauth2">passport-google-oauth2</a>: Passport strategy for Google OAuth 2.0</summary>
-	<b>Author</b>: Marcus Stade</br>
-	<b>License</b>: MIT</br>
-	<b>Version</b>: ^0.2.0
-</details>
-<details>
-	<summary><a href="https://ghub.io/serve-favicon">serve-favicon</a>: favicon serving middleware with caching</summary>
-	<b>Author</b>: Douglas Christopher Wilson</br>
-	<b>License</b>: MIT</br>
-	<b>Version</b>: ^2.5.0
-</details>
-<details>
-	<summary><a href="https://ghub.io/express-session">express-session</a>: Simple session middleware for Express</summary>
-	<b>Author</b>: TJ Holowaychuk</br>
-	<b>License</b>: MIT</br>
-	<b>Version</b>: ^1.17.2
-</details>
+- [@khanacademy/tota11y](https://ghub.io/@khanacademy/tota11y): An accessibility visualization toolkit
+- [bcryptjs](https://ghub.io/bcryptjs): Optimized bcrypt in plain JavaScript with zero dependencies. Compatible to &#39;bcrypt&#39;.
+- [connect-flash](https://ghub.io/connect-flash): Flash message middleware for Connect.
+- [connect-mongodb-session](https://ghub.io/connect-mongodb-session): MongoDB session store for connect/express built by MongoDB
+- [cors](https://ghub.io/cors): Node.js CORS middleware
+- [date-fns](https://ghub.io/date-fns): Modern JavaScript date utility library
+- [dotenv](https://ghub.io/dotenv): Loads environment variables from .env file
+- [express](https://ghub.io/express): Fast, unopinionated, minimalist web framework
+- [express-handlebars](https://ghub.io/express-handlebars): A Handlebars view engine for Express which doesn&#39;t suck.
+- [express-session](https://ghub.io/express-session): Simple session middleware for Express
+- [formidable](https://ghub.io/formidable): A node.js module for parsing form data, especially file uploads.
+- [ip](https://ghub.io/ip): [![](https://badge.fury.io/js/ip.svg)](https://www.npmjs.com/package/ip)
+- [method-override](https://ghub.io/method-override): Override HTTP verbs
+- [mongodb](https://ghub.io/mongodb): The official MongoDB driver for Node.js
+- [mongoose](https://ghub.io/mongoose): Mongoose MongoDB ODM
+- [morgan](https://ghub.io/morgan): HTTP request logger middleware for node.js
+- [passport](https://ghub.io/passport): Simple, unobtrusive authentication for Node.js.
+- [passport-google-oauth2](https://ghub.io/passport-google-oauth2): Passport strategy for Google OAuth 2.0
+- [qrcode](https://ghub.io/qrcode): QRCode / 2d Barcode api with both server side and client side support using canvas
+- [serve-favicon](https://ghub.io/serve-favicon): favicon serving middleware with caching
+- [toastify-js](https://ghub.io/toastify-js): Toastify is a lightweight, vanilla JS toast notification library.
+
+## Dev Dependencies
+
+- [nodemon](https://ghub.io/nodemon): Simple monitor script for use during development of a node.js app.
 
 ## Contributors
 
@@ -123,4 +65,4 @@ please [create an issue](https://github.com/harishb19/cs546_group5_final_project
 
 ## License
 
-[ISC](LICENSE)
+ISC
