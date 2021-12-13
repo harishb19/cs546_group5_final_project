@@ -60,6 +60,9 @@
 
         </form>
     </div>
+    <form method="get" action="users/orders">
+        <input type="submit" value="Order History">
+    </form>
 </div>
 {{#section "script"}}
     <script type="text/javascript">
@@ -72,5 +75,5 @@
         const email = '{{{user.email}}}';
     </script>
 
-    <script src="../../../public/assets/js/profile.js"></script>
+    <script src="../../../public/assets/js/user/profile.js"></script>
 {{/section}}

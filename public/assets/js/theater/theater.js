@@ -50,7 +50,7 @@ function getThreeWeek() {
         curDay += 1;
         curWeek = (curWeek + 1) % 7;
         threeWeek[i].week = weeks[curWeek];
-        if (curDay > month_day[curMonth - 1][1]) {
+        if (curDay > month_day[curMonth][1]) {
             if (curMonth == 11) {
                 curMonth = 0;
                 curYear += 1;
@@ -90,7 +90,18 @@ function getShowtime(date) {
 }
 
 // Format 00:00:00 to front page time
-function frontTime(time) {
+function frontTime(showTimeId) {
+
+    const sti = new Date(showTimeId);
+    let stiString = sti.toLocaleTimeString();
+
+    if (stiString.length > 10)
+        return stiString.substring(0, 5) + " " + stiString.substring(9,);
+    else{
+        stiString = "0" + stiString;
+        return stiString.substring(0, 5) + " " + stiString.substring(9,);
+    }
+
     return time.substring(0, 5);
 }
 
@@ -119,7 +130,7 @@ function getTheater(id, selectDate) {
                         screenId: screenId
                     })
                 }).then((responMessage) => {
-                    let theaterInfo = responMessage.doc;
+                    let theaterInfo = responMessage.theaterObj.theaterObj;
                     link = "";
                     link += "<div class=\"theater-detail-showtime\">" + "<div class=\"theater-detail-showtime_header\">" +
                         "<div class=\"theater-detail-showtime_header_name\"><h2>" + theaterInfo.theatreName + "</h2></div>" +
@@ -136,7 +147,7 @@ function getTheater(id, selectDate) {
                             "<input type=\"text\" name=\"screenId\" value=\"" + screenId + "\" hidden/>" +
                             "<input type=\"text\" name=\"showTimeId\" value=\"" + showtime[j].showTimeId + "\" hidden >" +
                             "<button type=\"submit\" class=\"theater-detail-showtime_variants_time_btn\">" +
-                            frontTime(showtime[j].time) + "</button></form></li>";
+                            frontTime(showtime[j].showTimeId) + "</button></form></li>";
                     }
                     link += "</ul></div></div></div>";
                     theater_detail.append(link);

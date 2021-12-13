@@ -1,24 +1,18 @@
 const {userdata} = require("./userController");
-const {updateUserData, getUserData} = require("../data/user/user");
+const {updateUserData, getUserData, getUserOrderHistory} = require("../data/user/user");
 const {ObjectId} = require("mongodb");
 
 module.exports.home = async function (req, res, next) {
 
     const user = await getUserData(req.session.user.userId);
-    //     {
-    //     userId: req.session.user.userId,
-    //     firstName: req.session.user.firstName,
-    //     lastName: req.session.user.lastName,
-    //     email: req.session.user.email,
-    //     imageUrl: req.session.user.imageUrl,
-    //     phoneNo: req.session.user.phoneNo,
-    //     dateOfBirth: req.session.user.dateOfBirth,
-    //     gender: req.session.user.gender
-    // }
+
     res.render('pages/user/profile', {user: user});
 }
-module.exports.history = function (req, res, next) {
-    res.render('orders');
+module.exports.history = async function (req, res, next) {
+
+    const userOrderHistory = await getUserOrderHistory(req.session.user.userId);
+
+    res.render('pages/user/orderHistory', {'orderHistory': userOrderHistory});
 }
 module.exports.active = function (req, res, next) {
     res.render('tickers');

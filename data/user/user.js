@@ -1,5 +1,8 @@
 const {ObjectId} = require("mongodb");
 const Users = require("../../models/Users");
+const Movie = require("../../models/Movies");
+const Theatre = require("../../models/Theatre")
+const {or} = require("ip");
 
 const getUserData = async (userId) => {
 
@@ -56,6 +59,46 @@ const updateUserData = async (userId, firstName, lastName, gender, dateOfBirth, 
     if (updatedInfo.modifiedCount === 0) throw 'Error: Could not update user';
 }
 
+const getUserOrderHistory = async (userId) => {
+
+    /*------------ Error Handling Start ------------*/
+
+    if (!userId) throw "Error: No userId passed"
+    if (!ObjectId.isValid(userId)) throw "Error: Invalid userId"
+
+    /*------------ Error Handling End ------------*/
+
+    const user = await Users.findOne({userId: ObjectId(userId)});
+
+    if (!user) throw "Error: user not found";
+
+    let userOrderHistory = [];
+    for (let order of user.orders){
+
+        let movie = await Movie.findOne({movieId: order.movieId})
+        let theatre = await Theatre.findOne({theatreId: order.theatreId})
+
+        const dob = new Date(order.showTimeId);
+        const date = dob.toLocaleString("en-US", {timeZone: "GMT"})
+        let showDate = date.substring(0,10);
+
+        let showtime = date.substring(11,)
+        let totalCost = Number(order.price) * order.seats.length;
+        let history = {
+            movieName: movie.movieName,
+            theatreName: theatre.theatreName,
+            showDate: showDate,
+            showTime: showtime,
+            seats: order.seats,
+            price:  "$"+ order.price,
+            totalCost: "$"+ totalCost.toString()
+        }
+        userOrderHistory.push(history);
+    }
+
+    return userOrderHistory;
+}
+
 module.exports = {
-    updateUserData, getUserData
+    updateUserData, getUserData, getUserOrderHistory
 }

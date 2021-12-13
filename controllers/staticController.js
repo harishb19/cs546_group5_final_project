@@ -5,12 +5,16 @@ const QRCode = require('qrcode')
 const {showPayDetails, bookTicket} = require("../data/checkout/checkout");
 const {getAllMovies, getFilteredMovies} = require("../data/movies/movies");
 const {getLandingPage} = require("../data/home/home");
+const {theaterInfo} = require("../data/theater/theater");
+const {getMovieScheduled} = require("../data/moviescreen/moviescreen");
 
 const movies = require("../models/Movies");
 const movieScreens = require("../models/MovieScreens");
 const theater = require("../models/Theatre");
 let mongoose = require('mongoose');
 const ip = require("ip");
+const {ObjectId} = require("mongodb");
+
 module.exports.setUser = (req, res, next) => {
     if (req.session.loggedIn === true) {
         console.log(req.session.user, "plxxxxxx")
@@ -75,9 +79,10 @@ module.exports.movies = function (req, res, next) {
 }
 
 module.exports.movieDetail_Info = function (req, res) {
-    const id = req.body.id;
+
     let movie_Id;
     try {
+        const id = req.body.id;
         movie_Id = mongoose.Types.ObjectId(id);
     } catch (error) {
         return res.json({success: false});
@@ -90,9 +95,10 @@ module.exports.movieDetail_Info = function (req, res) {
 }
 
 module.exports.movieDetail_Cast = function (req, res) {
-    const id = req.body.id;
+
     let movie_Id;
     try {
+        const id = req.body.id;
         movie_Id = mongoose.Types.ObjectId(id);
     } catch (error) {
         return res.json({success: false});
@@ -130,6 +136,19 @@ module.exports.theaterList = function (req, res, next) {
     res.render('pages/theater/list', {id: req.params.id});
 }
 
+module.exports.movieScheduled = async function (req, res, next) {
+
+    try {
+        if (Object.keys(req.body).length < 1) throw "Error: movieId not passed";
+        if (! ObjectId.isValid(req.body.movieId)) throw "Error: not valid movieId";
+        const movieId = req.body.movieId;
+        const scheduled = await getMovieScheduled(movieId);
+        res.json({scheduled: true})
+    }catch (e){
+        res.json({scheduled: false} )
+    }
+}
+
 module.exports.seatSelection = async function (req, res, next) {
     res.locals.title = "Seats"
     await seatSelectionHandler(req, res)
@@ -138,13 +157,14 @@ module.exports.seatSelection = async function (req, res, next) {
 module.exports.screenInfo = function (req, res) {
     res.locals.title = "Screen"
 
-    let movie_Id;
+    let movie_Id, selectDate;
     try {
         movie_Id = mongoose.Types.ObjectId(req.body.id);
+        selectDate = new Date(req.body.selectDate + " 00:00:00 GMT");
     } catch (error) {
         return res.json({success: false});
     }
-    const selectDate = new Date(req.body.selectDate + " 00:00:00 GMT");
+
     movieScreens.findOne({movieId: movie_Id}, (err, doc) => {
         if (err) return res.json({success: false});
         if (!doc) return res.json({success: false});
@@ -175,20 +195,19 @@ module.exports.screenInfo = function (req, res) {
     });
 }
 
-module.exports.theaterInfo = function (req, res) {
+module.exports.theaterInfo = async function (req, res) {
     res.locals.title = "Theater"
 
-    let screenId;
     try {
-        screenId = mongoose.Types.ObjectId(req.body.screenId);
+        if (Object.keys(req.body).length < 1) throw "Error: less data passed";
+        if (! ObjectId.isValid(req.body.screenId)) throw "Error: not valid screenId";
+        const screenId = req.body.screenId;
+        const theaterObj = await theaterInfo(screenId);
+
+        return res.json({success: true, theaterObj});
     } catch (error) {
         return res.json({success: false});
     }
-    theater.findOne({screenId: screenId}, (err, doc) => {
-        if (err) return res.json({success: false});
-        if (!doc) return res.json({success: false});
-        return res.json({success: true, doc});
-    });
 }
 
 module.exports.checkout = function (req, res, next) {
@@ -211,15 +230,13 @@ module.exports.ticket = async (req, res, next) => {
         req.flash("toastMessage", "Something went wrong");
         req.redirect("/")
     }
-
-
 }
 
 
 module.exports.addMovieScreens = function (req, res, next) {
     const {movieId, screens} = req.body;
 
-    const movieScreen = new MovieScreens({
+    const movieScreen = new movieScreens({
         movieId: movieId, screens: screens
     })
 
@@ -240,10 +257,10 @@ module.exports.addTheatre = function (req, res, next) {
     console.log(id)
     const {theatreId, theatreName, location, screens} = req.body;
 
-    const theatre = new Theatre({
+    const addTheatre = new theater({
         theatreId: theatreId, theatreName: theatreName, location: location, screens: screens
     })
-    theatre.save(function (err, doc) {
+    addTheatre.save(function (err, doc) {
         if (err) {
             console.log(err);
         } else {

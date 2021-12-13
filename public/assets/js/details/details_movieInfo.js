@@ -121,8 +121,21 @@ $.ajax({
     }
 });
 
+const book = $('#book')
+$.ajax({
+    type: 'post',
+    url: '/details/moviescheduled',
+    contentType: 'application/json',
+    data: JSON.stringify({
+        movieId: movieId
+    })
+}).then(function (responMessage) {
+    if(! responMessage.scheduled) {
+        book.hide();
+    }
+});
 // link to theater list
-const book = $('#book');
+;
 book.click(function () {
     location.href = window.location.href + "/book";
 });
