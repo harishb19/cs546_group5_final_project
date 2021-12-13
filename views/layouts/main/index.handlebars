@@ -23,6 +23,9 @@
             crossorigin="anonymous"
     />
 
+    <!-- Meterial Icon CSS -->
+    <link rel="stylesheet" href="/public/assets/css/materialdesignicons.min.css">
+
     <!-- Material CSS -->
     <link rel="stylesheet" href="/public/assets/css/material.min.css">
     <!-- Ripples CSS -->
@@ -46,6 +49,8 @@
 
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.5.1.js"
+            integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc=" crossorigin="anonymous"></script>
     <script
             src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
             integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
@@ -80,9 +85,8 @@
 
 </head>
 
-<body>
 
-{{> nav}}
+{{> nav userName=userName }}
 
 {{{body}}}
 
@@ -127,7 +131,13 @@
 <script src="/public/assets/js/main.js"></script>
 <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
 
+
 {{{_sections.script}}}
+<script>
+    if (window.history.replaceState) {
+        window.history.replaceState(null, null, window.location.href);
+    }
+</script>
 
 </body>
 

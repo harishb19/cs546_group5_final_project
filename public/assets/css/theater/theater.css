@@ -55,7 +55,7 @@
 }
 
 .theater-calendar-date_btn_weekday {
-    font-family: proxima-nova,Helvetica,Arial,sans-serif;
+    font-family: proxima-nova, Helvetica, Arial, sans-serif;
     font-size: 12px;
     font-weight: 700;
     color: #3478c1;
@@ -67,7 +67,7 @@
     font-size: 12px;
     letter-spacing: .3px;
     margin-top: 5px;
-    font-family: "Futura Condensed","Arial Narrow",Arial,sans-serif;
+    font-family: "Futura Condensed", "Arial Narrow", Arial, sans-serif;
     color: #171c20;
     font-weight: 400;
     display: block;
@@ -76,7 +76,7 @@
 
 .theater-calendar-date_btn_day {
     font-size: 25px;
-    font-family: "Futura Condensed","Arial Narrow",Arial,sans-serif;
+    font-family: "Futura Condensed", "Arial Narrow", Arial, sans-serif;
     color: #171c20;
     font-weight: 400;
     display: block;
@@ -167,7 +167,7 @@
     height: 35px;
 }
 
-.theater-detail-showtime_variants_time_btn{
+.theater-detail-showtime_variants_time_btn {
     width: 78px;
     height: 35px;
     display: flex;
@@ -182,11 +182,11 @@
     color: #fff;
 }
 
-.arrow{
+.arrow {
     max-width: 35px;
     max-height: 40px;
     min-width: 35px;
-    min-height: 40px; 
+    min-height: 40px;
     opacity: 0.7;
 }
 
