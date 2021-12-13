@@ -22,20 +22,24 @@ $.ajax({
         if (reviewinfo.length <= review_showCount) {
             for (let i = 0; i < reviewinfo.length; ++i) {
                 if (reviewinfo[i].userImgSrc.length == 0) reviewinfo[i].userImgSrc = defaultUserUrl;
-                review_link += "<li class=\"review\">" + "<div class=\"review-wrapper\">" + "<div class=\"review-info\">" +
-                    "<div class=\"reviewer-header\">" + "<div class=\"reviewer\">" + "<div class=\"reviewer-img\">" +
-                    "<img src=\"" + reviewinfo[i].userImgSrc + "\"></div>" + "<div class=\"reviewer-name\"><h3>" +
-                    reviewinfo[i].userName + "</h3></div></div></div>" + "<div class=\"review-content\"><p>" +
-                    reviewinfo[i].userReview + "</p></div></div></div></li>";
+
+                review_link += "<li class=\"review\">" + "<div class=\"review-wrapper\">" + "<div class=\"review-info\">" + 
+                "<div class=\"reviewer-header\">" + "<div class=\"reviewer\">" + "<div class=\"reviewer-img\">" + 
+                "<img src=\"" + reviewinfo[i].userImgSrc + "\" alt=\"User Image\"></div>" + "<div class=\"reviewer-name\"><h3>" + 
+                reviewinfo[i].userName + "</h3></div></div></div>" + "<div class=\"review-content\"><p>" + 
+                reviewinfo[i].userReview + "</p></div></div></div></li>";
+
             }
         } else {
             for (let i = 0; i < review_showCount; ++i) {
                 if (reviewinfo[i].userImgSrc.length == 0) reviewinfo[i].userImgSrc = defaultUserUrl;
-                review_link += "<li class=\"review\">" + "<div class=\"review-wrapper\">" + "<div class=\"review-info\">" +
-                    "<div class=\"reviewer-header\">" + "<div class=\"reviewer\">" + "<div class=\"reviewer-img\">" +
-                    "<img src=\"" + reviewinfo[i].userImgSrc + "\"></div>" + "<div class=\"reviewer-name\"><h3>" +
-                    reviewinfo[i].userName + "</h3></div></div></div>" + "<div class=\"review-content\"><p>" +
-                    reviewinfo[i].userReview + "</p></div></div></div></li>";
+
+                review_link += "<li class=\"review\">" + "<div class=\"review-wrapper\">" + "<div class=\"review-info\">" + 
+                "<div class=\"reviewer-header\">" + "<div class=\"reviewer\">" + "<div class=\"reviewer-img\">" + 
+                "<img src=\"" + reviewinfo[i].userImgSrc + "\" alt=\"User Image\"></div>" + "<div class=\"reviewer-name\"><h3>" + 
+                reviewinfo[i].userName + "</h3></div></div></div>" + "<div class=\"review-content\"><p>" + 
+                reviewinfo[i].userReview + "</p></div></div></div></li>";
+
             }
             review_right.css('visibility', 'visible');
         }
@@ -57,20 +61,24 @@ review_right.click(function () {
         review_right.css('visibility', 'hidden');
         for (let i = beginIndex; i < reviewinfo.length; ++i) {
             if (reviewinfo[i].userImgSrc.length == 0) reviewinfo[i].userImgSrc = defaultUserUrl;
-            review_link += "<li class=\"review\">" + "<div class=\"review-wrapper\">" + "<div class=\"review-info\">" +
-                "<div class=\"reviewer-header\">" + "<div class=\"reviewer\">" + "<div class=\"reviewer-img\">" +
-                "<img src=\"" + reviewinfo[i].userImgSrc + "\"></div>" + "<div class=\"reviewer-name\"><h3>" +
-                reviewinfo[i].userName + "</h3></div></div></div>" + "<div class=\"review-content\"><p>" +
-                reviewinfo[i].userReview + "</p></div></div></div></li>";
+
+            review_link += "<li class=\"review\">" + "<div class=\"review-wrapper\">" + "<div class=\"review-info\">" + 
+            "<div class=\"reviewer-header\">" + "<div class=\"reviewer\">" + "<div class=\"reviewer-img\">" + 
+            "<img src=\"" + reviewinfo[i].userImgSrc + "\" alt=\"User Image\"></div>" + "<div class=\"reviewer-name\"><h3>" + 
+            reviewinfo[i].userName + "</h3></div></div></div>" + "<div class=\"review-content\"><p>" + 
+            reviewinfo[i].userReview + "</p></div></div></div></li>";
+
         }
     } else {
         for (let i = beginIndex; i < review_showCount; ++i) {
             if (reviewinfo[i].userImgSrc.length == 0) reviewinfo[i].userImgSrc = defaultUserUrl;
-            review_link += "<li class=\"review\">" + "<div class=\"review-wrapper\">" + "<div class=\"review-info\">" +
-                "<div class=\"reviewer-header\">" + "<div class=\"reviewer\">" + "<div class=\"reviewer-img\">" +
-                "<img src=\"" + reviewinfo[i].userImgSrc + "\"></div>" + "<div class=\"reviewer-name\"><h3>" +
-                reviewinfo[i].userName + "</h3></div></div></div>" + "<div class=\"review-content\"><p>" +
-                reviewinfo[i].userReview + "</p></div></div></div></li>";
+
+            review_link += "<li class=\"review\">" + "<div class=\"review-wrapper\">" + "<div class=\"review-info\">" + 
+            "<div class=\"reviewer-header\">" + "<div class=\"reviewer\">" + "<div class=\"reviewer-img\">" + 
+            "<img src=\"" + reviewinfo[i].userImgSrc + "\" alt=\"User Image\"></div>" + "<div class=\"reviewer-name\"><h3>" + 
+            reviewinfo[i].userName + "</h3></div></div></div>" + "<div class=\"review-content\"><p>" + 
+            reviewinfo[i].userReview + "</p></div></div></div></li>";
+
         }
     }
     review.append(review_link);
@@ -86,11 +94,13 @@ review_left.click(function () {
     }
     for (let i = beginIndex; i < review_showCount; ++i) {
         if (reviewinfo[i].userImgSrc.length == 0) reviewinfo[i].userImgSrc = defaultUserUrl;
-        review_link += "<li class=\"review\">" + "<div class=\"review-wrapper\">" + "<div class=\"review-info\">" +
-            "<div class=\"reviewer-header\">" + "<div class=\"reviewer\">" + "<div class=\"reviewer-img\">" +
-            "<img src=\"" + reviewinfo[i].userImgSrc + "\"></div>" + "<div class=\"reviewer-name\"><h3>" +
-            reviewinfo[i].userName + "</h3></div></div></div>" + "<div class=\"review-content\"><p>" +
-            reviewinfo[i].userReview + "</p></div></div></div></li>";
+
+        review_link += "<li class=\"review\">" + "<div class=\"review-wrapper\">" + "<div class=\"review-info\">" + 
+        "<div class=\"reviewer-header\">" + "<div class=\"reviewer\">" + "<div class=\"reviewer-img\">" + 
+        "<img src=\"" + reviewinfo[i].userImgSrc + "\" alt=\"User Image\"></div>" + "<div class=\"reviewer-name\"><h3>" + 
+        reviewinfo[i].userName + "</h3></div></div></div>" + "<div class=\"review-content\"><p>" + 
+        reviewinfo[i].userReview + "</p></div></div></div></li>";
+
     }
     review.append(review_link);
 });

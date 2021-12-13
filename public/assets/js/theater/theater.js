@@ -10,16 +10,6 @@ const calendar_arrow_right = $('#calendar_arrow_right');
 const weeks = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
 const month_day = [['Jan', 31], ['Feb', 28], ['Mar', 31], ['Apr', 30], ['May', 31], ['Jun', 30], ['Jul', 31], ['Aug', 31], ['Sep', 30], ['Oct', 31], ['Nov', 30], ['Dec', 31]]
 
-// get movieId
-function getMovieIdFromBookUrl() {
-    const url = window.location.href;
-    let lastIndex = url.lastIndexOf('\/');
-    let str = url.substring(0, lastIndex);
-    let secondLast = str.lastIndexOf('\/');
-    str = str.substring(secondLast + 1);
-    return str;
-}
-
 // leap year
 function isleapyear(year) {
     year = parseInt(year);
@@ -51,11 +41,11 @@ function getThreeWeek() {
         curWeek = (curWeek + 1) % 7;
         threeWeek[i].week = weeks[curWeek];
         if (curDay > month_day[curMonth][1]) {
+
             if (curMonth == 11) {
+
                 curMonth = 0;
                 curYear += 1;
-            } else {
-                curMonth += 1;
             }
             curDay = 1;
         }
@@ -133,11 +123,13 @@ function getTheater(id, selectDate) {
                     let theaterInfo = responMessage.theaterObj.theaterObj;
                     link = "";
                     link += "<div class=\"theater-detail-showtime\">" + "<div class=\"theater-detail-showtime_header\">" +
-                        "<div class=\"theater-detail-showtime_header_name\"><h2>" + theaterInfo.theatreName + "</h2></div>" +
-                        "<div class=\"theater-detail-showtime_header_address\"><p>" + theaterInfo.location + "</p></div></div>" +
-                        "<div class=\"theater-detail-showtime_variants\">" + "<div class=\"theater-detail-showtime_variants_format\">" +
-                        "Standard</div>" + "<div class=\"theater-detail-showtime_variants_list_wrapper\">" +
-                        "<ul class=\"theater-detail-showtime_variants_list\">";
+
+                    "<div class=\"theater-detail-showtime_header_name\"><h1>" + theaterInfo.theatreName + "</h1></div>" + 
+                    "<div class=\"theater-detail-showtime_header_address\"><p>" + theaterInfo.location + "</p></div></div>" + 
+                    "<div class=\"theater-detail-showtime_variants\">" + "<div class=\"theater-detail-showtime_variants_format\">" +
+                    "Standard</div>" + "<div class=\"theater-detail-showtime_variants_list_wrapper\">" + 
+                    "<ul class=\"theater-detail-showtime_variants_list\">";
+
                     const showtime = screenInfo[i].showTimes;
                     for (let j = 0; j < showtime.length; ++j) {
                         link += "<li class=\"theater-detail-showtime_variants_time\">" +
