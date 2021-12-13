@@ -2,8 +2,8 @@
     <link rel="stylesheet" href="../../../public/assets/css/seat.css"/>
 {{/section}}
 <div class="containerSeat">
+    <h1>{{movieInfo.movieName}}</h1>
     <div class="movie-info">
-        <h3>{{movieInfo.movieName}}</h3>
         <p>{{theatreInfo.theatreName}} | {{dateParser movieInfo.movieDate}} | {{timeParser movieInfo.movieDate}} | {{movieInfo.movieLanguage}} |
             ${{movieInfo.price}} </p>
     </div>
@@ -11,7 +11,7 @@
         <div class="screen"></div>
     </div>
 
-    <button class="continueButton" id="continueButton">Continue</button>
+    <button class="continueButton" style="color: #000000; background-color: #FFFFFF" id="continueButton">Continue</button>
 
 </div>
 {{#section "script"}}
